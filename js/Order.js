@@ -2,12 +2,15 @@
  * @author Qiongcheng Xu
  */
 $(document).ready(function() {
-	$("#order").submit(function(e) {
-		e.preventDefault();
-		// $("select").each(function(){
-// 			
-		// });
-			
+	$("#order").click(function(event) {
+		$("select").each(function(i,e){
+			Menu.all[i].qty = $(this).val();
+			console.log(Menu.all[i]);
+		});
+		console.log("3");
+		//window.location.href = 'shoppingCart.html';
+		
+		event.preventDefault();	
 	});
 	
 	//Read data from menu object
@@ -18,7 +21,7 @@ $(document).ready(function() {
         $("#menu-entry").append(row); 
         //Food image
         var image = $("<div class='food-image'></div>");
-        var image_url = $('<img src="../img/foodPic/'+next_food.image+'", class="img-rounded">');
+        var image_url = $('<img src="img/foodPic/'+next_food.image+'", class="img-rounded">');
         row.append(image);
         image.append(image_url);
         //Food name
@@ -28,7 +31,7 @@ $(document).ready(function() {
         //Food quantity
         var qty = $("<div class='qty'></div>");
         row.append(qty);
-        var qty_select = $("<select></select>");
+        var qty_select = $("<select class='select-qty'></select>");
         qty.append(qty_select);
         for (var j = 0; j < 6; j++){
         	var option = $("<option value="+j+">"+j+"</option>");

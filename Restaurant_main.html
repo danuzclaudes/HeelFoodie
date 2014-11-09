@@ -2,26 +2,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Template</title>
+<title>Resaurant</title>
 <!-- Bootstrap Core CSS -->
 <!-- Note the path of href-->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- Google Fonts -->
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 <!-- Template CSS -->
-<link rel="stylesheet" type="text/css" href="../css/template.css">
+<link rel="stylesheet" type="text/css" href="css/template.css">
 <!-- jQuery -->
 <!-- Note the path of src.-->
-<script src="../js/jquery-1.11.1.js"></script>
+<script src="js/jquery-1.11.1.js"></script>
 <!--
 	Place Your Scripts or CSS links below:
 -->
-<link rel="stylesheet" type="text/css" href="../css/restaurant.css">
-<script src="../js/Menu.js"></script>
-<script src="../js/setup.js"></script>
-<script src="../js/Order.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/restaurant.css">
+<script src="js/Menu.js"></script>
+<script src="js/setup.js"></script>
+<script src="js/Order.js"></script>
+<script src="js/Restaurants.js"></script>
+
 
 </head>
 <body>
@@ -29,7 +32,7 @@
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
         <div class="logo">
-            <a class="navbar-brand" href="#"><img src="../img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="#"><img src="img/logo_footer.png" alt=""></a>
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
@@ -38,10 +41,9 @@
         </div>
     </header>
     <!-- Place Your HTML Here: -->
-	Place your HTML Here.
 	<div class="container">
 				<div id="restaurantName">
-					<img id="resImg", src="../img/AsiaCafe.png">
+					<img id="resImg", src="img/AsiaCafe.png">
 				</div>
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
@@ -83,7 +85,7 @@
 					<form>
 						<ul id="menu-entry"></ul>
 						<div>
-							<input type="submit" id="order" value="Order" class="btn btn-primary pull-right"/>
+							<button type="button" id="order" class="btn btn-primary pull-right">Order</button>
 						</div>
 					</form>
 				</div>
@@ -95,7 +97,7 @@
         <div class="container">
             <div class="row text-center">
                 <div class="logo-footer">
-                        <a class="logo-footer" href="#"><img src="../img/logo.png" alt=""></a>
+                        <a class="logo-footer" href="#"><img src="img/logo_footer.png" alt=""></a>
                 </div>
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our Services</h2>
@@ -105,7 +107,7 @@
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Nearby Restaurants</strong>
@@ -117,7 +119,7 @@
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                                <i class="fa fa-picture-o fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Food with Pictures</strong>
@@ -129,7 +131,7 @@
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                                <i class="fa fa-comments-o fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Rate and Review</strong>
@@ -141,7 +143,7 @@
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                                <i class="fa fa-ticket fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Special and coupon</strong>
