@@ -52,17 +52,18 @@ function initialize() {
       mapOptions);
 
   // set up marker
-  var markers = new Array();
+  var markerArray = new Array();
   for(var i = 0; i < Restaurants.all.length; i++){
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(Restaurants.all[i].lat,Restaurants.all[i].lng),
       // animation:google.maps.Animation.BOUNCE,
       index: Restaurants.all[i].rid
     });
+    // To add the marker to the map, call setMap();
     marker.setMap(map);
-    markers.push(marker);
+    markerArray.push(marker);
   }
-  console.log("markers=",markers); // for debugging
+  console.log("markers=",markerArray); // for debugging
   
 }
 
@@ -73,11 +74,14 @@ google.maps.event.addDomListener(window,'load',initialize);
 <body>
 <div class="main-container">
 	<header id="main-header" class="navbar navbar-custom navbar-fixed-top">
-	<h1>HeelFoodie</h1>
-    	<div class="header-account">
-          <a class="link" href="http://ele.me/login">LOGIN</a>
-          / <a class="link" href="http://ele.me/register">REGISTER</a>
-        </div>
+      <div class="logo">
+        <a class="navbar-brand" href="#"><img src="./img/logo.png" alt=""></a>
+      </div>
+	  <h1>HeelFoodie</h1>
+      <div class="header-account">
+        <a class="link" href="#">LOGIN</a>
+        / <a class="link" href="http://ele.me/register">REGISTER</a>
+      </div>
 	<div class="change-bg">
 	  <span>close background</span>
 	</div>	
@@ -92,6 +96,9 @@ google.maps.event.addDomListener(window,'load',initialize);
     <section id="services" class="services bg-primary">
         <div class="container">
             <div class="row text-center">
+                <div class="logo-footer">
+                        <a class="logo-footer" href="#"><img src="./img/logo.png" alt=""></a>
+                </div>
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our Services</h2>
                     <hr class="small">
@@ -191,13 +198,17 @@ google.maps.event.addDomListener(window,'load',initialize);
     	var divbg = $("div#background");
         var mapbg = $("div#map-background");
     	var footer = $("footer");
-    	$("div.change-bg").click(function(){
+        var logo_footer = $(".logo-footer");
+        logo_footer.css({display: "none"});
+    	$("div.change-bg").on("mousedown",function(){
     	  if(divbg.hasClass("active")){
     		divbg.removeClass("active");
     		$(this).find("span").text("open background");
+            logo_footer.css({display: "none"});
     		footer.removeClass("active");
             divbg.css({display: "none"});
             mapbg.css({height: "100%"});
+            logo_footer.css({display: "initial"});
     		console.log("divbg is active, now close background."); // for debugging
     	  }else{
     		divbg.addClass("active");
@@ -205,6 +216,7 @@ google.maps.event.addDomListener(window,'load',initialize);
     		footer.addClass("active");
             divbg.css({display: "initial"});
             mapbg.css({height: "0"});
+            logo_footer.css({display: "none"});
             console.log("divbg is inactive, now open background."); // for debugging
     	  }	    
     	});
