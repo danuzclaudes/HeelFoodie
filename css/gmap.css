@@ -63,3 +63,34 @@ footer.active {
     top: 15px;
     padding-right: 10px;	
 }
+
+div#info-window {
+  padding: 10px;
+  padding-top: 0;
+  width: 250px;
+  height: 100%;
+  overflow: none;
+}
+div#info-window h1.rest-name {
+  padding-top: 0;
+  margin: 0 0 1px 0;
+  color: #333;
+  font-size: 25px;
+}
+div#info-window p.rest-address {
+  margin: 0 0 5px 0;
+  color: #999;
+}
+div#info-window p.rest-phone {
+  margin: 0 0 5px 0;
+  color: #999;
+  font-style: italic;
+}
+
+/*'      <div id="info-window">'+
+        '<h1 class="rest-name">'+restaurant_name+'</h1>'+
+        '<p class="rest-address">'+restaurant_address+'</p>'+
+        '<p class="rest-phone">'+restaurant_phone+'</p>'+
+        '<p class="rest-open"><span class="highlight">'+restaurant_isOpen+'</span></p>'+
+        '<a class="iw-btn" target="_blank" href="/poi/from?lat=31.227482&lng=121.476002">Look Inside</a>'+
+        '</div>';*/
