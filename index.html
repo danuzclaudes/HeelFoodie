@@ -21,10 +21,11 @@
 <!-- Data - will be replaced by JSON -->
 <script src="./js/Restaurants.js"></script>
 <script>
+// set up restaurants data
 Restaurants.all = [];
-Restaurants.all.push(new Restaurants(2014001,"Asian Cafe",35.913237, -79.055839));
-Restaurants.all.push(new Restaurants(2014002,"Top of Hill",35.914019, -79.056741));
-Restaurants.all.push(new Restaurants(2014003,"Sweet Frog",35.913133, -79.055464));
+Restaurants.all.push(new Restaurants(2014001,"Asian Cafe",35.913237, -79.055839, "118 E Franklin St, Chapel Hill, NC 27514", "(919) 929-0168", true));
+Restaurants.all.push(new Restaurants(2014002,"Top of Hill",35.914019, -79.056741, "100 E Franklin St #3, Chapel Hill, NC 27514", "(919) 929-8676", false));
+Restaurants.all.push(new Restaurants(2014003,"Sweet Frog",35.913133, -79.055464, "105 E Franklin St, Chapel Hill, NC 27514", "(919) 537-8616", true));
 </script>
 <!-- Scripts for Google Map -->
 <script>
@@ -48,23 +49,51 @@ function initialize() {
       style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
     }
   };
+  // get map div and initialize by mapOptionsObject
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  // set up marker
-  var markerArray = new Array();
+  // set up marker for all the restaurants
   for(var i = 0; i < Restaurants.all.length; i++){
+    var location = new google.maps.LatLng(Restaurants.all[i].getLat(),Restaurants.all[i].getLng())
     var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(Restaurants.all[i].lat,Restaurants.all[i].lng),
+      position: location,
       // animation:google.maps.Animation.BOUNCE,
       index: Restaurants.all[i].rid
     });
     // To add the marker to the map, call setMap();
     marker.setMap(map);
-    markerArray.push(marker);
+
+    // getRestaurantInfo
+    getRestaurantInfo(marker, i);
+
   }
-  console.log("markers=",markerArray); // for debugging
-  
+}
+// Function Closure
+function getRestaurantInfo(marker, index){
+    // get private data of Restaurant Object
+    var restaurant_id = Restaurants.all[index].rid;
+    console.log("rid=",restaurant_id);
+    var restaurant_name = Restaurants.all[index].rname;
+    var restaurant_address = Restaurants.all[index].raddress;
+    var restaurant_phone = Restaurants.all[index].rphone;
+    var restaurant_isOpen = Restaurants.all[index].isOpen?"Open":"Close";
+    // set up content
+    var contentString = '<div id="info-window">'+
+        // '<span class="iw-close close_btn">×</span>'+
+        '<h1 class="rest-name">'+restaurant_name+'</h1>'+
+        '<p class="rest-address">'+restaurant_address+'</p>'+
+        '<p class="rest-phone">'+restaurant_phone+'</p>'+
+        '<p class="rest-open"><span class="highlight">'+restaurant_isOpen+'</span></p>'+
+        '<a class="iw-btn" target="_blank" href="/poi/from?lat=31.227482&lng=121.476002">Look Inside</a>'+
+        '</div>';
+    // set up info window
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+    google.maps.event.addListener(marker,'click', function(){
+        infowindow.open(marker.get('map'),marker);
+    });
 }
 
 google.maps.event.addDomListener(window,'load',initialize);
@@ -107,7 +136,7 @@ google.maps.event.addDomListener(window,'load',initialize);
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Nearby Restaurants</strong>
@@ -119,7 +148,7 @@ google.maps.event.addDomListener(window,'load',initialize);
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                                <i class="fa fa-picture-o fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Food with Pictures</strong>
@@ -131,7 +160,7 @@ google.maps.event.addDomListener(window,'load',initialize);
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                                <i class="fa fa-comments-o fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Rate and Review</strong>
@@ -143,7 +172,7 @@ google.maps.event.addDomListener(window,'load',initialize);
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                                <i class="fa fa-ticket fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Special and coupon</strong>
