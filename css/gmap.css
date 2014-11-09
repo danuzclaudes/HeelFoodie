@@ -86,11 +86,3 @@ div#info-window p.rest-phone {
   color: #999;
   font-style: italic;
 }
-
-/*'      <div id="info-window">'+
-        '<h1 class="rest-name">'+restaurant_name+'</h1>'+
-        '<p class="rest-address">'+restaurant_address+'</p>'+
-        '<p class="rest-phone">'+restaurant_phone+'</p>'+
-        '<p class="rest-open"><span class="highlight">'+restaurant_isOpen+'</span></p>'+
-        '<a class="iw-btn" target="_blank" href="/poi/from?lat=31.227482&lng=121.476002">Look Inside</a>'+
-        '</div>';*/
