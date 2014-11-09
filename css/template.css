@@ -55,8 +55,22 @@ div.header-account a {
 }
 /* Footer */
 footer {
-    padding: 100px 0;
+    padding: 50px 0;
     padding-bottom: 30px;
     background-color: white;
     color: black;
+}
+.logo, .logo img{
+	height: 50px;
+	width: 150px;
+	float: left;
+	position: absolute;
+	top: 0;
+	left: 30px;
+}
+.logo-footer {
+	margin: auto;
+	display: block;
+	width: 100%;
+	height: 150px;
 }
