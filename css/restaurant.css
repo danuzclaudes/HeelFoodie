@@ -1,12 +1,27 @@
-.resImg {
-	height: 40px;
 
+
+#resImg {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	width: 700px;
+	
+}
+
+#carousel-example-generic {
+	width: 700px;
+	margin: 0 auto;
+}
+
+#menu {
+	margin-top: 1.5em;
+	width: 700px;
 }
 
 ul {
 	list-style: none outside none;
-	margin: 0 auto 1.5em;
 	width: 100%;
+	margin: 0;
+	padding:0; 
 }
 
 .food-entry {
@@ -88,9 +103,6 @@ li img {
     background-repeat: repeat-x;
 }
 
-.menu {
-	width: 100%;
-}
 
 #order {
 	background-color: #56A0D3;

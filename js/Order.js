@@ -50,5 +50,8 @@ $(document).ready(function() {
         rate.addClass(next_food.rate);
     }
     
-    
+	$('.carousel').carousel({
+        interval: 3000
+    });
+
 });
