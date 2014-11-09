@@ -1,5 +1,10 @@
+// set up restaurants data
+Restaurants.all = [];
+Restaurants.all.push(new Restaurants(2014001,"Asian Cafe",35.913237, -79.055839));
+Restaurants.all.push(new Restaurants(2014002,"Top of Hill",35.914019, -79.056741));
+Restaurants.all.push(new Restaurants(2014003,"Sweet Frog",35.913133, -79.055464));
 
-
+// set up menu data
 Menu.all = [];
 Menu.all.push(new Menu('Crab Rangoon', 0, "5", "Crab-Rangoon.jpeg"));
 Menu.all.push(new Menu('Crispy Noodle', 0, "4", "crispy-noodle.jpg"));
