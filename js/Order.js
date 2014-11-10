@@ -7,10 +7,16 @@ $(document).ready(function() {
 			Menu.all[i].qty = $(this).val();
 			console.log(Menu.all[i]);
 		});
-		console.log("3");
-		//window.location.href = 'shoppingCart.html';
+		$.ajax({
+			url: "shoppingCart.html",
+			type: "POST",
+			data: Menu.all,
+			success: function(result){
+				$("#Restaurant-Main").html("Success!");
+			}
+		});
 		
-		event.preventDefault();	
+			
 	});
 	
 	//Read data from menu object
@@ -38,7 +44,7 @@ $(document).ready(function() {
         	qty_select.append(option);
         }
         //Food price
-        var price = $("<div class='price'>$</div>");
+        var price = $("<div class='price'>$ </div>");
         row.append(price);
         price.append(next_food.price);
         //Food rate
