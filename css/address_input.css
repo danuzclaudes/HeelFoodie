@@ -1,0 +1,12 @@
+.long_textinput{
+	width : 40%;
+}
+.inline_display{
+	display: inline-block; 
+	margin-right: 5px; 
+	float: left;
+}
+#nextstep{
+	position: relative; 
+	left: 415px;
+}
