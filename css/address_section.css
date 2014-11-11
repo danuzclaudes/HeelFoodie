@@ -1,0 +1,8 @@
+#Addr_display { 
+	position: relative;
+	left: 10px;
+    font-size: 18px;
+    font-style: italic;
+    font-family: initial;
+    /*"Times New Roman", Times, serif;*/
+}
