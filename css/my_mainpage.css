@@ -1,0 +1,23 @@
+#Def_Addr_display { 
+	position: relative;
+	left: 10px;
+    font-size: 18px;
+    font-style: italic;
+    font-family: initial;
+    /*"Times New Roman", Times, serif;*/
+}
+#Nav_Bar{
+	width:70%;
+	margin:auto;
+	/*position: relative;
+	left: 100px;*/
+}
+.nav_bar{
+	font-size: 20px;
+}
+#content_display{
+	width: 50%; 
+	margin: 0 auto; 
+	float:center;
+	margin-bottom: 50px;
+}
