@@ -1,3 +1,17 @@
+<?php
+require_once('model.php');
+
+session_start();
+
+$cart_lists = $_SESSION["CART"];
+// print_r($cart_lists);
+// foreach ($cart_lists as $key => $cart) {
+//     print '\\n';
+//     echo $cart["oid"];
+// }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +33,10 @@
 	Place Your Scripts or CSS links below:
 -->
 <link href="./css/address_section.css" rel="stylesheet">
+<script>
+    console.log(<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>);
+</script>
+<script src="./js/editAddress.js"></script>
 
 </head>
 <body>
@@ -35,34 +53,46 @@
         </div>
     </header>
     <!-- Place Your HTML Here: -->
-    <div style = "position: relative; left:100px; margin-bottom: 50px;">
-        <div>
-            <div style = "display: inline-block; width: 50%">
+    <div class="wrapper">
+        <div class="address-items">
+            <div class="address-title" style = "display: inline-block; width: 50%">
                 <h3 >Address</h3>
-                <hr>
             </div>            
-            <div style = "display: inline-block">
-                <button type="button" class="btn btn-default" style = "display: inline-block">Edit</button>
+            <div class="control-panel" style = "display: inline-block">
+                <button id="edit-addr" type="button" class="btn btn-info" style = "display: inline-block">Edit Delivery Address</button>
             </div>
 
             <div id="Addr_display">    
-                 <?php 
-                echo $_POST["firstn"]." ".$_POST["lastn"]."</p>";
-                echo $_POST["phone1"]."</p>";
-                echo $_POST["Addr_l1"]."<br>".$_POST["Addr_l2"]."<br>";
-                echo $_POST["Addr_city"]." ,".$_POST["Addr_sta"]." ,".$_POST["Addr_zip"]."</p>";
+                <!-- <table class="table table-striped">Your address:  -->
+                <?php 
+                   // print_r($_POST);
+                   // print_r($_SESSION);
+                   echo '<table data-table="address" class="table table-hover" style="padding-left: 15px">';
+                   echo '<tr>';
+                   echo '<td class="Addr_l1">'.$_POST["Addr_l1"].'</td>';
+                   echo '</tr>';
+                   echo '<tr>';
+                   echo '<td class="Addr_l2">'.$_POST["Addr_l2"].'</td>';
+                   echo '</tr>';
+                   echo '</table>';
+                ?>
+                <?php 
+                // echo $_POST["firstn"]." ".$_POST["lastn"]."</p>";
+                // echo $_POST["phone1"]."</p>";
+                // echo $_POST["Addr_l2"]."<br>";
+                // echo $_POST["Addr_city"]." ,".$_POST["Addr_sta"]." ,".$_POST["Addr_zip"]."</p>";
                 ?>
             </div>
         </div>
-        <div>
+        <div class="menu-items">
             <div style = "display: inline-block; width: 50%">
                 <h3 >Order Detail</h3>
             </div>
             <div style = "display: inline-block">
-                <button type="button" class="btn btn-default" style = "display: inline-block">Edit</button>
+               <a href="shoppingCart.html"><button type="button" class="btn btn-warning" style="display: inline-block">Return to Cart</button></a>
             </div>
-            <div style = "display: inline-block; width: 50%">
-            <table class="table" style = "padding-left: 15px">
+            <div id="Cart-display" style = "display: inline-block; width: 80%">
+            <table data-table="cart" class="table table-hover" style = "padding-left: 15px">
                 <tr>
                     <th>Entry</th>
                     <th>Restaurant</th>
@@ -70,10 +100,22 @@
                     <th>Price</th>
                     <th>Total Price</th>
                 </tr>
+                <?php
+                    foreach ($cart_lists as $key => $cart) {
+                        print "<tr>";
+                        echo '<td>'.$cart["oid"].'</td>';
+                        echo '<td></td>';
+                        echo '<td>'.$cart["qty"].'</td>';
+                        echo '<td>'.$cart["price"].'</td>';
+                        echo '<td></td>';
+                        echo "</tr>";
+                    }
+                ?>
+                
                 <tr>
                     <td>Crab Rangoon</td>
                     <td>Asia Cafe</td>
-                    <td>3</td>
+                    <td></td>
                     <td>$ 4.95</td>
                     <td>14.85</td>
                 </tr>
@@ -93,6 +135,7 @@
                 </tr>
             </table>
             </div>
+            <a href="shoppingCart.html"><button style="display: inline-block" class="btn btn-danger" type="button">Place Your Order</button></a>
         </div>
     </div>
 

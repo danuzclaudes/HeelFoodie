@@ -4,6 +4,19 @@ Restaurants.all.push(new Restaurants(2014001,"Asian Cafe",35.913237, -79.055839,
 Restaurants.all.push(new Restaurants(2014002,"Top of Hill",35.914019, -79.056741, "100 E Franklin St #3, Chapel Hill, NC 27514", "(919) 929-8676", false));
 Restaurants.all.push(new Restaurants(2014003,"Sweet Frog",35.913133, -79.055464, "105 E Franklin St, Chapel Hill, NC 27514", "(919) 537-8616", true));
 
+// Restaurants.all.push(
+// 	{
+// 	"rid": "2014001",
+// 	"rname": "Asian Cafe",
+// 	"lat": "35.913237", 
+// 	"lng": "-79.055839", 
+// 	"raddress": "118 E Franklin St, Chapel Hill, NC 27514", 
+// 	"rphone": "(919) 929-0168", 
+// 	"isOpen": "true"
+// 	}
+// );
+
+
 // set up menu data
 Menu.all = [];
 Menu.all.push(new Menu('Crab Rangoon', 0, "5", "Crab-Rangoon.jpeg", 4.95));

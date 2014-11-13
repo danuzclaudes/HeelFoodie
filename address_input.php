@@ -1,3 +1,22 @@
+<?php
+require_once('model.php');
+
+session_start();
+
+foreach (getOrderList() as $key => $orderList) {
+    if ($orderList['qty']) {
+        $cart_info[] = ["oid" => $orderList['oid'], 
+                        "qty" => $orderList['qty'], 
+                        "price" => $orderList['price']];
+    }
+   
+}
+$_SESSION["CART"] = $cart_info;
+// session_destroy();
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +38,9 @@
 <!--
 	Place Your Scripts or CSS links below:
 -->
+<script>
+    console.log(<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>);
+</script>
 
 </head>
 <body>
@@ -36,17 +58,16 @@
     </header>
 
 
-    <div style="position: relative; left: 100px; margin-bottom: 50px;">
-    <div>
-        <h2>Address</h2>
-    </div>
-        <p id="test"> </p>
+    <div id="Addr_display" style="position: relative; left: 100px; margin-bottom: 50px;">
+        <div class="address-title">
+            <h2>Address</h2>
+        </div>
         <form role="form" action="address_confirm.php" method="post">
             <div class="form-group long_textinput">
-                <input type="text" class="form-control" name = "Addr_l1" placeholder="Address line 1" >
+                <input type="text" class="form-control" name = "Addr_l1" placeholder="Address line 1">
             </div>
             <div class="form-group long_textinput">
-                <input type="text" class="form-control" name = "Addr_l2" placeholder="Address line 2" >
+                <input type="text" class="form-control" name = "Addr_l2" placeholder="Address line 2">
             </div>
             <div class="form_inline long_textinput">
                 <div class="form-group inline_display" style = "width : 33%">
