@@ -22,8 +22,12 @@
 <link rel="stylesheet" type="text/css" href="css/restaurant.css">
 <script src="js/bootstrap.min.js"></script>
 <script src="js/Menu.js"></script>
+<<<<<<< HEAD
 <script src="js/Order.js"></script>
 <script src="js/OrderList.js"></script>
+=======
+<script src="js/MenuOrder.js"></script>
+>>>>>>> 02c0cc97a7fe9bb2a8ba792ec36bd63005ef05ca
 <script src="js/Restaurants.js"></script>
 <script src="js/setup.js"></script>
 
@@ -99,8 +103,8 @@
 					<form id="order-form" action="ajax-post.php">
 						<ul id="menu-entry"></ul>
 						<div>
-							<button type="button" id="order" class="btn btn-primary pull-right">Order</button>
-						</div>
+							<button type="button" id="order" class="btn btn-primary pull-right" onclick="javascript:ajax_post();">Order</button>
+						</div>;
 					</form>
 				</div>
 			</div>
