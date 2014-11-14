@@ -1,4 +1,5 @@
-var Menu = function (food, qty, rate, image, price) {
+var Menu = function (mid, food, qty, rate, image, price) {
+ 	this.mid = mid;
  	this.food = food;
  	this.qty = qty;
  	this.rate = rate;
