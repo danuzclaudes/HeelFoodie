@@ -19,17 +19,14 @@
 	Place Your Scripts or CSS links below:
 -->
 
-<link rel="stylesheet" type="text/css" href="css/restaurant.css">
+<link rel="stylesheet" type="text/css" href="css/cartReview.css">
 <script src="js/bootstrap.min.js"></script>
-<script src="js/Menu.js"></script>
-<<<<<<< HEAD
-<script src="js/Order.js"></script>
-<script src="js/OrderList.js"></script>
-=======
-<script src="js/MenuOrder.js"></script>
->>>>>>> 02c0cc97a7fe9bb2a8ba792ec36bd63005ef05ca
 <script src="js/Restaurants.js"></script>
+<script src="js/Menu.js"></script>
+<script src="js/OrderList.js"></script>
+<script src="js/reviewCart.js"></script>
 <script src="js/setup.js"></script>
+
 
 
 </head>
@@ -47,65 +44,39 @@
         </div>
     </header>
     <!-- Place Your HTML Here: -->
-	<div id="Restaurant-Main" class="container">
-				<div id="restaurantName">
-					<img id="resImg", class="img-responsive center-block", src="img/AsiaCafe.png">
-				</div>
-				
-				<div id="carousel-example-generic" class="carousel slide" class="center-block" data-ride="carousel" data-interval="3000">
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					</ol>
+	<div id="shopping-cart" class="container">
+		<!--
+		<div id="dom-target">
+			Welcome <?php print_r($_POST["mid"]) ?><br>
+			Your email address is: <?php print_r($_POST["qty"]); ?>
 
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner" >
-						<div class="item active">
-							<img src="img/Special/Crab-Rangoon.jpeg" alt="...">
-							<!--
-							<div class="carousel-caption">
-								<h3>Caption Text</h3>
-							</div>
-							-->
-						</div>
-						<div class="item">
-							<img src="img/Special/beef-broccoli.jpg" alt="...">
-							<!--
-							<div class="carousel-caption">
-								<h3>Caption Text</h3>
-							</div>
-							-->
-						</div>
-						<div class="item">
-							<img src="img/Special/crispy-noodle.jpg" alt="...">
-							<!--
-							<div class="carousel-caption">
-								<h3>Caption Text</h3>
-							</div>
-							-->
-						</div>
+		</div>
+		-->
+		<h2>My Cart</h2>
+				<div id="shoppingcart-list" class="center-block">
+					
+					
+						<ul id="food-list">
+							<li class='food-entry title'>
+						<div class = "food">
+						Entry
 					</div>
-
-					<!-- Controls -->
-					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> 
-						<span class="glyphicon glyphicon-chevron-left"></span>
-						<span class="sr-only">Previous</span> </a>
-					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> 
-						<span class="glyphicon glyphicon-chevron-right"></span> 
-						<span class="sr-only">Next</span></a>
-				</div>
-				<!-- Carousel -->
-				
-				
-				<div id="menu" class="center-block">
-					<form id="order-form" action="ajax-post.php">
-						<ul id="menu-entry"></ul>
+					<div class = "qty">
+						Quantity
+					</div>
+					<div class = "title-price price">
+						Price
+					</div>
+					</li>
+						</ul>
+						<div id="total-price">
+							<label class="totalPrice"></label>
+						</div>
 						<div>
-							<button type="button" id="order" class="btn btn-primary pull-right" onclick="javascript:ajax_post();">Order</button>
-						</div>;
-					</form>
+							<button type="button" id="order" class="btn btn-primary pull-right">Place Order</button>
+							<button type="button" id="continue-order" class="btn btn-primary pull-right">Continue Ordering</button>
+						</div>
+					
 				</div>
 			</div>
     <!-- Place Your HTML Above. -->

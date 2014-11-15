@@ -22,14 +22,11 @@
 <link rel="stylesheet" type="text/css" href="css/restaurant.css">
 <script src="js/bootstrap.min.js"></script>
 <script src="js/Menu.js"></script>
-<<<<<<< HEAD
-<script src="js/Order.js"></script>
 <script src="js/OrderList.js"></script>
-=======
 <script src="js/MenuOrder.js"></script>
->>>>>>> 02c0cc97a7fe9bb2a8ba792ec36bd63005ef05ca
 <script src="js/Restaurants.js"></script>
 <script src="js/setup.js"></script>
+
 
 
 </head>
@@ -48,6 +45,13 @@
     </header>
     <!-- Place Your HTML Here: -->
 	<div id="Restaurant-Main" class="container">
+		<div id="restaurant_info">
+			Asian Cafe
+			Address:
+			Phone:
+			Open hour: 
+		</div>
+		<div id="response"></div>
 				<div id="restaurantName">
 					<img id="resImg", class="img-responsive center-block", src="img/AsiaCafe.png">
 				</div>
@@ -100,11 +104,12 @@
 				
 				
 				<div id="menu" class="center-block">
-					<form id="order-form" action="ajax-post.php">
+					<form id="order-form" action="shoppingCart.php" method="post">
 						<ul id="menu-entry"></ul>
 						<div>
-							<button type="button" id="order" class="btn btn-primary pull-right" onclick="javascript:ajax_post();">Order</button>
-						</div>;
+							<input type="submit" id="order" value="Order" class="btn btn-primary pull-right"/>
+							<!--<button type="button" id="order" class="btn btn-primary pull-right">Order</button>-->
+						</div>
 					</form>
 				</div>
 			</div>
