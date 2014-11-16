@@ -55,7 +55,30 @@ var click_edit_Address_button = function () {
 	  	addr_l1 = $('input[name="Addr_l1"]').val();
 	  	addr_l2 = $('input[name="Addr_l2"]').val();
 	  	// console.log($('input[name="Addr_l1"]').val()); // for debugging
-	  	return_to_table(addr_l1, addr_l2);
+	  	
+
+	  	$.ajax({
+			url: "./address.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				Addr_l1: addr_l1,
+				Addr_l2: addr_l2,
+			},
+			success: function(json){
+				// return_to_table(json.addr_l1, addr_l2);
+				console.log("JSON back success");
+				console.log("json=",json);
+				// console.log('<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>');
+				return_to_table(json[0].Addr_l1, json[0].Addr_l2);
+			},
+			error: function(xhr, status,errorThrown){
+				console.log("error!");
+				console.log("xhr=",xhr);
+			}
+
+		});
+
 	  }
 
 	});
@@ -68,7 +91,8 @@ var click_edit_Address_button = function () {
 		$("button#edit-addr").text("Edit Delivery Address");
 		cancel_button.hide();
 		console.log("after cancel:",editable); // for debugging
-		return_to_table(addr_l1, addr_l2);
+		return_to_table(addr_l1,addr_l2);
+		
 	});
 	
 

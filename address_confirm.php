@@ -2,8 +2,13 @@
 require_once('model.php');
 
 session_start();
+if( $_POST == null && !isset($_SESSION["CART"]) ) {
+    // header("Location: ./index.html");
+    header( "Refresh:3; url=./index.html", true, 303);
+    print("Please don't access this page directly.");
+    exit("Autodirecting to homepage...");
+}
 
-$cart_lists = $_SESSION["CART"];
 // print_r($cart_lists);
 // foreach ($cart_lists as $key => $cart) {
 //     print '\\n';
@@ -44,7 +49,7 @@ $cart_lists = $_SESSION["CART"];
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
         <div class="logo">
-            <a class="navbar-brand" href="#"><img src="./img/logo_footer.png" alt=""></a>
+            <a class="navbar-brand" href="index.php"><img src="./img/logo_footer.png" alt=""></a>
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
@@ -65,16 +70,24 @@ $cart_lists = $_SESSION["CART"];
             <div id="Addr_display">    
                 <!-- <table class="table table-striped">Your address:  -->
                 <?php 
-                   // print_r($_POST);
-                   // print_r($_SESSION);
-                   echo '<table data-table="address" class="table table-hover" style="padding-left: 15px">';
-                   echo '<tr>';
-                   echo '<td class="Addr_l1">'.$_POST["Addr_l1"].'</td>';
-                   echo '</tr>';
-                   echo '<tr>';
-                   echo '<td class="Addr_l2">'.$_POST["Addr_l2"].'</td>';
-                   echo '</tr>';
-                   echo '</table>';
+                    if ( $_POST == null && isset($_SESSION["CART"]) ){
+                        echo '<table class="table table-hover no-address"><tr>';
+                        echo '<td>No address information yet. Please return to address input page.</td>';
+                        echo '</tr></table>';
+                       // print_r($_POST);
+                       // print_r($_SESSION);
+                    } else if( $_POST != null && isset($_SESSION["CART"]) ){
+                        echo '<table data-table="address" class="table table-hover" style="padding-left: 15px">';
+                        echo '<tr>';
+                        echo '<td class="Addr_l1">'.$_POST["Addr_l1"].'</td>';
+                        echo '</tr>';
+                        echo '<tr>';
+                        echo '<td class="Addr_l2">'.$_POST["Addr_l2"].'</td>';
+                        echo '</tr>';
+                        echo '</table>';
+                        echo '<script src="./js/checkout.js"></script>';
+                    }
+                       
                 ?>
                 <?php 
                 // echo $_POST["firstn"]." ".$_POST["lastn"]."</p>";
@@ -89,8 +102,12 @@ $cart_lists = $_SESSION["CART"];
                 <h3 >Order Detail</h3>
             </div>
             <div style = "display: inline-block">
-               <a href="shoppingCart.html"><button type="button" class="btn btn-warning" style="display: inline-block">Return to Cart</button></a>
+               <a href="shoppingCart.php"><button type="button" class="btn btn-warning" style="display: inline-block">Return to Cart</button></a>
             </div>
+            <?php
+                if ($_POST != null && isset($_SESSION["CART"])) {
+                    $cart_lists = $_SESSION["CART"];
+            ?>
             <div id="Cart-display" style = "display: inline-block; width: 80%">
             <table data-table="cart" class="table table-hover" style = "padding-left: 15px">
                 <tr>
@@ -135,7 +152,14 @@ $cart_lists = $_SESSION["CART"];
                 </tr>
             </table>
             </div>
-            <a href="shoppingCart.html"><button style="display: inline-block" class="btn btn-danger" type="button">Place Your Order</button></a>
+            <a href=""><button style="display: inline-block" class="btn btn-danger" type="button">Place Your Order</button></a>
+            <?php
+                } else { 
+                    echo '<div class="empty-cart">You have not selected any products yet. Please return to the shopping cart!</div>';
+                }
+            ?>
+                
+            
         </div>
     </div>
 
@@ -147,7 +171,7 @@ $cart_lists = $_SESSION["CART"];
         <div class="container">
             <div class="row text-center">
                 <div class="logo-footer">
-                        <a class="logo-footer" href="#"><img src="./img/logo_footer.png" alt=""></a>
+                        <a class="logo-footer" href="index.php"><img src="./img/logo_footer.png" alt=""></a>
                 </div>
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our Services</h2>
@@ -242,3 +266,6 @@ $cart_lists = $_SESSION["CART"];
         </div>
     </footer>
 </div>
+
+</body>
+</html>

@@ -63,6 +63,7 @@ $_SESSION["CART"] = $cart_info;
             <h2>Address</h2>
         </div>
         <form role="form" action="address_confirm.php" method="post">
+            <!-- <form role="form" action="receiveAddress.php" method="post"> -->
             <div class="form-group long_textinput">
                 <input type="text" class="form-control" name = "Addr_l1" placeholder="Address line 1">
             </div>
@@ -268,3 +269,5 @@ $_SESSION["CART"] = $cart_info;
         </div>
     </footer>
 </div>
+</body>
+</html>
