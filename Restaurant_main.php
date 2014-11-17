@@ -1,42 +1,33 @@
-<?php
-require_once('model.php');
-
-session_start();
-
-$cart_lists = $_SESSION["CART"];
-// print_r($cart_lists);
-// foreach ($cart_lists as $key => $cart) {
-//     print '\\n';
-//     echo $cart["oid"];
-// }
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Template</title>
+<title>Resaurant</title>
 <!-- Bootstrap Core CSS -->
 <!-- Note the path of href-->
-<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- Google Fonts -->
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 <!-- Template CSS -->
-<link rel="stylesheet" type="text/css" href="./css/template.css">
+<link rel="stylesheet" type="text/css" href="css/template.css">
 <!-- jQuery -->
 <!-- Note the path of src.-->
-<script src="./js/jquery-1.11.1.js"></script>
+<script src="js/jquery-1.11.1.js"></script>
 <!--
 	Place Your Scripts or CSS links below:
 -->
-<link href="./css/address_section.css" rel="stylesheet">
-<script>
-    console.log(<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>);
-</script>
-<script src="./js/editAddress.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/restaurant.css">
+<script src="js/bootstrap.min.js"></script>
+<script src="js/Menu.js"></script>
+<script src="js/OrderList.js"></script>
+<script src="js/MenuOrder.js"></script>
+<script src="js/Restaurants.js"></script>
+<script src="js/setup.js"></script>
+
+
 
 </head>
 <body>
@@ -44,7 +35,7 @@ $cart_lists = $_SESSION["CART"];
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
         <div class="logo">
-            <a class="navbar-brand" href="#"><img src="./img/logo_footer.png" alt=""></a>
+            <a class="navbar-brand" href="#"><img src="img/logo_footer.png" alt=""></a>
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
@@ -53,93 +44,75 @@ $cart_lists = $_SESSION["CART"];
         </div>
     </header>
     <!-- Place Your HTML Here: -->
-    <div class="wrapper">
-        <div class="address-items">
-            <div class="address-title" style = "display: inline-block; width: 50%">
-                <h3 >Address</h3>
-            </div>            
-            <div class="control-panel" style = "display: inline-block">
-                <button id="edit-addr" type="button" class="btn btn-info" style = "display: inline-block">Edit Delivery Address</button>
-            </div>
+	<div id="Restaurant-Main" class="container">
+		<div id="restaurant_info">
+			Asian Cafe
+			Address:
+			Phone:
+			Open hour: 
+		</div>
+		<div id="response"></div>
+				<div id="restaurantName">
+					<img id="resImg", class="img-responsive center-block", src="img/AsiaCafe.png">
+				</div>
+				
+				<div id="carousel-example-generic" class="carousel slide" class="center-block" data-ride="carousel" data-interval="3000">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					</ol>
 
-            <div id="Addr_display">    
-                <!-- <table class="table table-striped">Your address:  -->
-                <?php 
-                   // print_r($_POST);
-                   // print_r($_SESSION);
-                   echo '<table data-table="address" class="table table-hover" style="padding-left: 15px">';
-                   echo '<tr>';
-                   echo '<td class="Addr_l1">'.$_POST["Addr_l1"].'</td>';
-                   echo '</tr>';
-                   echo '<tr>';
-                   echo '<td class="Addr_l2">'.$_POST["Addr_l2"].'</td>';
-                   echo '</tr>';
-                   echo '</table>';
-                ?>
-                <?php 
-                // echo $_POST["firstn"]." ".$_POST["lastn"]."</p>";
-                // echo $_POST["phone1"]."</p>";
-                // echo $_POST["Addr_l2"]."<br>";
-                // echo $_POST["Addr_city"]." ,".$_POST["Addr_sta"]." ,".$_POST["Addr_zip"]."</p>";
-                ?>
-            </div>
-        </div>
-        <div class="menu-items">
-            <div style = "display: inline-block; width: 50%">
-                <h3 >Order Detail</h3>
-            </div>
-            <div style = "display: inline-block">
-               <a href="shoppingCart.html"><button type="button" class="btn btn-warning" style="display: inline-block">Return to Cart</button></a>
-            </div>
-            <div id="Cart-display" style = "display: inline-block; width: 80%">
-            <table data-table="cart" class="table table-hover" style = "padding-left: 15px">
-                <tr>
-                    <th>Entry</th>
-                    <th>Restaurant</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total Price</th>
-                </tr>
-                <?php
-                    foreach ($cart_lists as $key => $cart) {
-                        print "<tr>";
-                        echo '<td>'.$cart["oid"].'</td>';
-                        echo '<td></td>';
-                        echo '<td>'.$cart["qty"].'</td>';
-                        echo '<td>'.$cart["price"].'</td>';
-                        echo '<td></td>';
-                        echo "</tr>";
-                    }
-                ?>
-                
-                <tr>
-                    <td>Crab Rangoon</td>
-                    <td>Asia Cafe</td>
-                    <td></td>
-                    <td>$ 4.95</td>
-                    <td>14.85</td>
-                </tr>
-                <tr>
-                    <td>Orange Chicken</td>
-                    <td>Asia Cafe</td>
-                    <td>5</td>
-                    <td>$ 8.95</td>
-                    <td>44.75</td>
-                </tr>
-                <tr>
-                    <td>Beef with Broccoli</td>
-                    <td>Asia Cafe</td>
-                    <td>1</td>
-                    <td>$ 9.25</td>
-                    <td>9.25</td>
-                </tr>
-            </table>
-            </div>
-            <a href="shoppingCart.html"><button style="display: inline-block" class="btn btn-danger" type="button">Place Your Order</button></a>
-        </div>
-    </div>
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" >
+						<div class="item active">
+							<img src="img/Special/Crab-Rangoon.jpeg" alt="...">
+							<!--
+							<div class="carousel-caption">
+								<h3>Caption Text</h3>
+							</div>
+							-->
+						</div>
+						<div class="item">
+							<img src="img/Special/beef-broccoli.jpg" alt="...">
+							<!--
+							<div class="carousel-caption">
+								<h3>Caption Text</h3>
+							</div>
+							-->
+						</div>
+						<div class="item">
+							<img src="img/Special/crispy-noodle.jpg" alt="...">
+							<!--
+							<div class="carousel-caption">
+								<h3>Caption Text</h3>
+							</div>
+							-->
+						</div>
+					</div>
 
-	
+					<!-- Controls -->
+					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> 
+						<span class="glyphicon glyphicon-chevron-left"></span>
+						<span class="sr-only">Previous</span> </a>
+					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> 
+						<span class="glyphicon glyphicon-chevron-right"></span> 
+						<span class="sr-only">Next</span></a>
+				</div>
+				<!-- Carousel -->
+				
+				
+				<div id="menu" class="center-block">
+					<form id="order-form" action="shoppingCart.php" method="post">
+						<ul id="menu-entry"></ul>
+						<div>
+							<input type="submit" id="order" value="Order" class="btn btn-primary pull-right"/>
+							<!--<button type="button" id="order" class="btn btn-primary pull-right">Order</button>-->
+						</div>
+					</form>
+				</div>
+			</div>
     <!-- Place Your HTML Above. -->
    
     <!-- Services -->
@@ -147,7 +120,7 @@ $cart_lists = $_SESSION["CART"];
         <div class="container">
             <div class="row text-center">
                 <div class="logo-footer">
-                        <a class="logo-footer" href="#"><img src="./img/logo_footer.png" alt=""></a>
+                        <a class="logo-footer" href="#"><img src="img/logo_footer.png" alt=""></a>
                 </div>
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our Services</h2>

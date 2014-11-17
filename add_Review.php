@@ -15,10 +15,15 @@
 <!-- jQuery -->
 <!-- Note the path of src.-->
 <script src="./js/jquery-1.11.1.js"></script>
-<link href="./css/address_input.css" rel="stylesheet">
 <!--
 	Place Your Scripts or CSS links below:
 -->
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/star_rating.css" media="all" rel="stylesheet" type="text/css">
+<script src="./js/star_rating.js" type="text/javascript"></script>
+<link href="./css/food_review.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -34,118 +39,67 @@
           / <a class="link" href="#">REGISTER</a>
         </div>
     </header>
+    <!-- Place Your HTML Here: -->
 
-
-    <div style="position: relative; left: 100px; margin-bottom: 50px;">
-    <div>
-        <h2>Address</h2>
+    
+    <div id="content_display">
+        <div id="food_inf">
+            <h3 >Food description</h3>
+            <div >
+                <table class="table" style = "padding-left: 15px">
+                    <tr>
+                        <th>Food Picture</th>
+                        <th>Food Name</th>
+                        <th>Restaurant Name</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr>
+                    <?php 
+                    echo '<td>'.$_POST["item_image"].'</td>';
+                    echo '<td>'.$_POST["food_id"].'</td>';
+                    echo '<td>'.$_POST["restaurant_id"].'</td>';
+                    echo '<td>'.$_POST["price"].'</td>';
+                    ?>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="review_inf">
+            <h3 >Food Review</h3>
+            <form role="form">
+                <div class="form-group">
+                    <label >Rating</label>
+                    <input id="rating" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5
+            data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}" data-size="xs">
+                </div>
+                <div class="form-group">
+                    <label >Title</label>
+                    <input class="form-control"  placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <label >Content</label>
+                    <!-- <input  class="form-control"  placeholder="Make your comment here..."> -->
+                    <textarea class="form-control" rows="5" placeholder="Make your comment here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label >Add photos</label>
+                    <input type="file" id="exampleInputFile">
+                    <!-- <p class="help-block">Example block-level help text here.</p> -->
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox"> Anonymous
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
     </div>
-        <p id="test"> </p>
-        <form role="form" action="address_confirm.php" method="post">
-            <div class="form-group long_textinput">
-                <input type="text" class="form-control" name = "Addr_l1" placeholder="Address line 1" >
-            </div>
-            <div class="form-group long_textinput">
-                <input type="text" class="form-control" name = "Addr_l2" placeholder="Address line 2" >
-            </div>
-            <div class="form_inline long_textinput">
-                <div class="form-group inline_display" style = "width : 33%">
-                    <input type="text" class="form-control"  name = "Addr_city" placeholder="City" >
-                </div>
-                <div class="form-group inline_display" style = "width : 32%" >
-                    <select class="form-control" name = "Addr_sta" style = "float: left">
-                        <option value="Alabama">AL</option>
-                        <option value="Alaska">AK</option>
-                        <option value="Arizona">AZ</option>
-                        <option value="Arkansas">AR</option>
-                        <option value="California">CA</option>
-                        <option value="Colorado">CO</option>
-                        <option value="Connecticut">CT</option>
-                        <option value="Delaware">DE</option>
-                        <option value="Florida">FL</option>
-                        <option value="Georgia">GA</option>
-                        <option value="Hawaii">HI</option>
-                        <option value="Idaho">ID</option>
-                        <option value="Illinois">IL</option>
-                        <option value="Indiana">IN</option>
-                        <option value="Iowa">IA</option>
-                        <option value="Kansas">KS</option>
-                        <option value="Kentucky">KY</option>
-                        <option value="Louisiana">LA</option>
-                        <option value="Maine">ME</option>
-                        <option value="Maryland">MD</option>
-                        <option value="Massachusetts">MA</option>
-                        <option value="Minnesota">MN</option>
-                        <option value="Mississippi">MS</option>
-                        <option value="Missouri">MO</option>
-                        <option value="Montana">MT</option>
-                        <option value="Nebraska">NE</option>
-                        <option value="Nevada">NV</option>
-                        <option value="New hampshire">NH</option>
-                        <option value="New jersey">NJ</option>
-                        <option value="New mexico">NM</option>
-                        <option value="New York">NY</option>
-                        <option value="North Carolina">NC</option>
-                        <option value="North Dakota">ND</option>
-                        <option value="Ohio">OH</option>
-                        <option value="Oklahoma">OK</option>
-                        <option value="Oregon">OR</option>
-                        <option value="Pennsylvania">PA</option>
-                        <option value="Rhode island">RI</option>
-                        <option value="South carolina">SC</option>
-                        <option value="South dakota">SD</option>
-                        <option value="Tennessee">TN</option>
-                        <option value="Texas">TX</option>
-                        <option value="Utah">UT</option>
-                        <option value="Vermont">VT</option>
-                        <option value="Virginia">VA</option>
-                        <option value="Washington">WV</option>
-                        <option value="West Virginia">WV</option>
-                        <option value="Wisconsin">WI</option>
-                        <option value="Wyoming">WY</option>
-                    </select>
-                </div>
-                <div class="form-group inline_display" style = "width : 32% ">
-                    <input type="text" class="form-control" name="Addr_zip" placeholder="Zip Cpde">
-                </div>
-            </div>
+
         
-            <div style="clear:left">
-                <h2>Contact Information</h2>
-            </div>
 
-            <div>
-                <div class="form-group inline_display" style = "width : 10%" >
-                    <input type="text" class="form-control" name= "firstn" placeholder="First Name" >
-                </div>
-                <div class="form-group inline_display" style = "width : 10%">
-                    <input type="text" class="form-control" name="midn" placeholder="Middle Name" >
-                </div>
-                <div class="form-group inline_display" style = "width : 10%">
-                    <input type="text" class="form-control" name="lastn" placeholder="Last Name" >
-                </div>
-                <div class="form-group inline_display"  style = "width : 8.5%">
-                    <select class="form-control" name="title" >
-                        <option value="Mrs">Mrs</option>
-                        <option value="Mr">Mr</option>
-                        <option value="Miss">Miss</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group  long_textinput" style = "clear:left">
-                <input type="text" class="form-control" name="phone1" id="phone1" placeholder="Phone1" >
-             </div>
-            <div class="form-group long_textinput">
-                <input type="text" class="form-control" name="phone2" id="phone2" placeholder="Phone2" >
-            </div>   
-            <button type="submit" class="btn btn-default" id="nextstep" >Next Step</button>
-        </form>
-    </div>
-    
-    
-    
-
-   
+	
+    <!-- Place Your HTML Above. -->
    
     <!-- Services -->
     <section id="services" class="services bg-primary">
