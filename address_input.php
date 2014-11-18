@@ -11,9 +11,10 @@ foreach (getOrderList() as $key => $orderList) {
     }
    
 }
-$_SESSION["CART"] = $cart_info;
+// $_SESSION["CART"] = $cart_info;
 // session_destroy();
 
+setcookie("CART",json_encode($cart_info), time()+3600, "/HeelFoodie", false);
 
 ?>
 
@@ -39,7 +40,7 @@ $_SESSION["CART"] = $cart_info;
 	Place Your Scripts or CSS links below:
 -->
 <script>
-    console.log(<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>);
+    console.log(<?php echo json_encode($_COOKIE, JSON_HEX_TAG); ?>);
 </script>
 
 </head>
@@ -63,6 +64,7 @@ $_SESSION["CART"] = $cart_info;
             <h2>Address</h2>
         </div>
         <form role="form" action="address_confirm.php" method="post">
+            <!-- <form role="form" action="receiveAddress.php" method="post"> -->
             <div class="form-group long_textinput">
                 <input type="text" class="form-control" name = "Addr_l1" placeholder="Address line 1">
             </div>
@@ -268,3 +270,5 @@ $_SESSION["CART"] = $cart_info;
         </div>
     </footer>
 </div>
+</body>
+</html>
