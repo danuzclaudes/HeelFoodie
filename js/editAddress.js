@@ -1,7 +1,7 @@
 /**
- * @author Qiongcheng Xu
+ * @author chongrui
  */
- $(document).ready(function(){
+$(document).ready(function(){
 	click_edit_Address_button();
 });
 var click_edit_Address_button = function () {
@@ -21,6 +21,10 @@ var click_edit_Address_button = function () {
 		var addr_display = $("#Addr_display");
 		addr_display.empty();
 		$(this).text("Submit");
+
+		// while editting, placing button could not be clicked?
+		// now address line is editable, disable placing order btn
+		$('button#place-order').prop("disabled",true);
 
 		// display cancel button
 		var control_panel = $("div.control-panel");
@@ -46,16 +50,42 @@ var click_edit_Address_button = function () {
 		console.log("after edit:",editable);
 		
 	  } else {
-		// the field is now editable, i.e. clicking on submit => make it not editable
-		editable = false;
-		// alert("Submit your Change");
-		$("button#edit-addr").text("Edit Delivery Address")
-		$("button#cancel").hide();
-	  	console.log("after submit:",editable); // for debugging
+		// the field is now editable, i.e. clicking on submit => make it not editable	
+		// console.log($('input[name="Addr_l1"]').val()); // for debugging
 	  	addr_l1 = $('input[name="Addr_l1"]').val();
 	  	addr_l2 = $('input[name="Addr_l2"]').val();
-	  	// console.log($('input[name="Addr_l1"]').val()); // for debugging
-	  	return_to_table(addr_l1, addr_l2);
+	  	// alert("addr_l1="+addr_l1);
+
+	  	if( !addr_l1 && !addr_l2 ) {
+	  		editable = true; // no input value, still make it editable!
+	  		// alert(!addr_l1);
+	  	} else {
+	  		editable = false;
+	  		$("button#edit-addr").text("Edit Delivery Address");
+			$("button#cancel").hide();
+
+			$.ajax({
+				url: "./address.php",
+				type: "POST",
+				dataType: "json",
+				data: {
+					Addr_l1: addr_l1,
+					Addr_l2: addr_l2,
+				},
+				success: function(address, textStatus, jqXHR){
+					return_to_table(address[0].Addr_l1, address[0].Addr_l2);
+					// even successfully add/update address, can click if cart is empty?
+	  				$('button#place-order').prop("disabled",false);
+					$('#msg').empty();
+				},
+				error: function(xhr, status, errorThrown){
+					alert(xhr.statusText);  // should validate by js, instead of using HTTP status text
+				}
+			});
+	  	}
+	  	
+		// alert("Submit your Change");
+	  	
 	  }
 
 	});
@@ -68,7 +98,8 @@ var click_edit_Address_button = function () {
 		$("button#edit-addr").text("Edit Delivery Address");
 		cancel_button.hide();
 		console.log("after cancel:",editable); // for debugging
-		return_to_table(addr_l1, addr_l2);
+		return_to_table(addr_l1,addr_l2);
+		
 	});
 	
 
