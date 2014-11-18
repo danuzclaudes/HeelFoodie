@@ -1,12 +1,26 @@
 <?php
-require_once('model.php');
+// require_once('model.php');
 
 session_start();
-if( $_POST == null && !isset($_SESSION["CART"]) ) {
+
+if( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
     // header("Location: ./index.html");
-    header( "Refresh:3; url=./index.html", true, 303);
+    if ( isset($_COOKIE["ORDER"]) ) {
+        header( "Refresh:2; url=./order_track.php", true, 303);
+    } else {
+        header( "Refresh:2; url=./address_input.php", true, 303);
+    }
     print("Please don't access this page directly.");
     exit("Autodirecting to homepage...");
+} elseif ( $_POST ) {
+    $addr_l1 = $_POST["Addr_l1"];
+    $addr_l2 = $_POST["Addr_l2"];
+
+    $address = array();
+    $address[] = array( 'Addr_l1' => $_POST["Addr_l1"],
+                        'Addr_l2' => $_POST["Addr_l2"]  );
+
+    setcookie("ADDRESS", json_encode($address), time()+3600, "/HeelFoodie", false);
 }
 
 // print_r($cart_lists);
@@ -14,6 +28,8 @@ if( $_POST == null && !isset($_SESSION["CART"]) ) {
 //     print '\\n';
 //     echo $cart["oid"];
 // }
+
+// session_destroy();
 
 ?>
 
@@ -34,12 +50,13 @@ if( $_POST == null && !isset($_SESSION["CART"]) ) {
 <!-- jQuery -->
 <!-- Note the path of src.-->
 <script src="./js/jquery-1.11.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <!--
 	Place Your Scripts or CSS links below:
 -->
 <link href="./css/address_section.css" rel="stylesheet">
 <script>
-    console.log(<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>);
+    console.log(<?php echo json_encode($_COOKIE, JSON_HEX_TAG); ?>);
 </script>
 <script src="./js/editAddress.js"></script>
 
@@ -58,7 +75,7 @@ if( $_POST == null && !isset($_SESSION["CART"]) ) {
         </div>
     </header>
     <!-- Place Your HTML Here: -->
-    <div class="wrapper">
+    <div id="wrapper" class="wrapper">
         <div class="address-items">
             <div class="address-title" style = "display: inline-block; width: 50%">
                 <h3 >Address</h3>
@@ -70,30 +87,23 @@ if( $_POST == null && !isset($_SESSION["CART"]) ) {
             <div id="Addr_display">    
                 <!-- <table class="table table-striped">Your address:  -->
                 <?php 
-                    if ( $_POST == null && isset($_SESSION["CART"]) ){
+                    if ( $_POST == null && isset($_COOKIE["CART"]) ){
                         echo '<table class="table table-hover no-address"><tr>';
-                        echo '<td>No address information yet. Please return to address input page.</td>';
+                        echo '<td>No address information yet. Please input your delivery address.</td>';
                         echo '</tr></table>';
                        // print_r($_POST);
                        // print_r($_SESSION);
-                    } else if( $_POST != null && isset($_SESSION["CART"]) ){
+                    } elseif ( $_POST != null ) {
                         echo '<table data-table="address" class="table table-hover" style="padding-left: 15px">';
                         echo '<tr>';
-                        echo '<td class="Addr_l1">'.$_POST["Addr_l1"].'</td>';
+                        echo '<td class="Addr_l1">'.htmlspecialchars($addr_l1).'</td>';
                         echo '</tr>';
                         echo '<tr>';
-                        echo '<td class="Addr_l2">'.$_POST["Addr_l2"].'</td>';
+                        echo '<td class="Addr_l2">'.htmlspecialchars($addr_l2).'</td>';
                         echo '</tr>';
                         echo '</table>';
-                        echo '<script src="./js/checkout.js"></script>';
                     }
                        
-                ?>
-                <?php 
-                // echo $_POST["firstn"]." ".$_POST["lastn"]."</p>";
-                // echo $_POST["phone1"]."</p>";
-                // echo $_POST["Addr_l2"]."<br>";
-                // echo $_POST["Addr_city"]." ,".$_POST["Addr_sta"]." ,".$_POST["Addr_zip"]."</p>";
                 ?>
             </div>
         </div>
@@ -105,8 +115,11 @@ if( $_POST == null && !isset($_SESSION["CART"]) ) {
                <a href="shoppingCart.php"><button type="button" class="btn btn-warning" style="display: inline-block">Return to Cart</button></a>
             </div>
             <?php
-                if ($_POST != null && isset($_SESSION["CART"])) {
-                    $cart_lists = $_SESSION["CART"];
+                if ( isset($_COOKIE["CART"]) ) {
+                     $cookie = $_COOKIE["CART"];
+                     $cookie = stripslashes($cookie);
+                     $cart_lists = json_decode($cookie,true);
+                     // echo '<pre>'; print_r($cart_lists); echo '</pre>'
             ?>
             <div id="Cart-display" style = "display: inline-block; width: 80%">
             <table data-table="cart" class="table table-hover" style = "padding-left: 15px">
@@ -120,13 +133,14 @@ if( $_POST == null && !isset($_SESSION["CART"]) ) {
                 <?php
                     foreach ($cart_lists as $key => $cart) {
                         print "<tr>";
-                        echo '<td>'.$cart["oid"].'</td>';
+                        echo '<td>'.htmlspecialchars($cart["oid"]).'</td>';
                         echo '<td></td>';
-                        echo '<td>'.$cart["qty"].'</td>';
-                        echo '<td>'.$cart["price"].'</td>';
+                        echo '<td>'.htmlspecialchars($cart["qty"]).'</td>';
+                        echo '<td>'.htmlspecialchars($cart["price"]).'</td>';
                         echo '<td></td>';
                         echo "</tr>";
                     }
+
                 ?>
                 
                 <tr>
@@ -152,14 +166,19 @@ if( $_POST == null && !isset($_SESSION["CART"]) ) {
                 </tr>
             </table>
             </div>
-            <a href=""><button style="display: inline-block" class="btn btn-danger" type="button">Place Your Order</button></a>
+            <?php } ?>
+            <button id="place-order" style="display: inline-block" class="btn btn-danger" 
+                    type="button" data-loading-text="Loading..." autocomplete="off">Place Your Order
+            </button>
             <?php
-                } else { 
+                if( $_POST != null && !isset($_COOKIE["CART"]) ) { 
                     echo '<div class="empty-cart">You have not selected any products yet. Please return to the shopping cart!</div>';
-                }
+                } 
+                // elseif ( $_POST != null && isset($_SESSION["CART"]) ) {
+                //     echo '<script src="./js/checkout.js"></script>';
+                // }
             ?>
-                
-            
+            <div id="msg"></div>
         </div>
     </div>
 
@@ -266,6 +285,6 @@ if( $_POST == null && !isset($_SESSION["CART"]) ) {
         </div>
     </footer>
 </div>
-
+<script src="./js/checkout.js"></script>
 </body>
 </html>
