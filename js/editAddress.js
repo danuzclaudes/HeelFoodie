@@ -96,6 +96,7 @@ var click_edit_Address_button = function () {
 		editable = false; // click on cancel making it uneditable
 		// alert("cancel edit");
 		$("button#edit-addr").text("Edit Delivery Address");
+		$('button#place-order').prop("disabled",false);
 		cancel_button.hide();
 		console.log("after cancel:",editable); // for debugging
 		return_to_table(addr_l1,addr_l2);
