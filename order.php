@@ -16,10 +16,12 @@ if ( isset($_COOKIE["CART"]) && isset($_COOKIE["ADDRESS"]) ) {
   // just placed an order
   if ( isset($_POST["JUST_PLACED"]) && $_POST["JUST_PLACED"] ) {
     // if just placed order, clear all cart cookies
-    setcookie("CART",'a', time()-2592000, "/HeelFoodie", false);
-    setcookie("ADDRESS",'b', time()-2592000, "/HeelFoodie", false);
+    setcookie("CART",'a', time()-2592000,  false);
+    // setcookie("ADDRESS",'b', time()-2592000, "/HeelFoodie", false);
+    setcookie("ADDRESS",'b', time()-2592000, false);
     // set COOKIE for ORDER? OID?
-    setcookie("ORDER", json_encode($oid), time() + 86400, "/HeelFoodie", false);
+    // setcookie("ORDER", json_encode($oid), time() + 86400, "/HeelFoodie", false);
+    setcookie("ORDER", json_encode($oid), time() + 86400,  false);
 
     // insert into database here:
 
