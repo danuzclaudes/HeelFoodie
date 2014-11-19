@@ -1,3 +1,43 @@
+<?php 
+if ( !isset($_COOKIE["CART"]) ) {
+?>
+<html>
+  <head>
+    <title>Shopping Cart Expired</title>
+  </head>
+  <body>
+    <h1>You shopping cart is expired!</h3>
+  </body>
+</html>
+<?php
+} elseif ( isset($_COOKIE["CART"]) ) {
+    $entry = $_COOKIE["CART"];
+    $entry = stripslashes($entry);
+    $entry = json_decode($entry, true);
+	//echo $entry[0]['qty'];
+	require_once('model.php');
+
+foreach (getOrderList() as $key => $orderList) {
+        $cart_info[] = array('mid' => $orderList['mid'], 
+        				'mname' => $orderList['mname'],
+                        'price' => $orderList['price']);
+}
+
+
+for ($i = 0; $i < sizeof($entry); $i++){
+	for ($j = 0; $j < sizeof($cart_info); $j++) {
+		if ($cart_info[$j]['mid'] == $entry[$i]['mid']) {
+			$cart[] = array('mid' => $entry[$i]['mid'],
+							'mname' => $cart_info[$j]['mname'],
+							'qty' => $entry[$i]['qty'],
+							'price' => $cart_info[$j]['price']);
+		}
+	}
+}
+
+//print_r($cart);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +64,7 @@
 <script src="js/Restaurants.js"></script>
 <script src="js/Menu.js"></script>
 <script src="js/OrderList.js"></script>
+<script src="js/order_entry.js"></script>
 <script src="js/reviewCart.js"></script>
 <script src="js/setup.js"></script>
 
@@ -35,7 +76,7 @@
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
         <div class="logo">
-            <a class="navbar-brand" href="#"><img src="img/logo_footer.png" alt=""></a>
+            <a class="navbar-brand" href="index.php"><img src="img/logo_footer.png" alt=""></a>
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
@@ -45,19 +86,12 @@
     </header>
     <!-- Place Your HTML Here: -->
 	<div id="shopping-cart" class="container">
-		<!--
-		<div id="dom-target">
-			Welcome <?php print_r($_POST["mid"]) ?><br>
-			Your email address is: <?php print_r($_POST["qty"]); ?>
-
-		</div>
-		-->
 		<h2>My Cart</h2>
 				<div id="shoppingcart-list" class="center-block">
 					
 					
 						<ul id="food-list">
-							<li class='food-entry title'>
+							<li class='food-entry-title'>
 						<div class = "food">
 						Entry
 					</div>
@@ -68,13 +102,34 @@
 						Price
 					</div>
 					</li>
+					<?php
+						foreach ($cart as $key => $cart) {
+							echo "<li class='food-entry' id=".$cart['mid'].">";
+							echo "<div class='food'>".$cart['mname']."</div>";
+							echo "<div class='qty'><select class='select-qty'>";
+							for ($i = 0; $i < 6; $i++){
+								if ($i == $cart['qty']) {
+									echo "<option selected='selected' value='$i'>$i</option>";
+								} else{
+									echo "<option value='$i'>$i</option>";
+								}
+							}
+							echo "</select></div>";
+							echo "<div class='price'>$ ".$cart['price']."</div>";
+						
+						echo '<button type="button" class="remove-food btn btn-primary btn-xs" rel='.$cart['mid'].'>remove</button>'
+						?>
+						</li>
+						<?php
+						}	
+						?>
 						</ul>
 						<div id="total-price">
 							<label class="totalPrice"></label>
 						</div>
 						<div>
 							<button type="button" id="order" class="btn btn-primary pull-right">Place Order</button>
-							<button type="button" id="continue-order" class="btn btn-primary pull-right">Continue Ordering</button>
+							<button type="button" id="continue-order" class="btn btn-primary pull-right" onclick="window.location.href='./Restaurant_main.php'">Continue Ordering</button>
 						</div>
 					
 				</div>
@@ -181,3 +236,8 @@
         </div>
     </footer>
 </div>
+</body>
+</html>
+<?php
+}
+?>

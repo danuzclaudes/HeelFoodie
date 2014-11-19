@@ -16,7 +16,7 @@ ul {
 	padding:0; 
 }
 
-.food-entry {
+.food-entry, .food-entry-title {
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     margin-bottom: 1px;
@@ -26,7 +26,7 @@ ul {
     vertical-align: middle;
 }
 
-.title {
+.food-entry-title {
 	font-weight: bold;
 	font-size: 1.2em;
 }
