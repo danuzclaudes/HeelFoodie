@@ -32,7 +32,8 @@ tr:nth-child(odd) a:link {
     color: #D8D8D8;
 }
 
-#edit {
-	background-color:#56A0D3;
+#error{
+	color: red;
 }
+
 

@@ -19,6 +19,8 @@
 	Place Your Scripts or CSS links below:
 -->
 <link href="./css/my_mainpage.css" rel="stylesheet">
+<script src="./js/my_mainpage.js"></script>
+
 
 </head>
 <body>
@@ -59,14 +61,99 @@
             <hr style="margin-top:10px;">
             </div>
             <div id="Def_Addr_display">    
-                <p>Ryan</p>
-                <p>919-777-4466</p>
-                <P>Address line1</p>
-                <P>Address line2</p>
-                <p>Chapel Hill, NC, 27517</p>
+                <p id="name_display">Ryan</p>
+                <p id="phone_display">919-777-4466</p>
+                <P id="add_l1_display">Address line1</p>
+                <P id="add_l2_display">Address line2</p>
+                <p id="city_state_zip_display">Chapel Hill, NC, 27517</p>
             </div>
         </div>
-       
+        <div id="contact_edit" style="margin-bottom: 50px;">
+            
+            <div class="address-title">
+                <h2>Address</h2>
+            </div>
+            <form role="form" id="edit_contact_form">
+                <div class="form-group inline_display" style = "width : 10%" >
+                    <input type="text" class="form-control" name= "fullname" placeholder="＊Full Name" >
+                </div>
+                
+                <div class="form-group  long_textinput" style = "clear:left">
+                    <input type="text" class="form-control" id="phone1" name="phone1" id="phone1" placeholder="＊Phone" required>
+                </div>
+                <div class="form-group long_textinput">
+                    <input type="text" class="form-control" id = "Addr_l1" name = "Addr_l1" placeholder="＊Address line 1" required>
+                </div>
+                <div class="form-group long_textinput">
+                    <input type="text" class="form-control" name = "Addr_l2" placeholder="Address line 2" >
+                </div>
+                <div class="form_inline long_textinput">
+                    <div class="form-group inline_display" style = "width : 33%">
+                        <input type="text" class="form-control"  id = "Addr_city" name = "Addr_city" placeholder="City">
+                    </div>
+                    <div class="form-group inline_display" style = "width : 32%" >
+                        <select class="form-control" id = "Addr_sta" name = "Addr_sta" style = "float: left">
+                            <option value="Alabama">AL</option>
+                            <option value="Alaska">AK</option>
+                            <option value="Arizona">AZ</option>
+                            <option value="Arkansas">AR</option>
+                            <option value="California">CA</option>
+                            <option value="Colorado">CO</option>
+                            <option value="Connecticut">CT</option>
+                            <option value="Delaware">DE</option>
+                            <option value="Florida">FL</option>
+                            <option value="Georgia">GA</option>
+                            <option value="Hawaii">HI</option>
+                            <option value="Idaho">ID</option>
+                            <option value="Illinois">IL</option>
+                            <option value="Indiana">IN</option>
+                            <option value="Iowa">IA</option>
+                            <option value="Kansas">KS</option>
+                            <option value="Kentucky">KY</option>
+                            <option value="Louisiana">LA</option>
+                            <option value="Maine">ME</option>
+                            <option value="Maryland">MD</option>
+                            <option value="Massachusetts">MA</option>
+                            <option value="Minnesota">MN</option>
+                            <option value="Mississippi">MS</option>
+                            <option value="Missouri">MO</option>
+                            <option value="Montana">MT</option>
+                            <option value="Nebraska">NE</option>
+                            <option value="Nevada">NV</option>
+                            <option value="New hampshire">NH</option>
+                            <option value="New jersey">NJ</option>
+                            <option value="New mexico">NM</option>
+                            <option value="New York">NY</option>
+                            <option value="North Carolina">NC</option>
+                            <option value="North Dakota">ND</option>
+                            <option value="Ohio">OH</option>
+                            <option value="Oklahoma">OK</option>
+                            <option value="Oregon">OR</option>
+                            <option value="Pennsylvania">PA</option>
+                            <option value="Rhode island">RI</option>
+                            <option value="South carolina">SC</option>
+                            <option value="South dakota">SD</option>
+                            <option value="Tennessee">TN</option>
+                            <option value="Texas">TX</option>
+                            <option value="Utah">UT</option>
+                            <option value="Vermont">VT</option>
+                            <option value="Virginia">VA</option>
+                            <option value="Washington">WV</option>
+                            <option value="West Virginia">WV</option>
+                            <option value="Wisconsin">WI</option>
+                            <option value="Wyoming">WY</option>
+                        </select>
+                    </div>
+                    <div class="form-group inline_display" style = "width : 32% ">
+                        <input type="text" class="form-control" id = "Addr_zip" name="Addr_zip" placeholder="Zip Cpde">
+                    </div> 
+                </div>  
+                <div id="error"></div>
+                <button type="submit" class="btn btn-primary" id="submit" >Submit</button>
+                <button type="button" class="btn btn-default" id="cancel" >Cancel</button>
+            </form>
+            
+        </div>
         <div id="my_order_inf">
             <h3 >Order Histroy</h3>
             <div >
