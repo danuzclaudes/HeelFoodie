@@ -1,4 +1,17 @@
 <?php 
+require_once('model.php');
+
+session_start();
+
+foreach (getOrderList() as $key => $orderList) {
+    if ($orderList['qty']) {
+        $cart_info[] = ["mid" => $orderList['mid'], 
+                        "qty" => $orderList['qty'], 
+                        "price" => $orderList['price']];
+    }
+   
+}
+
 if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
 
 ?>
@@ -58,6 +71,12 @@ if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
         </div>
         <pre>ORDER ID is: <?php print_r ($order)?></pre>
         <h3>...will retrieve database to track this order status...</h3>
+        <div>
+            <h3><a href="Restaurant_manage.html">Click to Restaurant-Side Management Page</a></h3>
+        </div>
+        <div>
+            <h3><a href="My_MainPage.php">Click to "My Account" Page designed for login individual users</a></h3>
+        </div>
 
 
       </div>

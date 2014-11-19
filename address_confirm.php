@@ -18,7 +18,7 @@ if( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
 
     $address = array();
     $address[] = array( 'Addr_l1' => $_POST["Addr_l1"],
-                        'Addr_l2' => $_POST["Addr_l2"]  );
+                        'Addr_l2' => $_POST["phone1"]  );
 
     setcookie("ADDRESS", json_encode($address), time()+3600, "/HeelFoodie", false);
 }
@@ -133,10 +133,10 @@ if( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
                 <?php
                     foreach ($cart_lists as $key => $cart) {
                         print "<tr>";
-                        echo '<td>'.htmlspecialchars($cart["oid"]).'</td>';
+                        echo '<td>'.htmlspecialchars($cart["mid"]).'</td>';
                         echo '<td></td>';
                         echo '<td>'.htmlspecialchars($cart["qty"]).'</td>';
-                        echo '<td>'.htmlspecialchars($cart["price"]).'</td>';
+                        // echo '<td>'.htmlspecialchars($cart["price"]).'</td>';
                         echo '<td></td>';
                         echo "</tr>";
                     }
