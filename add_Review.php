@@ -22,6 +22,7 @@
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/star_rating.css" media="all" rel="stylesheet" type="text/css">
 <script src="./js/star_rating.js" type="text/javascript"></script>
+<script src="./js/add_review.js" type="text/javascript"></script>
 <link href="./css/food_review.css" rel="stylesheet">
 
 
@@ -63,37 +64,46 @@
                     </tr>
                 </table>
             </div>
+            <div class="review_all_display">
+            </div>
+           
+                
+            <div>
+                <button type="button" id="add_review"class="btn btn-default">Add review</button>
+            </div>
         </div>
+        
         <div id="review_inf">
             <h3 >Food Review</h3>
-            <form role="form">
+            <form role="form" id="new_review" method="post">
                 <div class="form-group">
                     <label >Rating</label>
-                    <input id="rating" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5
+                    <input id="rating" name="rate" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5
             data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}" data-size="xs">
                 </div>
                 <div class="form-group">
                     <label >Title</label>
-                    <input class="form-control"  placeholder="Title">
+                    <input class="form-control" name="title" placeholder="Title" required>
                 </div>
                 <div class="form-group">
                     <label >Content</label>
                     <!-- <input  class="form-control"  placeholder="Make your comment here..."> -->
-                    <textarea class="form-control" rows="5" placeholder="Make your comment here..."></textarea>
+                    <textarea class="form-control" name="comment" rows="5" placeholder="Make your comment here..." required></textarea>
                 </div>
                 <div class="form-group">
                     <label >Add photos</label>
-                    <input type="file" id="exampleInputFile">
-                    <!-- <p class="help-block">Example block-level help text here.</p> -->
+                    <input type="file" name="photo" id="exampleInputFile">
                 </div>
                 <div class="checkbox">
                     <label>
-                    <input type="checkbox"> Anonymous
+                    <input type="checkbox" name="is_ano"> Anonymous
                     </label>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <div id="error"></div>
+                <button type="submit" id="review_submit" class="btn btn-default">Submit</button>
             </form>
         </div>
+        
     </div>
 
         
