@@ -1,19 +1,9 @@
 <?php
 require_once('model.php');
 
-session_start();
+//session_start();
 
-foreach (getOrderList() as $key => $orderList) {
-    if ($orderList['qty']) {
-        $cart_info[] = ["oid" => $orderList['oid'], 
-                        "qty" => $orderList['qty'], 
-                        "price" => $orderList['price']];
-    }
-   
-}
-$_SESSION["CART"] = $cart_info;
 // session_destroy();
-
 
 ?>
 
@@ -21,7 +11,7 @@ $_SESSION["CART"] = $cart_info;
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Template</title>
+<title>Address Input</title>
 <!-- Bootstrap Core CSS -->
 <!-- Note the path of href-->
 <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -39,10 +29,11 @@ $_SESSION["CART"] = $cart_info;
 
 <!--
 	Place Your Scripts or CSS links below:
--->
+
 <script>
     console.log(<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>);
 </script>
+-->
 
 </head>
 <body>
@@ -50,7 +41,7 @@ $_SESSION["CART"] = $cart_info;
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
         <div class="logo">
-            <a class="navbar-brand" href="#"><img src="./img/logo_footer.png" alt=""></a>
+            <a class="navbar-brand" href="index.php"><img src="./img/logo_footer.png" alt=""></a>
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
@@ -271,3 +262,5 @@ $_SESSION["CART"] = $cart_info;
         </div>
     </footer>
 </div>
+</body>
+</html>
