@@ -20,7 +20,7 @@ if( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
     $address[] = array( 'Addr_l1' => $_POST["Addr_l1"],
                         'Addr_l2' => $_POST["phone1"]  );
 
-    setcookie("ADDRESS", json_encode($address), time()+3600, "/HeelFoodie", false);
+    setcookie("ADDRESS", json_encode($address), time()+3600, false);
 }
 
 // print_r($cart_lists);
