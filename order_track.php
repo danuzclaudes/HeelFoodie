@@ -75,7 +75,7 @@ if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
             <h3><a href="Restaurant_manage.html">Click to Restaurant-Side Management Page</a></h3>
         </div>
         <div>
-            <h3><a href="My_MainPage.html">Click to "My Account" Page designed for login individual users</a></h3>
+            <h3><a href="My_MainPage.php">Click to "My Account" Page designed for login individual users</a></h3>
         </div>
 
 
