@@ -11,10 +11,9 @@ foreach (getOrderList() as $key => $orderList) {
     }
    
 }
-// $_SESSION["CART"] = $cart_info;
+$_SESSION["CART"] = $cart_info;
 // session_destroy();
 
-setcookie("CART",json_encode($cart_info), time()+3600, "/HeelFoodie", false);
 
 ?>
 
@@ -36,11 +35,13 @@ setcookie("CART",json_encode($cart_info), time()+3600, "/HeelFoodie", false);
 <!-- Note the path of src.-->
 <script src="./js/jquery-1.11.1.js"></script>
 <link href="./css/address_input.css" rel="stylesheet">
+<script src="./js/address_input.js"></script>
+
 <!--
 	Place Your Scripts or CSS links below:
 -->
 <script>
-    console.log(<?php echo json_encode($_COOKIE, JSON_HEX_TAG); ?>);
+    console.log(<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>);
 </script>
 
 </head>
@@ -60,23 +61,23 @@ setcookie("CART",json_encode($cart_info), time()+3600, "/HeelFoodie", false);
 
 
     <div id="Addr_display" style="position: relative; left: 100px; margin-bottom: 50px;">
+        <div id="Error_Message1"></div>
         <div class="address-title">
             <h2>Address</h2>
         </div>
         <form role="form" action="address_confirm.php" method="post">
-            <!-- <form role="form" action="receiveAddress.php" method="post"> -->
             <div class="form-group long_textinput">
-                <input type="text" class="form-control" name = "Addr_l1" placeholder="Address line 1">
+                <input type="text" class="form-control" id = "Addr_l1" name = "Addr_l1" placeholder="＊Address line 1" required>
             </div>
             <div class="form-group long_textinput">
-                <input type="text" class="form-control" name = "Addr_l2" placeholder="Address line 2">
+                <input type="text" class="form-control" name = "Addr_l2" placeholder="Address line 2" >
             </div>
             <div class="form_inline long_textinput">
                 <div class="form-group inline_display" style = "width : 33%">
-                    <input type="text" class="form-control"  name = "Addr_city" placeholder="City" >
+                    <input type="text" class="form-control"  id = "Addr_city" name = "Addr_city" placeholder="City">
                 </div>
                 <div class="form-group inline_display" style = "width : 32%" >
-                    <select class="form-control" name = "Addr_sta" style = "float: left">
+                    <select class="form-control" id = "Addr_sta" name = "Addr_sta" style = "float: left">
                         <option value="Alabama">AL</option>
                         <option value="Alaska">AK</option>
                         <option value="Arizona">AZ</option>
@@ -129,14 +130,14 @@ setcookie("CART",json_encode($cart_info), time()+3600, "/HeelFoodie", false);
                     </select>
                 </div>
                 <div class="form-group inline_display" style = "width : 32% ">
-                    <input type="text" class="form-control" name="Addr_zip" placeholder="Zip Cpde">
-                </div>
+                    <input type="text" class="form-control" id = "Addr_zip" name="Addr_zip" placeholder="Zip Cpde" required>
+                </div> 
             </div>
-        
+            
             <div style="clear:left">
                 <h2>Contact Information</h2>
             </div>
-
+            <div id="Error_Message2"></div>
             <div>
                 <div class="form-group inline_display" style = "width : 10%" >
                     <input type="text" class="form-control" name= "firstn" placeholder="First Name" >
@@ -156,7 +157,7 @@ setcookie("CART",json_encode($cart_info), time()+3600, "/HeelFoodie", false);
                 </div>
             </div>
             <div class="form-group  long_textinput" style = "clear:left">
-                <input type="text" class="form-control" name="phone1" id="phone1" placeholder="Phone1" >
+                <input type="text" class="form-control" id="phone1" name="phone1" id="phone1" placeholder="＊Phone1" required>
              </div>
             <div class="form-group long_textinput">
                 <input type="text" class="form-control" name="phone2" id="phone2" placeholder="Phone2" >
@@ -270,5 +271,3 @@ setcookie("CART",json_encode($cart_info), time()+3600, "/HeelFoodie", false);
         </div>
     </footer>
 </div>
-</body>
-</html>

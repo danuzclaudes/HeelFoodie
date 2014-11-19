@@ -2,31 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Resaurant</title>
+<title>Template</title>
 <!-- Bootstrap Core CSS -->
 <!-- Note the path of href-->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- Google Fonts -->
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 <!-- Template CSS -->
-<link rel="stylesheet" type="text/css" href="css/template.css">
+<link rel="stylesheet" type="text/css" href="./css/template.css">
 <!-- jQuery -->
 <!-- Note the path of src.-->
-<script src="js/jquery-1.11.1.js"></script>
+<script src="./js/jquery-1.11.1.js"></script>
 <!--
 	Place Your Scripts or CSS links below:
 -->
 
-<link rel="stylesheet" type="text/css" href="css/restaurant.css">
-<script src="js/bootstrap.min.js"></script>
-<script src="js/Menu.js"></script>
-<script src="js/OrderList.js"></script>
-<script src="js/MenuOrder.js"></script>
-<script src="js/Restaurants.js"></script>
-<script src="js/setup.js"></script>
-
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/star_rating.css" media="all" rel="stylesheet" type="text/css">
+<script src="./js/star_rating.js" type="text/javascript"></script>
+<link href="./css/food_review.css" rel="stylesheet">
 
 
 </head>
@@ -35,7 +31,7 @@
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
         <div class="logo">
-            <a class="navbar-brand" href="index.php"><img src="img/logo_footer.png" alt=""></a>
+            <a class="navbar-brand" href="#"><img src="./img/logo_footer.png" alt=""></a>
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
@@ -44,75 +40,65 @@
         </div>
     </header>
     <!-- Place Your HTML Here: -->
-	<div id="Restaurant-Main" class="container">
-		<div id="restaurant_info">
-			Asian Cafe
-			Address:
-			Phone:
-			Open hour: 
-		</div>
-		<div id="response"></div>
-				<div id="restaurantName">
-					<img id="resImg", class="img-responsive center-block", src="img/AsiaCafe.png">
-				</div>
-				
-				<div id="carousel-example-generic" class="carousel slide" class="center-block" data-ride="carousel" data-interval="3000">
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					</ol>
 
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner" >
-						<div class="item active">
-							<img src="img/Special/Crab-Rangoon.jpeg" alt="...">
-							<!--
-							<div class="carousel-caption">
-								<h3>Caption Text</h3>
-							</div>
-							-->
-						</div>
-						<div class="item">
-							<img src="img/Special/beef-broccoli.jpg" alt="...">
-							<!--
-							<div class="carousel-caption">
-								<h3>Caption Text</h3>
-							</div>
-							-->
-						</div>
-						<div class="item">
-							<img src="img/Special/crispy-noodle.jpg" alt="...">
-							<!--
-							<div class="carousel-caption">
-								<h3>Caption Text</h3>
-							</div>
-							-->
-						</div>
-					</div>
+    
+    <div id="content_display">
+        <div id="food_inf">
+            <h3 >Food description</h3>
+            <div >
+                <table class="table" style = "padding-left: 15px">
+                    <tr>
+                        <th>Food Picture</th>
+                        <th>Food Name</th>
+                        <th>Restaurant Name</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr>
+                    <?php 
+                    echo '<td>'.$_POST["item_image"].'</td>';
+                    echo '<td>'.$_POST["food_id"].'</td>';
+                    echo '<td>'.$_POST["restaurant_id"].'</td>';
+                    echo '<td>'.$_POST["price"].'</td>';
+                    ?>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="review_inf">
+            <h3 >Food Review</h3>
+            <form role="form">
+                <div class="form-group">
+                    <label >Rating</label>
+                    <input id="rating" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5
+            data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}" data-size="xs">
+                </div>
+                <div class="form-group">
+                    <label >Title</label>
+                    <input class="form-control"  placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <label >Content</label>
+                    <!-- <input  class="form-control"  placeholder="Make your comment here..."> -->
+                    <textarea class="form-control" rows="5" placeholder="Make your comment here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label >Add photos</label>
+                    <input type="file" id="exampleInputFile">
+                    <!-- <p class="help-block">Example block-level help text here.</p> -->
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox"> Anonymous
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
 
-					<!-- Controls -->
-					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> 
-						<span class="glyphicon glyphicon-chevron-left"></span>
-						<span class="sr-only">Previous</span> </a>
-					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> 
-						<span class="glyphicon glyphicon-chevron-right"></span> 
-						<span class="sr-only">Next</span></a>
-				</div>
-				<!-- Carousel -->
-				
-				
-				<div id="menu" class="center-block">
-					<form id="order-form" action="shoppingCart.php" method="post">
-						<ul id="menu-entry"></ul>
-						<div>
-							<input type="submit" id="order" value="Order" class="btn btn-primary pull-right"/>
-							<!--<button type="button" id="order" class="btn btn-primary pull-right">Order</button>-->
-						</div>
-					</form>
-				</div>
-			</div>
+        
+
+	
     <!-- Place Your HTML Above. -->
    
     <!-- Services -->
@@ -120,7 +106,7 @@
         <div class="container">
             <div class="row text-center">
                 <div class="logo-footer">
-                        <a class="logo-footer" href="#"><img src="img/logo_footer.png" alt=""></a>
+                        <a class="logo-footer" href="#"><img src="./img/logo_footer.png" alt=""></a>
                 </div>
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our Services</h2>
@@ -215,5 +201,3 @@
         </div>
     </footer>
 </div>
-</body>
-</html>

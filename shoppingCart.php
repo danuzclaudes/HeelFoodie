@@ -35,7 +35,7 @@
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
         <div class="logo">
-            <a class="navbar-brand" href="#"><img src="img/logo_footer.png" alt=""></a>
+            <a class="navbar-brand" href="index.php"><img src="img/logo_footer.png" alt=""></a>
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
@@ -181,3 +181,5 @@
         </div>
     </footer>
 </div>
+</body>
+</html>
