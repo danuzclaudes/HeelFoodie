@@ -7,3 +7,62 @@ body {
 	float:center;
 	margin-bottom: 50px;
 }
+.review_display{
+	height:110px;
+	margin-bottom:10px; 
+}
+
+.user_profile {
+	float:left;
+	margin-right:30px;
+}
+
+.user_profile, .review_text{
+	display: inline-block;
+	float:left;
+}
+.date_display,.rating {
+	display: inline-block;
+	float: left;
+}
+.review_text{
+	width:80%;
+}
+
+.date_display{
+	font:italic 12px/30px Georgia, serif;
+	width:80%;  
+}
+.date_display p{
+	margin-left: 10px;
+}
+.date_display,.rating {
+	height:30px;
+	border-bottom-style: solid;
+	border-color: gray;
+}
+
+.title{
+	font-size: 20px;
+	clear:both;
+}
+.comment{
+	font-family: Times, serif;
+	font-style: italic;
+}
+#rate{
+	z-index: 2;
+}
+
+#rate1{
+	z-index: 1;
+	position: relative;
+	top:-23px;
+}
+#error{
+	color: red;
+	font-size: 16px;
+	font-style: italic;
+}
+
+
