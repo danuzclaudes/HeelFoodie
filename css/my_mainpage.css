@@ -21,3 +21,18 @@
 	float:center;
 	margin-bottom: 50px;
 }
+
+
+tr:nth-child(odd) 
+{
+	background: #56A0D3;
+}
+
+tr:nth-child(odd) a:link {
+    color: #D8D8D8;
+}
+
+#edit {
+	background-color:#56A0D3;
+}
+
