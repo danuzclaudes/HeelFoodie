@@ -61,7 +61,7 @@ $(document).ready(function() {
 			},
 			success : function(data, status, jqXHR) {
 				if (button_id.attr("id") == "place-order") {
-					window.location = "shoppingCart.php";
+					window.location = "address_input.php";
 				}
 				else {
 					window.location = "Restaurant_main.php?rid=1";
