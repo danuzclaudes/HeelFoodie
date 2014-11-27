@@ -1,13 +1,6 @@
-/**
- * @author Qiongcheng Xu
- */
-//Caution!!! url_base is different!
-//var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f14/qcxu/HeelFoodie";
-var url_base = "http://localhost/~QiongchengXu/HeelFoodie";
-
 $(document).ready(function() {
 	//Display cart items from COOKIE
-	$.ajax(url_base + "/menuV1.php/cart", {
+	$.ajax("app.php/cart", {
 		type : "GET",
 		dataType : "json",
 		success : function(cart_info, status, jqXHR) {
@@ -53,7 +46,7 @@ $(document).ready(function() {
 			//console.log(entry_object);
 			//console.log( order_entry.all );
 		$.ajax({
-			url : "./entry_order.php",
+			url : "entry_order.php",
 			type : "POST",
 			//contentType: "Application/json",
 			data : {

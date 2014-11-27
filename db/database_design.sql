@@ -139,7 +139,21 @@ INSERT INTO `a6_Menu` (`menu_id`, `food_id`, `restaurant_id`, `item_image`, `ite
 (5, 5, 1, NULL, 'beef-broccoli.jpg', '9.25', NULL),
 (6, 6, 1, NULL, 'pork-fried-rice.jpg', '7.50', NULL);
 
+INSERT INTO `a6_Customer` (`customer_id`, `username`, `password`, `regi_date`, `firstname`, `lastname`, `middlename`, `email`, `cellphone1`, `cellphone2`, `address`, `city`, `state`, `zipcode`) VALUES
+(1, 'comp', 'comp426', '2014-12-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
+INSERT INTO `a6_Food` (`food_id`, `food_name`) VALUES
+(1, 'Crab Rangoon'),
+(2, 'Crispy Noodle'),
+(3, 'Orange Chicken'),
+(4, 'Fried Chicken Wings'),
+(5, 'Beef with Broccoli'),
+(6, 'Pork Fried Rice');
 
-
-
+INSERT INTO `a6_Food_Review` (`food_review_id`, `menu_id`, `customer_id`, `rating`, `comment`, `email`, `Reviewimage`) VALUES
+(1, 1, 1, 5, NULL, NULL, NULL),
+(2, 2, 1, 4, NULL, NULL, NULL),
+(3, 3, 1, 4, NULL, NULL, NULL),
+(4, 4, 1, 2, NULL, NULL, NULL),
+(5, 5, 1, 2, NULL, NULL, NULL),
+(6, 0, 0, NULL, NULL, NULL, NULL);
