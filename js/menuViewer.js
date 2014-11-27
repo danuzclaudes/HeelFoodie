@@ -1,13 +1,8 @@
 
-//Caution!!! url_base is different!
-
-//var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f14/qcxu/HeelFoodie";
-var url_base = "http://localhost/~QiongchengXu/HeelFoodie";
-
 $(document).ready(function () {
 	//Append menu list
 	rest_id = $('#Restaurant-Main div:first-child').attr("id");
-	$.ajax(url_base + "/menuV1.php/restaurant/" + rest_id,
+	$.ajax("app.php/restaurant/" + rest_id,
 	       {type: "GET",
 		       //dataType: "json",
 		       success: function(menu_ids, status, jqXHR) {
@@ -39,7 +34,7 @@ $(document).ready(function () {
 			console.log(entry_object);
 			//console.log( order_entry.all );
 			$.ajax({
-				url: "./entry_order.php",
+				url: "entry_order.php",
 				type: "POST",
 				//contentType: "Application/json",
 				data: 
@@ -56,7 +51,7 @@ $(document).ready(function () {
 });
 
 var load_menu_item = function (id) {
-    $.ajax(url_base + "/menuV1.php/menu/" + id,
+    $.ajax("app.php/menu/" + id,
 	{type: "GET",
 	 dataType: "json",
 	 success: function(menu_json, status, jqXHR) {
