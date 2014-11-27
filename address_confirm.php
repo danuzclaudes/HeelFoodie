@@ -3,7 +3,16 @@
 
 session_start();
 
-if( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
+if ( $_POST ) {
+    if(isset($_POST["Addr_l1"])) {$addr_l1 = $_POST["Addr_l1"];}
+    if(isset($_POST["Phone1"])) $addr_l2 = $_POST["Phone1"];
+
+    $address = array();
+    $address[] = array( 'Addr_l1' => $_POST["Addr_l1"],
+                        'Phone1' => $_POST["Phone1"]  );
+
+    setcookie("ADDRESS", json_encode($address), time()+3600, false);
+} elseif( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
     // header("Location: ./index.html");
     if ( isset($_COOKIE["ORDER"]) ) {
         header( "Refresh:2; url=./order_track.php", true, 303);
@@ -12,15 +21,6 @@ if( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
     }
     print("Please don't access this page directly.");
     exit("Autodirecting to homepage...");
-} elseif ( $_POST ) {
-    $addr_l1 = $_POST["Addr_l1"];
-    $addr_l2 = $_POST["Addr_l2"];
-
-    $address = array();
-    $address[] = array( 'Addr_l1' => $_POST["Addr_l1"],
-                        'Addr_l2' => $_POST["phone1"]  );
-
-    setcookie("ADDRESS", json_encode($address), time()+3600, false);
 }
 
 // print_r($cart_lists);
@@ -99,7 +99,7 @@ if( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
                         echo '<td class="Addr_l1">'.htmlspecialchars($addr_l1).'</td>';
                         echo '</tr>';
                         echo '<tr>';
-                        echo '<td class="Addr_l2">'.htmlspecialchars($addr_l2).'</td>';
+                        echo '<td class="Phone1">'.htmlspecialchars($addr_l2).'</td>';
                         echo '</tr>';
                         echo '</table>';
                     }

@@ -8,7 +8,7 @@ $("document").ready(function(){
 	    var btn = $(this);
 	    // alert("plc order btn clicked");
 	    $.ajax({
-	    	url: "./order.php",
+	    	url: "app.php/order",
 	    	type: "POST",
 	    	dataType: "html",
 	    	data: {
@@ -27,7 +27,7 @@ $("document").ready(function(){
 	    		});
 	    		msg.appendTo($('div#msg'))
 	    		setTimeout(function () {
-    			    redirect_page(event)
+    			    // redirect_page(event)
     			    $(this).button('reset');
     			}, 1000);
 	    	},
@@ -36,19 +36,20 @@ $("document").ready(function(){
 	    		btn.prop("disabled",true);
 	    		btn.button('reset');
 
-	    		
+	    		// error_info = xhr.responseText
 	    	}
 		});
 	    
 	})
 
   	$( document ).ajaxError( function( event, request, settings ) {
+  		console.log("request=",request);
   		$( "#msg" ).empty().css({
 	    			float: "right",
 	    			color: "red",
 	    			position: "relative",
 	    			left: "-55px"
-	    		}).append( '<div id="error">Sorry, '+ request.statusText + '</div>' );
+	    		}).append( '<div id="error">Sorry, '+ request.responseText + '</div>' );
   		// diappear in 10 seconds or undated with p
   		// setTimeout(function () {
     		// $("#msg").empty();
@@ -59,7 +60,7 @@ $("document").ready(function(){
   	var redirect_page = function (event) {
   		event.preventDefault(); //will stop the link href to call the page
   		setTimeout(function (){
-  			window.location.href = "order_track.php";
+  			window.location = "./order_track.php";
   		}, 3000);
   	}
 

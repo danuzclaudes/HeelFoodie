@@ -8,9 +8,7 @@ var click_edit_Address_button = function () {
 	var editable = false;
 	// save existing value
 	var addr_l1 = $("td.Addr_l1").text();
-	console.log("addr_l1=",addr_l1);
-	var addr_l2 = $("td.Addr_l2").text();
-	console.log("addr_l2=",addr_l2);
+	var phone1 = $("td.Phone1").text();
 
 	var cancel_button = $('<button id="cancel" class="btn btn-link" type="button">cancel</button>');
 	$("button#edit-addr").click( function () {	
@@ -42,9 +40,9 @@ var click_edit_Address_button = function () {
 			placeholder="Address line 1" name="Addr_l1" class="form-control">');
 		form_group.append(addr_l1_input).appendTo(form);
 		// form_group.appendTo(form);
-		var addr_l2_input = $('<input type="text" value="'+addr_l2+'" \
-			placeholder="Address line 2" name="Addr_l2" class="form-control">');
-		form_group.append(addr_l2_input).appendTo(form);
+		var phone1_input = $('<input type="text" value="'+phone1+'" \
+			placeholder="Phone Number" name="Phone1" class="form-control">');
+		form_group.append(phone1_input).appendTo(form);
 		// form_group.appendTo(form);
 		addr_display.append(form);
 		console.log("after edit:",editable);
@@ -53,10 +51,10 @@ var click_edit_Address_button = function () {
 		// the field is now editable, i.e. clicking on submit => make it not editable	
 		// console.log($('input[name="Addr_l1"]').val()); // for debugging
 	  	addr_l1 = $('input[name="Addr_l1"]').val();
-	  	addr_l2 = $('input[name="Addr_l2"]').val();
+	  	phone1 = $('input[name="Phone1"]').val();
 	  	// alert("addr_l1="+addr_l1);
 
-	  	if( !addr_l1 && !addr_l2 ) {
+	  	if( !addr_l1 && !phone1 ) {
 	  		editable = true; // no input value, still make it editable!
 	  		// alert(!addr_l1);
 	  	} else {
@@ -65,21 +63,23 @@ var click_edit_Address_button = function () {
 			$("button#cancel").hide();
 
 			$.ajax({
-				url: "./address.php",
+				url: "app.php/address",
+				// url: "./address.php",
 				type: "POST",
 				dataType: "json",
 				data: {
 					Addr_l1: addr_l1,
-					Addr_l2: addr_l2,
+					Phone1: phone1
 				},
 				success: function(address, textStatus, jqXHR){
-					return_to_table(address[0].Addr_l1, address[0].Addr_l2);
+					console.log("address=",address);
+					return_to_table(address.Addr_l1, address.Phone1);
 					// even successfully add/update address, can click if cart is empty?
 	  				$('button#place-order').prop("disabled",false);
 					$('#msg').empty();
 				},
 				error: function(xhr, status, errorThrown){
-					alert(xhr.statusText);  // should validate by js, instead of using HTTP status text
+					alert(xhr.responseText);  // should validate by js, instead of using HTTP status text
 				}
 			});
 	  	}
@@ -99,7 +99,7 @@ var click_edit_Address_button = function () {
 		$('button#place-order').prop("disabled",false);
 		cancel_button.hide();
 		console.log("after cancel:",editable); // for debugging
-		return_to_table(addr_l1,addr_l2);
+		return_to_table(addr_l1,phone1);
 		
 	});
 	

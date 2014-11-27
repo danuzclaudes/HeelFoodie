@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,34 @@
 <script src="./js/Restaurants.js" type="text/javascript"></script>
 <script src="./js/Menu.js" type="text/javascript"></script>
 <script src="./js/setup.js" type="text/javascript"></script>
+
+<!-- Scripts for sending out request for restaurants -->
+
+<script>
+// Restaurants.all = [];
+var jqxhr = $.get("app.php/restaurant", function(data){
+    console.log('data[0]=',data[0]);
+    // data[0]= Object { rid="1", latitude="35.913239", longitude="-79.055840"}
+    console.log(data[0].rid);
+    Restaurants.all.push(new Restaurants(data[0].rid,"AAA",35.915237, -79.055539, "118 E Franklin St, Chapel Hill, NC 27514", "(919) 929-0168", true));
+});
+console.log('jqxhr=',jqxhr);
+
+
+
+// Restaurants.all.push(
+//  {
+//  "rid": "2014001",
+//  "rname": "Asian Cafe",
+//  "lat": "35.913237", 
+//  "lng": "-79.055839", 
+//  "raddress": "118 E Franklin St, Chapel Hill, NC 27514", 
+//  "rphone": "(919) 929-0168", 
+//  "isOpen": "true"
+//  }
+// );
+
+</script>
 
 <!-- Scripts for Google Map -->
 <script>
@@ -98,6 +127,7 @@ function getRestaurantInfo(index){
         '</div>';
     return contentString;
 }
+
 
 google.maps.event.addDomListener(window,'load',initialize);
 
@@ -252,6 +282,8 @@ google.maps.event.addDomListener(window,'load',initialize);
             console.log("divbg is inactive, now open background."); // for debugging
     	  }	    
     	});
+
+        
     });
 </script>
 </body>
