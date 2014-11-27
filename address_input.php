@@ -148,10 +148,10 @@ require_once('model.php');
                 </div>
             </div>
             <div class="form-group  long_textinput" style = "clear:left">
-                <input type="text" class="form-control" id="phone1" name="phone1" id="phone1" placeholder="＊Phone1" required>
+                <input type="text" class="form-control" name="Phone1" placeholder="＊Phone1" required>
              </div>
             <div class="form-group long_textinput">
-                <input type="text" class="form-control" name="phone2" id="phone2" placeholder="Phone2" >
+                <input type="text" class="form-control" name="Phone2" placeholder="Phone2" >
             </div>   
             <button type="submit" class="btn btn-default" id="nextstep" >Next Step</button>
         </form>

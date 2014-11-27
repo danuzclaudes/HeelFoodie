@@ -42,7 +42,7 @@ var click_review_submit_button = function () {
         }
 
 		$.ajax({
-			url: "./process.php",
+			url: "./process.php", // app.php/review
 			type: "POST",
 			data: form_content,
 			datatype: "JSON",
