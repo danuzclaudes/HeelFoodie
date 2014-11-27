@@ -7,6 +7,6 @@
 		setcookie("CART", json_encode($entry_object), time()+30000, false);
 	}	
 echo "json=".json_encode($entry_object);
-//echo $_POST['entry_object'];
+
 exit();
 ?>
