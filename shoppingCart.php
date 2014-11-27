@@ -1,43 +1,4 @@
-<?php 
-if ( !isset($_COOKIE["CART"]) ) {
-?>
-<html>
-  <head>
-    <title>Shopping Cart Expired</title>
-  </head>
-  <body>
-    <h1>You shopping cart is expired!</h3>
-  </body>
-</html>
-<?php
-} elseif ( isset($_COOKIE["CART"]) ) {
-    $entry = $_COOKIE["CART"];
-    $entry = stripslashes($entry);
-    $entry = json_decode($entry, true);
-	//echo $entry[0]['qty'];
-	require_once('model.php');
 
-foreach (getOrderList() as $key => $orderList) {
-        $cart_info[] = array('mid' => $orderList['mid'], 
-        				'mname' => $orderList['mname'],
-                        'price' => $orderList['price']);
-}
-
-
-for ($i = 0; $i < sizeof($entry); $i++){
-	for ($j = 0; $j < sizeof($cart_info); $j++) {
-		if ($cart_info[$j]['mid'] == $entry[$i]['mid']) {
-			$cart[] = array('mid' => $entry[$i]['mid'],
-							'mname' => $cart_info[$j]['mname'],
-							'qty' => $entry[$i]['qty'],
-							'price' => $cart_info[$j]['price']);
-		}
-	}
-}
-
-//print_r($cart);
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,9 +26,11 @@ for ($i = 0; $i < sizeof($entry); $i++){
 <script src="js/Menu.js"></script>
 <script src="js/OrderList.js"></script>
 <script src="js/order_entry.js"></script>
-<script src="js/reviewCart.js"></script>
+<!--Newly added js -->
+<script src="js/cartViewer.js"></script>
+<script src="js/Cart.js"></script>
+<!--Newly added js -->
 <script src="js/setup.js"></script>
-
 
 
 </head>
@@ -102,34 +65,13 @@ for ($i = 0; $i < sizeof($entry); $i++){
 						Price
 					</div>
 					</li>
-					<?php
-						foreach ($cart as $key => $cart) {
-							echo "<li class='food-entry' id=".$cart['mid'].">";
-							echo "<div class='food'>".$cart['mname']."</div>";
-							echo "<div class='qty'><select class='select-qty'>";
-							for ($i = 0; $i < 6; $i++){
-								if ($i == $cart['qty']) {
-									echo "<option selected='selected' value='$i'>$i</option>";
-								} else{
-									echo "<option value='$i'>$i</option>";
-								}
-							}
-							echo "</select></div>";
-							echo "<div class='price'>$ ".$cart['price']."</div>";
-						
-						echo '<button type="button" class="remove-food btn btn-primary btn-xs" rel='.$cart['mid'].'>remove</button>'
-						?>
-						</li>
-						<?php
-						}	
-						?>
 						</ul>
 						<div id="total-price">
 							<label class="totalPrice"></label>
 						</div>
-						<div>
-							<button type="button" id="order" class="btn btn-primary pull-right">Place Order</button>
-							<button type="button" id="continue-order" class="btn btn-primary pull-right" onclick="window.location.href='./Restaurant_main.php'">Continue Ordering</button>
+						<div id="order-option">
+							<button type="button" id="place-order" class="btn btn-primary pull-right order-button">Place Order</button>
+							<button type="button" id="continue-order" class="btn btn-primary pull-right order-button">Continue Ordering</button>
 						</div>
 					
 				</div>
@@ -238,6 +180,3 @@ for ($i = 0; $i < sizeof($entry); $i++){
 </div>
 </body>
 </html>
-<?php
-}
-?>
