@@ -32,7 +32,7 @@ CONSTRAINT pk_Location PRIMARY KEY (location_id)
 
 CREATE Table a6_Customer
 (
-customer_id INT,
+customer_id int(7),
 username CHAR(200) ,
 password CHAR(200) ,
 regi_date DATE ,
@@ -64,7 +64,7 @@ REFERENCES a6_Food(food_id)
 CREATE Table a6_Order
 (
 order_id char(20) not null auto_increment,
-customer_id INT,
+customer_id int(7),
 order_phone CHAR(30),
 order_address TEXT,
 order_date DATE,
@@ -77,6 +77,7 @@ CREATE Table a6_Menu_Order
 menu_id int(11) NOT NULL,
 order_id char(20) NOT NULL,
 quantity int,
+status enum('one', 'two', 'three', 'four'),
 CONSTRAINT pk_Menu_Order PRIMARY KEY (menu_id, order_id),
 CONSTRAINT fk_Menu_Order FOREIGN KEY (order_id) REFERENCES a6_Order(order_id),
 CONSTRAINT fk_Menu_Order1 FOREIGN KEY (menu_id) REFERENCES a6_Menu(menu_id)
@@ -86,7 +87,7 @@ CREATE Table a6_Food_Review
 (
 food_review_id INT,
 menu_order_id INT,
-customer_id INT,
+customer_id int(7),
 rating INT,
 comment TEXT,
 email CHAR(200),
@@ -157,3 +158,14 @@ INSERT INTO `a6_Food_Review` (`food_review_id`, `menu_id`, `customer_id`, `ratin
 (4, 4, 1, 2, NULL, NULL, NULL),
 (5, 5, 1, 2, NULL, NULL, NULL),
 (6, 0, 0, NULL, NULL, NULL, NULL);
+
+INSERT INTO `heelfoodie`.`a6_menu_order` (`menu_id`, `order_id`, `quantity`, `status`) 
+VALUES ('3', '20141127003241000000', '5', 'one');
+
+SELECT o.order_id, o.customer_id, o.order_phone, o.order_date, 
+	   o.order_address, mo.menu_id, mo.quantity, mo.status,
+	   m.price, f.food_name
+FROM a6_order AS o, a6_menu_order as mo, a6_menu as m, a6_food as f
+WHERE o.order_id = mo.order_id and mo.menu_id = m.menu_id 
+	  and m.food_id = f.food_id
+	  and o.order_id = '20141128142807000000';
