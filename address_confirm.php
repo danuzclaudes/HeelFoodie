@@ -7,11 +7,10 @@ if ( $_POST ) {
     if(isset($_POST["Addr_l1"])) {$addr_l1 = $_POST["Addr_l1"];}
     if(isset($_POST["Phone1"])) $addr_l2 = $_POST["Phone1"];
 
-    $address = array();
-    $address[] = array( 'Addr_l1' => $_POST["Addr_l1"],
+    $address = array( 'Addr_l1' => $_POST["Addr_l1"],
                         'Phone1' => $_POST["Phone1"]  );
 
-    setcookie("ADDRESS", json_encode($address), time()+3600, false);
+    setcookie("ADDRESS", json_encode($address), time()+3600, "/", false);
 } elseif( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
     // header("Location: ./index.html");
     if ( isset($_COOKIE["ORDER"]) ) {
@@ -70,6 +69,7 @@ if ( $_POST ) {
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
+          <a class="ctl_redirect">disallow redirecting</a>
           <a class="link" href="#">LOGIN</a>
           / <a class="link" href="#">REGISTER</a>
         </div>
@@ -125,45 +125,29 @@ if ( $_POST ) {
             <table data-table="cart" class="table table-hover" style = "padding-left: 15px">
                 <tr>
                     <th>Entry</th>
-                    <th>Restaurant</th>
+                    <th>Food</th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Total Price</th>
                 </tr>
                 <?php
+                $total_sum = 0.00;
                     foreach ($cart_lists as $key => $cart) {
+                        $quantity = intval(htmlspecialchars($cart["qty"]));
+                        $unit_price = number_format(floatval(htmlspecialchars($cart["price"])),2);
+                        $total_sum += number_format($quantity*$unit_price,2);
+
                         print "<tr>";
-                        echo '<td>'.htmlspecialchars($cart["mid"]).'</td>';
-                        echo '<td></td>';
-                        echo '<td>'.htmlspecialchars($cart["qty"]).'</td>';
-                        // echo '<td>'.htmlspecialchars($cart["price"]).'</td>';
-                        echo '<td></td>';
+                        echo '<td>'.htmlspecialchars($cart["menu_id"]).'</td>';
+                        echo '<td>'.htmlspecialchars($cart["food_name"]).'</td>';
+                        echo '<td>'.$quantity.'</td>';
+                        echo '<td>'.'$'.$unit_price.'</td>';
+                        echo '<td>'.'$'.number_format($quantity*$unit_price,2).'</td>';
                         echo "</tr>";
                     }
-
                 ?>
-                
-                <tr>
-                    <td>Crab Rangoon</td>
-                    <td>Asia Cafe</td>
-                    <td></td>
-                    <td>$ 4.95</td>
-                    <td>14.85</td>
-                </tr>
-                <tr>
-                    <td>Orange Chicken</td>
-                    <td>Asia Cafe</td>
-                    <td>5</td>
-                    <td>$ 8.95</td>
-                    <td>44.75</td>
-                </tr>
-                <tr>
-                    <td>Beef with Broccoli</td>
-                    <td>Asia Cafe</td>
-                    <td>1</td>
-                    <td>$ 9.25</td>
-                    <td>9.25</td>
-                </tr>
+                <tr><td></td><td></td><td></td><td><h4>Order Value</h4></td>
+                    <td><h4><?php print '$'.number_format($total_sum,2); ?></h4></td></tr>
             </table>
             </div>
             <?php } ?>

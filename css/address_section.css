@@ -42,3 +42,17 @@ div h3 {
 .empty-cart {
 	padding: 30px;
 }
+.ctl_redirect {
+	padding-right: 40px;
+}
+.order-info-label {
+	font-size: 11px !important;
+    line-height: 1.465 !important;
+	text-transform: uppercase;
+}
+.order-info-value {
+	color: #333;
+    font-family: Arial,sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+}

@@ -1,38 +1,11 @@
-<?php 
-// require_once('model.php');
+<?php
+// } else
+if ( isset($_COOKIE["ORDER"]) ) {
+    $order = strval($_COOKIE["ORDER"]);
+} else {
+    echo "bad";
+}
 
-// // session_start();
-
-// foreach (getOrderList() as $key => $orderList) {
-//     if ($orderList['qty']) {
-//         $cart_info[] = ["mid" => $orderList['mid'], 
-//                         "qty" => $orderList['qty'], 
-//                         "price" => $orderList['price']];
-//     }
-   
-// }
-
-// if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
-//     // header("HTTP/1.1 426 Order Expired");
-//     print "ORDER EXPIRED";
-// ?>
-<!--  
-<html>
-  <head>
-     <title>Orders Expired</title>
-   </head>
-   <body>
-     <h1>You order is expired!</h3>
-     <h3>If you want to keep all your orders information, please login or register!"</h3>
-     <h3><a href="index.php">return home</a></h3>
-   </body>
-</html>
- -->
-// <?php
-// } elseif ( isset($_COOKIE["ORDER"]) ) {
-//     $order = $_COOKIE["ORDER"];
-//     $order = stripslashes($order);
-//     $order = json_decode($order, true);
 ?>
 <html>
   <head>
@@ -65,13 +38,14 @@
           </div>
       </header>
       <div id="non-wrapper">outside of wrapper</div>
+      
       <div id="wrapper">
         <div class="progress">
           <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
             <span class="sr-only">25% Complete</span>
           </div>
         </div>
-        <pre>ORDER ID is: <?php print_r ($order)?></pre>
+        <pre><span class="order-info-label">ORDER #</span> <span class="order-info-value"><?php echo $order;?></span></pre>
         <h3>...will retrieve database to track this order status...</h3>
         <div>
             <h3><a href="Restaurant_manage.html">Click to Restaurant-Side Management Page</a></h3>
