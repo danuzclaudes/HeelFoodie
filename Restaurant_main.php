@@ -1,22 +1,3 @@
-<?php
-require_once('model.php');
-
-//session_start();
-
-foreach (getOrderList() as $key => $orderList) {
-        $cart_info[] = array('mid' => $orderList['mid'], 
-        				'mname' => $orderList['mname'],
-                        'qty' => $orderList['qty'], 
-                        'img_url' => $orderList['img_url'],
-						'star' => $orderList['star'],
-                        'price' => $orderList['price']);
-}
-// $_SESSION["CART"] = $cart_info;
-// session_destroy();
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,9 +23,13 @@ foreach (getOrderList() as $key => $orderList) {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/Menu.js"></script>
 <script src="js/OrderList.js"></script>
-<script src="js/MenuOrder.js"></script>
 <script src="js/Restaurants.js"></script>
 <script src="js/order_entry.js"></script>
+<!--Newly added js -->
+<script src="js/Cart.js"></script>
+<script src="js/MenuNew.js"></script>
+<script src="js/menuViewer.js"></script>
+<!--Newly added js -->
 <script src="js/setup.js"></script>
 
 </head>
@@ -63,7 +48,11 @@ foreach (getOrderList() as $key => $orderList) {
     </header>
     <!-- Place Your HTML Here: -->
 	<div id="Restaurant-Main" class="container">
-		<div id="restaurant_info">
+		<!-- Get restaurant id from url
+		<div id="1" class="restaurant_info">
+		-->
+		<div <?php echo "id= ".$_GET['rid']."" ?> class="restaurant_info">
+		
 			Asian Cafe
 			Address:
 			Phone:
@@ -124,23 +113,6 @@ foreach (getOrderList() as $key => $orderList) {
 				<!-- Menu Entry List -->
 				<div id="menu" class="center-block">
 						<ul id="menu-entry">
-						<?php
-						foreach ($cart_info as $key => $cart) {
-							echo "<li class='food-entry' id=".$cart['mid'].">";
-							echo '<div class="food-image"><img src="img/foodPic/'.$cart["img_url"].'" class="img-rounded"></div>';
-							echo "<div class='food'>".$cart['mname']."</div>";
-							echo "<div class='qty'><select class='select-qty'>";
-							for ($i = 0; $i < 6; $i++){
-								echo "<option value='$i'>$i</option>";
-							}
-							echo "</select></div>";
-							echo "<div class='price'>$ ".$cart['price']."</div>";
-							$width = $cart['star'] / 5 * 100;
-							echo "<div class='rate-bar'><div class='rate', style='width:".$width."%;'></div></div>";
-							echo "</li>";
-						}
-    						
-						?>
 						</ul>
 						<div>
 							<input type="submit" id="order" value="Order" class="btn btn-primary pull-right"/>

@@ -1,23 +1,38 @@
 <?php 
-if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
+// require_once('model.php');
 
-?>
+// // session_start();
+
+// foreach (getOrderList() as $key => $orderList) {
+//     if ($orderList['qty']) {
+//         $cart_info[] = ["mid" => $orderList['mid'], 
+//                         "qty" => $orderList['qty'], 
+//                         "price" => $orderList['price']];
+//     }
+   
+// }
+
+// if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
+//     // header("HTTP/1.1 426 Order Expired");
+//     print "ORDER EXPIRED";
+// ?>
+<!--  
 <html>
   <head>
-    <title>Orders Expired</title>
-  </head>
-  <body>
-    <h1>You order is expired!</h3>
-    <h3>If you want to keep all your orders information, please login or register!"</h3>
-    <h3><a href="index.php">return home</a></h3>
-  </body>
+     <title>Orders Expired</title>
+   </head>
+   <body>
+     <h1>You order is expired!</h3>
+     <h3>If you want to keep all your orders information, please login or register!"</h3>
+     <h3><a href="index.php">return home</a></h3>
+   </body>
 </html>
-
-<?php
-} elseif ( isset($_COOKIE["ORDER"]) ) {
-    $order = $_COOKIE["ORDER"];
-    $order = stripslashes($order);
-    $order = json_decode($order, true);
+ -->
+// <?php
+// } elseif ( isset($_COOKIE["ORDER"]) ) {
+//     $order = $_COOKIE["ORDER"];
+//     $order = stripslashes($order);
+//     $order = json_decode($order, true);
 ?>
 <html>
   <head>
@@ -58,6 +73,12 @@ if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
         </div>
         <pre>ORDER ID is: <?php print_r ($order)?></pre>
         <h3>...will retrieve database to track this order status...</h3>
+        <div>
+            <h3><a href="Restaurant_manage.html">Click to Restaurant-Side Management Page</a></h3>
+        </div>
+        <div>
+            <h3><a href="My_MainPage.php">Click to "My Account" Page designed for login individual users</a></h3>
+        </div>
 
 
       </div>
@@ -163,7 +184,3 @@ if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
     </div>
   </body>
 </html> 
-
-<?php
-}
-?>
