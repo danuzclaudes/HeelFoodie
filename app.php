@@ -1,8 +1,8 @@
 <?php
 date_default_timezone_set("America/New_York");
 
-require_once("/orm/Restaurant.php");
-require_once("/orm/Order.php");
+require_once("orm/Restaurant.php");
+require_once("orm/Order.php");
 //Menu ORM
 require_once("orm/MenuLocalV1.php");
 $base_url = "localhost:8080/HeelFoodie/index.php";
