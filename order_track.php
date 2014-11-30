@@ -3,13 +3,13 @@
 if ( isset($_COOKIE["ORDER"]) ) {
     $order = strval($_COOKIE["ORDER"]);
 } else {
-    echo "bad";
+    $order = '';
 }
 
 ?>
 <html>
   <head>
-    <title>Good</title>
+    <title>Order Tracking</title>
     <!-- Bootstrap Core CSS -->
     <!-- Note the path of href-->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -19,10 +19,15 @@ if ( isset($_COOKIE["ORDER"]) ) {
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <!-- Template CSS -->
     <link rel="stylesheet" type="text/css" href="./css/template.css">
+    <link rel="stylesheet" type="text/css" href="./css/orderTrackViewer.css">
+
     <!-- jQuery -->
     <!-- Note the path of src.-->
     <script src="./js/jquery-1.11.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="./js/Order.js"></script>
+    <script src="./js/MenuOrder.js"></script>
+    <script src="./js/orderTrackViewer.js"></script>
   </head>
   <body>
     <div class="main-container">
@@ -37,23 +42,20 @@ if ( isset($_COOKIE["ORDER"]) ) {
             / <a class="link" href="#">REGISTER</a>
           </div>
       </header>
-      <div id="non-wrapper">outside of wrapper</div>
-      
-      <div id="wrapper">
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
-            <span class="sr-only">25% Complete</span>
-          </div>
-        </div>
-        <pre><span class="order-info-label">ORDER #</span> <span class="order-info-value"><?php echo $order;?></span></pre>
-        <h3>...will retrieve database to track this order status...</h3>
-        <div>
+      <?php 
+        echo '<div id="wrapper">';
+        echo '<div id="warning-board"></div>';
+        if ($order) {
+            echo '<pre><span class="order-info-label">ORDER #</span> <span class="order-info-value">'.$order.'</span></pre>';
+            echo '<div class="order-info"></div>';
+            echo '<div id="menu" class="menu-order-info"></div>';
+        }
+        echo '</div></div>';
+      ?>
+        <div class="misc-info">
             <h3><a href="Restaurant_manage.html">Click to Restaurant-Side Management Page</a></h3>
-        </div>
-        <div>
             <h3><a href="My_MainPage.php">Click to "My Account" Page designed for login individual users</a></h3>
         </div>
-
 
       </div>
       <!-- Services -->

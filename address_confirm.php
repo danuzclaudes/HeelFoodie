@@ -8,9 +8,10 @@ if ( $_POST ) {
     if(isset($_POST["Phone1"])) $addr_l2 = $_POST["Phone1"];
 
     $address = array( 'Addr_l1' => $_POST["Addr_l1"],
-                        'Phone1' => $_POST["Phone1"]  );
+                      'Phone1' => $_POST["Phone1"]  );
 
     setcookie("ADDRESS", json_encode($address), time()+3600, "/", false);
+
 } elseif( !isset($_COOKIE["ADDRESS"]) && !isset($_COOKIE["CART"]) ) {
     // header("Location: ./index.html");
     if ( isset($_COOKIE["ORDER"]) ) {

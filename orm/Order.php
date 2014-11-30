@@ -51,60 +51,28 @@ class Order {
     return null;
   }
 
-  public static function getAllIDs() {
-
-  }
-
-  public static function getOrderInfoByOrderID($order){
+  public static function getOrderByID($oid) {
     $mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
 
-    $result = $mysqli->query("select o.order_id, o.customer_id, o.order_phone, o.order_date,".
-                             "o.order_address, mo.menu_id, mo.quantity, mo.status,".
-                             "m.price, f.food_name".
-                             "FROM a6_order AS o, a6_menu_order as mo, a6_menu as m, a6_food as f".
-                             "WHERE o.order_id = mo.order_id and mo.menu_id = m.menu_id and".
-                             "m.food_id = f.food_id.".
-                             ".and o.order_id = ".$order);
-    
-    echo 'sql='."select o.order_id, o.customer_id, o.order_phone, o.order_date,".
-                             "o.order_address, mo.menu_id, mo.quantity, mo.status,".
-                             "m.price, f.food_name".
-                             "FROM a6_order AS o, a6_menu_order as mo, a6_menu as m, a6_food as f".
-                             "WHERE o.order_id = mo.order_id and mo.menu_id = m.menu_id and".
-                             "m.food_id = f.food_id.".
-                             ".and o.order_id = ".$order;
-
-    if ($result) {
-      if ($result->num_rows == 0){
-          return null;
+    $result = $mysqli->query("select * from a6_Order where order_id = ".$oid);
+    if($result){
+      if($result->num_rows == 0) {
+        return null;
       }
-
-      $return_list = array();
-
-      // $order_info = $result->fetch_array();
-      while ( $new_row = $result->fetch_array() ){
-          if ($new_row['order_date']) {
-            $order_date = new DateTime($new_row['order_date']);
-          } else {
-            $order_date = null;
-          }
-          $order_track = array( 'oid' => $new_row['order_id'],
-                                'cid' => $new_row['customer_id'],
-                                'ophone' => $new_row['order_phone'],
-                                'odate' => $order_date,
-                                'oaddress' => $new_row['order_address'],
-                                'mid' => intval($new_row['menu_id']),
-                                'qty' => intval($new_row['quantity']),
-                                'status' => $new_row['quantity'],
-                                'price' => floatval($new_rwo['price']),
-                                'fname' => $new_row['food_name'] );
-          $return_list[] = $order_track;
+      $order_info = $result->fetch_array();
+      if($order_info['order_date'] == null) {
+        $order_date = null;
+      } else {
+        $order_date = new DateTime($order_info['order_date']);
       }
-      return $return_list;
+      return new Order($oid, 
+                       intval($order_info['customer_id']),
+                       $order_info['order_phone'],
+                       $order_info['order_address'],
+                       $order_date);
+
     }
-
     return null;
-
   }
 
   public function getJSON() {

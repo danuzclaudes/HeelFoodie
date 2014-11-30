@@ -13,7 +13,7 @@ Menu.prototype.makeCompactLi = function() {
 
 	var thumbImg = $("<div class='food-image'></div>");
 	thumbImg.addClass('food-thumb-image');
-    var image_url = $('<img src="img/foodPic/'+this.item_thumb_image+'", class="img-rounded">');
+    var image_url = $('<img src="./img/foodPic/'+this.item_thumb_image+'", class="img-rounded">');
     menuli.append(thumbImg);
     thumbImg.append(image_url);
     
