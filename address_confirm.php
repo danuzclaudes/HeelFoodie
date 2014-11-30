@@ -103,6 +103,15 @@ if ( $_POST ) {
                         echo '<td class="Phone1">'.htmlspecialchars($addr_l2).'</td>';
                         echo '</tr>';
                         echo '</table>';
+                    } elseif (isset($_COOKIE['ADDRESS'])) {
+                        echo '<table data-table="address" class="table table-hover" style="padding-left: 15px">';
+                        echo '<tr>';
+                        echo '<td class="Addr_l1">'.htmlspecialchars($_COOKIE['Addr_l1']).'</td>';
+                        echo '</tr>';
+                        echo '<tr>';
+                        echo '<td class="Phone1">'.htmlspecialchars($_COOKIE['Phone1']).'</td>';
+                        echo '</tr>';
+                        echo '</table>';
                     }
                        
                 ?>

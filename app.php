@@ -56,7 +56,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 			if ( count($path_components) >= 3 && $path_components[2] != '') {
 				// GET app.php/order[/resources]
 				// oid was stored in Cookie to track the placed order
-				
 				if( count($path_components) == 3 && strlen($path_components[2]) > 10 ) {
 					// GET app.php/order/<oid> ---> order id must be stored in cookie to be tracked
 					$id = $path_components[2];
@@ -278,16 +277,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 					// print($new_menu_order->getJSON());
 					// {"mid":2,"oid":"20141128152943000000","qty":1,"status":"one"}
 					// {"mid":3,"oid":"20141128152943000000","qty":1,"status":"one"}
-				}
-
-				
-				
+				}			
 				// header("HTTP/1.1 201 Created"); //--> only order obj is created...
 				// Generate JSON encoding of new Order
 				print($new_order->getJSON());
 				// {"oid":"20141128152943000000","cid":7206583,"ophone":"1113334444","oaddress":"test1","odate":"'2014-11-28'"}		
-				
-
 				exit();
 
 			} elseif (!isset($_COOKIE['ADDRESS'])) {
