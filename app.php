@@ -10,7 +10,9 @@ $base_url = "localhost:8080/HeelFoodie/index.php";
 
 if(isset($_SERVER['PATH_INFO'])) {
 	$path_components = explode('/', $_SERVER['PATH_INFO']);
-} 
+} else {
+	$path_components = [];
+}
 
 // print_r($path_components);
 // Array
@@ -37,56 +39,73 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 				// GET app.php/restaurant
 				// get all restaurants id, lat, lng ---> Retrieving an index of instance ids for the resource
 				header("Content-type: application/json");
-				$restaurants = Restaurant::getAllRestaurants();// return all restaurants' id, lat, lng
-				if ($restaurants == null) {
+				$all_restaurants = Restaurant::getAllRestaurants();// return all restaurants' id, lat, lng
+				if ($all_restaurants == null) {
 					// restaurants not found
 					header("HTTP/1.1 404 Not Found");
 					print("Restaurants are null");
 					exit();
 				}
 
-				print(json_encode($restaurants));
+				print(json_encode($all_restaurants));
 				exit();
 			}
 			
 
 		} elseif ($path_components[1] == 'order') {
-			// GET app.php/order[/resources]
 			if ( count($path_components) >= 3 && $path_components[2] != '') {
-				// GET app.php/order/<id>
-				// get order by order id? or by customer id? oid was stored in Cookie to track the placed order
-				$id = $path_components[2];
+				// GET app.php/order[/resources]
+				// oid was stored in Cookie to track the placed order
+				
+				if( count($path_components) == 3 && strlen($path_components[2]) > 10 ) {
+					// GET app.php/order/<oid> ---> order id must be stored in cookie to be tracked
+					$id = $path_components[2];
+					header("Content-type: application/json");
+					$track_order_obj = Order::getOrderByID($id);
 
-				if(!isset($_COOKIE['ORDER'])) {
-					// Cookie of order expires or not set, cannot track previous order
-					if(!isset($_COOKIE['USER'])) {
-						// neither can be tracked or not a login user
-						header("HTTP/1.1 400 Bad Request");
-						echo "<h1>You order is expired!</h1>";
-						echo '<h3>If you want to keep all your orders information, please login or register!"</h3>';
-				    	echo '<h3><a href="index.php">return home</a></h3>';
-				    	exit();
-					} elseif (isset($_COOKIE['USER'])) {
-						// cannot be tracked but a login user can view all his historical orders
-						// pass customer id as $id
-						// get order by customer id
-						// Order::getOrderInfoByCustomerID($id)
-						echo 'Your historical orders:';
+					if($track_order_obj == null) {
+						// Order not found
+						header("HTTP/1.1 404 Not Found");
+						header("Content-type: text/html");
+						// print '</br>track order obj is null</br>';
+						print('<h1>You order id: '.$id.' is not found</h1>');
+						print '<h3>If you want to keep all your orders records, please login or register!"</h3>';
+		    			print '<h3><a href="index.php">return home</a></h3>';
+		    			exit();
+					}
+
+					print ($track_order_obj->getJSON());
+					exit();	
+
+				} elseif ( count($path_components) == 4 && strlen($path_components[2]) > 10
+						   && $path_components[3] == 'menu' ) {
+					// GET app.php/order/id/menu
+					$id = $path_components[2];
+					header("Content-type: application/json");
+					$track_mo_obj = MenuOrder::getMenuFoodInfoByOrderID($id);
+					if($track_mo_obj == null) {
+						header("HTTP/1.0 404 not found");
+						header("Content-type: text/html");
+						// print '</br>trackm mo obj is null</br>';
+						print('<h1>You order id: '.$id.' is not found</h1>');
+						print '<h3>If you want to keep all your orders records, please login or register!"</h3>';
+		    			print '<h3><a href="index.php">return home</a></h3>';
 						exit();
 					}
-					
-				} else {
-					// Cookie of order still exists, get order by oid
-					// pass order id as $id
-					// $cookie = $_COOKIE['ORDER'];
-					// $cookie = stripslashes($cookie);
-					// $cookie = json_decode($cookie, true);
-
+					// Normal lookup for menu order
+					// Generate JSON encoding as response
 					header("Content-type: application/json");
-					$new_order_info = Order::getOrderInfoByOrderID($id);
-					print json_encode($new_order_info);
+					print(json_encode($track_mo_obj));
+					exit();
 				}
-
+			} elseif( count($path_components) < 3 || $path_components[2] == '' ) {
+				// GET app.php/order/
+				header("HTTP/1.1 400 Bad Request");
+				header("Content-type: text/html");
+				echo "<h1>You order is not found!</h1>";
+				echo '<h3>If you want to keep all your orders information, please login or register!"</h3>';
+		    	echo '<h3><a href="index.php">return home</a></h3>';
+		    	exit();
 			} 
 				
 		} elseif ($path_components[1] == 'menu') {
@@ -147,6 +166,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 				// delete previous ADDRESS Cookie, if exists
 				// unset($_COOKIE['ADDRESS']);
 				setcookie("ADDRESS", false, time()-2592000, "/", false);
+
 			}
 			// validate address line one
 			$addr_l1 = "";

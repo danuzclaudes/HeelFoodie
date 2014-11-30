@@ -1,0 +1,203 @@
+html, body {
+	width:100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.main-container {
+	height: 100%;
+	display: block;
+	padding-top: 25px;
+	margin-bottom: 30px;
+}
+
+#wrapper {
+	background-color: white;
+	display: block;
+	width: 100%;
+    height:100vh;
+	padding: 20px;
+}
+#warning-board {
+	width: 80%;
+	position: relative;
+	left: 5%;
+	padding: 10px;
+	padding-top: 20px;
+	border-radius: 4px 4px 0 0;
+}
+pre {
+	width: 68%;
+	margin: auto;
+	margin-bottom: 17px;
+}
+.order-info {
+	/*height: 100%;*/
+	background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 0 0;
+    color: #333;
+    display: block;
+    font-size: 13px;
+    line-height: 1.42857;
+    margin: 0 0 10px;
+    padding: 10px;
+    word-break: break-all;
+    word-wrap: break-word;
+    width: 68%;
+    margin: auto;
+    text-align: center;
+}
+.order-info-label {
+	font-size: 13px !important;
+    line-height: 1.465 !important;
+	text-transform: uppercase;
+}
+.order-info-value {
+	color: #333;
+    font-family: Arial,sans-serif;
+    font-size: 16px;
+    line-height: 12px;
+}
+.menu-order-info {
+	background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 0 0;
+    color: #333;
+    display: block;
+    font-size: 13px;
+    line-height: 1.42857;
+    margin: auto;
+    padding: 10px;
+    padding-bottom: 0;
+    /*margin-bottom: 30px;*/
+    word-wrap: break-word;
+
+}
+.misc-info {
+	display: block;
+	padding-bottom: 20px;
+	/*margin-bottom: 30px;*/
+}
+
+#menu {
+	margin-top: 1.5em;
+	width: 900px;
+}
+
+ul, li {
+	list-style: none outside none;
+	/*width: 100%;*/
+	margin: 0;
+	padding:0; 
+}
+
+.food-entry {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1em;
+    transform: translate3d(0px, 0px, 0px);
+    transition-duration: 0.25s;
+    transition-property: transform, opacity, margin-top;
+    transition-timing-function: ease-in-out;
+    /*width: 100%;*/
+}
+
+
+li img {
+	height: 60px;
+}
+
+.food-image, .food, .qty, .price, .rate-bar{
+	display:inline-block;
+}
+
+.food-image {
+	border-bottom: 1px solid rgba(221, 221, 221, 0.35);
+    padding: 0.5em;
+    vertical-align: middle;
+    width: 15%;
+}
+
+
+.food {
+	width: 20%;
+}
+
+.qty {
+	width: 10%;
+}
+
+.price {
+	width: 10%;
+}
+
+.rate-bar {
+	width: 20%;
+
+}
+.tracking-status {
+	width: 33%;
+	display: inline-block;
+	padding-left: 30px;
+	/*padding-right: 50px;*/
+	position: relative;
+	top: 15px;
+}
+
+.price {
+    border-radius: 0 3px 3px 0;
+    font-weight: bold;
+    vertical-align: middle;
+    padding: 3px;
+}
+
+.rate-bar {
+    /*this class creats 5 stars bar with empty stars */
+    /*each star is 16 px, it means 5 stars will make 80px together */
+    width: 80px;
+    /*height of empty star*/
+    height: 16px;
+    /*background image with stars */
+    background: url(../img/stars.png);
+    /*which will be repeated horizontally */
+    background-repeat: repeat-x;
+    /* as we are using sprite image, we need to position it to use right star, 
+    //0 0 is for empty */
+    background-position: 0 0;
+    /* align inner div to the left */
+    text-align: left;
+}
+.rate {
+    /* height of full star is the same, we won't specify width here */
+    height: 16px;
+    /*padding:2px;*/
+    /* background image with stars */
+    background: url(../img/stars.png);
+    /* now we will position background image to use 16px from top, 
+    //which means use full stars */
+    background-position: 0 -16px;
+    /* and repeat them horizontally */
+    background-repeat: repeat-x;
+}
+.progress-status {
+	width: 10px;
+	/*float: left;*/
+}
+.status-words {
+	float: left;
+}
+/*#order {
+	background-color: #56A0D3;
+    border: 0 none;
+    border-radius: 3px;
+    color: #fff;
+    float: right;
+    font-size: 25px;
+    margin-top: 20px;
+    padding: 6px 25px;
+    margin-bottom: 20px;
+    
+}
+*/
