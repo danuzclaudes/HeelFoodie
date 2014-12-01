@@ -21,6 +21,7 @@
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/star_rating.css" media="all" rel="stylesheet" type="text/css">
+<script src="./js/Review.js" type="text/javascript"></script>
 <script src="./js/star_rating.js" type="text/javascript"></script>
 <script src="./js/add_review.js" type="text/javascript"></script>
 <link href="./css/food_review.css" rel="stylesheet">
@@ -54,14 +55,6 @@
                         <th>Restaurant Name</th>
                         <th>Price</th>
                     </tr>
-                    <tr>
-                    <?php 
-                    echo '<td>'.$_POST["item_image"].'</td>';
-                    echo '<td>'.$_POST["food_id"].'</td>';
-                    echo '<td>'.$_POST["restaurant_id"].'</td>';
-                    echo '<td>'.$_POST["price"].'</td>';
-                    ?>
-                    </tr>
                 </table>
             </div>
             <div class="review_all_display">
@@ -92,7 +85,7 @@
                 </div>
                 <div class="form-group">
                     <label >Add photos</label>
-                    <input type="file" name="photo" id="exampleInputFile">
+                    <input type="file" name="reviewimage" id="exampleInputFile">
                 </div>
                 <div class="checkbox">
                     <label>

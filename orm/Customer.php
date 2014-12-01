@@ -21,7 +21,7 @@ class Customer
 
   public static function create_customer($customer_id, $username, $password, $regi_date, $firstname, $lastname, $middlename, 
                                 $email, $cellphone1, $cellphone2, $addr_l1, $addr_l2, $city, $state, $zipcode) {
-    $mysqli = new mysqli("localhost", "root", "4023", "wangyiqidb");
+    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
     if ($regi_date == null) {
       $dstr = "null";
@@ -55,7 +55,7 @@ class Customer
   }
 
   public static function findByID($customer_id) {
-    $mysqli = new mysqli("localhost", "root", "4023", "wangyiqidb");
+    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
     $result = $mysqli->query("select * from a6_Customer where customer_id = " . $customer_id);
     if ($result) {
@@ -74,7 +74,7 @@ class Customer
   }
 
   public static function getAllIDs() {
-    $mysqli = new mysqli("localhost", "root", "4023", "wangyiqidb");
+    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
     $result = $mysqli->query("select customer_id from a6_Customer");
     $customer_id_array = array();
@@ -159,41 +159,43 @@ class Customer
   
 
   private function update() {
-    $mysqli = new mysqli("localhost", "root", "4023", "wangyiqidb");
+    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
     // if ($this->regi_date == null) {
     //   $rstr = "null";
     // } else {
     //   $rstr = "'" . $this->regi_date->format('Y-m-d') . "'";
     // }
+    // $query1 = "update a6_Customer set firstname =".
+                // " '". $mysqli->real_escape_string($this->firstname) ."' where customer_id = 1";
     $query1 = "update a6_Customer set " .
-        //   "username=" .
-        //    "'" . $mysqli->real_escape_string($this->username) . "', " .
-           // "password=" .
-           // "'" . $mysqli->real_escape_string($this->password) . "', " .
-        //    "regi_date=" .
-        //    "'" . $mysqli->real_escape_string($this->regi_date) . "', " .
+          "username=" .
+           "'" . $mysqli->real_escape_string($this->username) . "', " .
+           "password=" .
+           "'" . $mysqli->real_escape_string($this->password) . "', " .
+           "regi_date=" .
+           "'" . $mysqli->real_escape_string($this->regi_date) . "', " .
            "firstname=" .
            "'" . $mysqli->real_escape_string($this->firstname) . "', " .
-        //    "lastname=" .
-        //    "'" . $mysqli->real_escape_string($this->lastname) . "', " .
-           // "middlename=" .
-        //    "'" . $mysqli->real_escape_string($this->middlename) . "', " .
-        //    "email=" .
-        //    "'" . $mysqli->real_escape_string($this->email) . "', " .
-        //    "cellphone1=" .
-        //    "'" . $mysqli->real_escape_string($this->cellphone1) . "', " .
-        //    "cellphone2=" .
-        //    "'" . $mysqli->real_escape_string($this->cellphone2) . "', " .
-        //    "addr_l1=" .
-        //    "'" . $mysqli->real_escape_string($this->addr_l1) . "', " .
-        //    "addr_l2=" .
-        //    "'" . $mysqli->real_escape_string($this->addr_l2) . "', " .
-        //    "city=" .
-        //    "'" . $mysqli->real_escape_string($this->city) . "', " .
-        //    "state=" .
-        //    "'" . $mysqli->real_escape_string($this->state) . "', " .
-        //    "zipcode=" .
-        //    "'" . $mysqli->real_escape_string($this->zipcode) . "', " .
+           "lastname=" .
+           "'" . $mysqli->real_escape_string($this->lastname) . "', " .
+           "middlename=" .
+           "'" . $mysqli->real_escape_string($this->middlename) . "', " .
+           "email=" .
+           "'" . $mysqli->real_escape_string($this->email) . "', " .
+           "cellphone1=" .
+           "'" . $mysqli->real_escape_string($this->cellphone1) . "', " .
+           "cellphone2=" .
+           "'" . $mysqli->real_escape_string($this->cellphone2) . "', " .
+           "addr_l1=" .
+           "'" . $mysqli->real_escape_string($this->addr_l1) . "', " .
+           "addr_l2=" .
+           "'" . $mysqli->real_escape_string($this->addr_l2) . "', " .
+           "city=" .
+           "'" . $mysqli->real_escape_string($this->city) . "', " .
+           "state=" .
+           "'" . $mysqli->real_escape_string($this->state) . "', " .
+           "zipcode=" .
+           "'" . $mysqli->real_escape_string($this->zipcode) . "'" .
            " where customer_id= 1";
     $result = $mysqli->query($query1);
     // echo $query1;
@@ -201,7 +203,7 @@ class Customer
   }
 
   public function delete() {
-    $mysqli = new mysqli("localhost", "root", "4023", "wangyiqidb");
+    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
     $mysqli->query("delete from a6_Customer where customer_id = " . $this->customer_id);
   }
 

@@ -1,8 +1,10 @@
 <?php
 date_default_timezone_set("America/New_York");
 
-
+require_once("orm/MenuLocalV2.php");
 require_once("orm/Customer.php");
+require_once("orm/Restaurant_l.php");
+require_once("orm/Review.php");
 // echo $_SERVER['PATH_INFO'];
 // if(!isset($_SERVER['PATH_INFO'])){
 // 	echo "hello";
@@ -42,6 +44,55 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 			header("Content-type: application/json");
 			print($customer->getJSON());
 			exit();
+		}elseif ($path_components[1] == 'review') {
+				
+			$menu_id = intval($path_components[2]);
+			$food_info = Menu::findFoodEntryByID($menu_id);
+			
+			if ($food_info == null) {
+       		// Menu not found.
+				header("HTTP/1.0 404 Not Found");
+				print("Menu id: " . $menu_id . " not found.");
+				exit();
+			}
+			
+			// print $path_components[2];
+			if(count($path_components) == 3){
+				// $review_id_list = json_encode(Review::get_all_review_by_menu_ids($menu_id));
+				$review_id_list = Review::get_all_review_by_menu_ids($menu_id);
+
+				$return_obj = array('food_info' => $food_info,
+			      'review_id_list' => $review_id_list);
+				// Normal lookup.
+				// Generate JSON encoding as response
+				header("Content-type: application/json");
+				print(json_encode($return_obj));
+				exit();
+				
+			}elseif(count($path_components) > 3){
+				$review_id = intval($path_components[3]);
+				$review = Review::findByID($review_id);
+				if ($review == null) {
+	       		// Menu not found.
+					header("HTTP/1.0 404 Not Found");
+					print("Review id: " . $review_id . " not found.");
+					exit();
+				}
+				// Check to see if deleting
+				if (isset($_REQUEST['delete'])) {
+					$review->delete();
+					header("Content-type: application/json");
+					print(json_encode(true));
+					exit();
+				}
+				// $review_info = $review->getJSON();
+				// $return_obj = array('menu_info' => $menu_info,
+			    //   'review_info' => $review_info);
+				header("Content-type: application/json");
+				print($review->getJSON());
+				exit();
+			}
+			
 		}
 		
 	}
@@ -61,16 +112,16 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 	    		}
 
 	    		// Validate values
-			    // $password = false;
-			    // if (isset($_REQUEST['password'])) {
-			    //   $new_password = trim($_REQUEST['password']);
-			    //   if ($new_password == "") {
-			    //     	header("HTTP/1.0 400 Bad Request");
-			    //     	print("Bad password");
-			    //     	exit();
-			    //   }
-			    // }
-
+			    $password = false;
+			    if (isset($_REQUEST['password'])) {
+			      $new_password = trim($_REQUEST['password']);
+			      if ($new_password == "") {
+			        	header("HTTP/1.0 400 Bad Request");
+			        	print("Bad password");
+			        	exit();
+			      }
+			    }
+				//var_dump($_REQUEST);
 			    $new_firstname = false;
 			    if (isset($_REQUEST['firstname'])) {
 			      $new_firstname = trim($_REQUEST['firstname']);
@@ -154,10 +205,50 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 			    // Return JSON encoding of updated customer
 			    header("Content-type: application/json");
+			    //echo "customer-getJSON:",$customer->getJSON(); 
 			    print($customer->getJSON());
 			    exit();
-			}
+			} elseif ($path_components[1] == 'review'&& count($path_components) == 3){
+				
+				$menu_id = intval($path_components[2]);
+			    $customer_id = '0000000';
+			    
+			    $title = trim($_REQUEST['title']);
+			    if ($title == "") {
+			      header("HTTP/1.0 400 Bad Request");
+			      print("Bad title");
+			      exit();
+			    }
 
+			    $comment = "";
+			    if (isset($_REQUEST['comment'])) {
+			      $comment = trim($_REQUEST['comment']);
+			    }
+
+			    $rating = "";
+			    if (isset($_REQUEST['rate'])) {
+			      $rating = trim($_REQUEST['rate']);
+			    }
+
+			    $comment_date = null;
+
+			    $reviewimage = null;
+
+			    // Create new Todo via ORM
+			    $new_review = Review::create_review($menu_id, $customer_id, $rating, $comment, $title, $reviewimage, $comment_date);
+
+			    // Report if failed
+			    if ($new_review == null) {
+			      header("HTTP/1.0 500 Server Error");
+			      print("Server couldn't create new todo.");
+			      exit();
+			    }
+    
+			    //Generate JSON encoding of new Todo
+			    header("Content-type: application/json");
+			    print($new_review->getJSON());
+			    exit();
+			}
 		} 
 	}
 // If here, none of the above applied and URL could
