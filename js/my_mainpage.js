@@ -31,7 +31,7 @@ var click_submit_button = function () {
 		event.preventDefault();
 		var form_content = $("#edit_contact_form" ).serializeArray();
 		
-		// console.log(form_content);
+		console.log(form_content);
 		check_input_text(form_content);
 		
 		$.ajax("./app17.php/customer/1", //app.php
@@ -42,6 +42,7 @@ var click_submit_button = function () {
             		alert("Submit success!");
             		var ci = new Customer(customer_json);
             		console.log(ci.firstname);
+            		console.log(ci.lastname);
             		$("#Def_Con_inf_display").empty();
             		$("#Def_Con_inf_display").append(ci.makeContact_InfDiv())
             		

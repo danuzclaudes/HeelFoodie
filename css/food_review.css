@@ -8,7 +8,7 @@ body {
 	margin-bottom: 50px;
 }
 .review_display{
-	height:110px;
+	height:150px;
 	margin-bottom:10px; 
 }
 
@@ -49,6 +49,7 @@ body {
 .comment{
 	font-family: Times, serif;
 	font-style: italic;
+	height: 120px;
 }
 #rate{
 	z-index: 2;
