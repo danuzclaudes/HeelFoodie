@@ -1,8 +1,8 @@
 <?php
 date_default_timezone_set("America/New_York");
 
-require_once("/orm/Restaurant.php");
-require_once("/orm/Order.php");
+require_once("orm/Restaurant.php");
+require_once("orm/Order.php");
 //Menu ORM
 require_once("orm/MenuLocalV1.php");
 $base_url = "localhost:8080/HeelFoodie/index.php";
@@ -31,9 +31,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 				header("Content-type: application/json");
 				print(json_encode(Menu::getAllIDsByRestID($rest_id)));
 				exit();
-
-				
-				
 
 			} else {
 				// GET app.php/restaurant
@@ -82,22 +79,21 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 			exit();
 			}
 			
-
 			// Normal lookup.
 			// Generate JSON encoding as response
 			header("Content-type: application/json");
 			print(json_encode($menu_food));
 			exit();
-		} elseif ($path_components[1] == 'cart') {
-			// GET app.php/cart
-			if ( isset($_COOKIE["CART"]) ) {
-    			$cart_info = $_COOKIE["CART"];
-				//array $cart_info
-    			$cart_info = json_decode($cart_info, true);
-				header("Content-type: application/json");
-				print(json_encode($cart_info));
-				exit();
-			}
+			
+		} 
+		//Newly added restInfo
+		elseif ($path_components[1] == 'restaurantInfo') {
+			// GET app.php/restaurantInfo[/<rest_id>]
+			$rest_id = intval($path_components[2]);
+			$rest = Restaurant::findRestaurantByID($rest_id);
+			header("Content-type: application/json");
+			print($rest -> getJSON());
+			exit();
 		}
 		
 	}

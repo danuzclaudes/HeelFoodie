@@ -46,7 +46,7 @@ class Restaurant {
 
 	public static function getAllRestaurants() {
 		// echo "invocation success"; // for debugging
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
 		$result = $mysqli->query("select restaurant_id, latitude, longitude from a6_Restaurant");
 		$return_list = array();
@@ -81,7 +81,7 @@ class Restaurant {
 	}
 
 	public static function findRestaurantByID($id) {
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
 		$result = $mysqli->query("select * from a6_Restaurant where restaurant_id = ".$id);
 		if($result) {
@@ -127,7 +127,7 @@ class Restaurant {
 	}
 
 	public function deleteRestaurant() {
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 		$mysqli->query('delete from a6_Restaurant where id='.$this->id);
 	}
 
@@ -138,6 +138,38 @@ class Restaurant {
 	public function getRegisterDate() {
 		return $this->registerDate;
 	}
+	
+	//Newly added getJSON
+	public function getJSON() {
+    
+	if ($this->registerDate == null) {
+      $dstr = null;
+    } else {
+      $dstr = $this->registerDate->format('Y-m-d');
+    }
+	
+    $json_obj = array(
+			  
+	'rid' => $this->rid,
+	'rname' =>	$this->rname,
+	'registerDate' => $dstr,
+	'address' =>	$this->address,
+	'city' =>	$this->city,
+	'state' =>	$this->state,
+	'zipcode' =>	$this->zipcode,
+	'phone' =>	$this->phone,
+	'openHour' =>	$this->openHour,
+	'closedHour' =>	$this->closedHour,
+	'min_order' =>	$this->min_order,
+	'delivery_fee' =>	$this->delivery_fee,
+	'latitude' =>	$this->latitude,
+	'longtitude' =>	$this->longitude,
+	'logo' =>	$this->logo);
+			  
+    return json_encode($json_obj);
+  }
+	
+	
 }
 
 ?>
