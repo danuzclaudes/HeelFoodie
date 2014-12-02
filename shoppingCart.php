@@ -22,16 +22,15 @@
 
 <link rel="stylesheet" type="text/css" href="css/cartReview.css">
 <script src="js/bootstrap.min.js"></script>
-<script src="js/restaurant_class.js"></script>
+<script src="js/Restaurants.js"></script>
 <script src="js/Menu.js"></script>
 <script src="js/OrderList.js"></script>
 <script src="js/order_entry.js"></script>
 <!--Newly added js -->
 <script src="js/cartViewer.js"></script>
 <script src="js/Cart.js"></script>
-<script src="js/MenuNew.js"></script>
 <!--Newly added js -->
-
+<script src="js/setup.js"></script>
 
 
 </head>
