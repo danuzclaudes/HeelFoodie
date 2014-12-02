@@ -115,6 +115,7 @@ delivery_fee DECIMAL(5,2),
 latitude float(10,6),
 longitude float(10,6),
 logo VARCHAR(255),
+isOpen boolean,
 CONSTRAINT pk_Restaurant PRIMARY KEY (restaurant_id)
 -- CONSTRAINT fk_Restaurant FOREIGN KEY (location_id)
 -- REFERENCES a6_Location(location_id)
@@ -169,3 +170,27 @@ FROM a6_order AS o, a6_menu_order as mo, a6_menu as m, a6_food as f
 WHERE o.order_id = mo.order_id and mo.menu_id = m.menu_id 
 	  and m.food_id = f.food_id
 	  and o.order_id = '20141128142807000000';
+
+INSERT INTO `a6_restaurant` (`restaurant_name`,`regis_date`,`address`,`city`,`state`,`zipcode`,`work_phone`,`open_hour`,`closed_hour`,`min_order`,`delivery_fee`,`latitude`,`longitude`,`logo`, `isOpen`) 
+VALUES ('Asian Cafe','2014/11/23','118 E Franklin St','Chapel Hill','NC','27514','(919) 929-0168','08:00:00	','20:00:00',5.00, 2.00, 35.913242,-79.054887,'',1);
+
+INSERT INTO `a6_restaurant` (`restaurant_name`,`regis_date`,`address`,`city`,`state`,`zipcode`,`work_phone`,`open_hour`,`closed_hour`,`min_order`,`delivery_fee`,`latitude`,`longitude`,`logo`, `isOpen`) 
+VALUES ('Top of Hill','2014/11/24','100 E Franklin St #3','Chapel Hill','NC','27514','(919) 929-8676','14:00:00','02:00:00',0.00, 5.00, 35.913151,-79.055093,'',1);
+
+INSERT INTO `a6_restaurant` (`restaurant_name`,`regis_date`,`address`,`city`,`state`,`zipcode`,`work_phone`,`open_hour`,`closed_hour`,`min_order`,`delivery_fee`,`latitude`,`longitude`,`logo`, `isOpen`) 
+VALUES ('Sweet Frog','2014/11/26','105 E Franklin St','Chapel Hill','NC','27514','(919) 537-8616','08:00:00','23:00:00	',0.00, 0, 35.913509,-79.055223,'',1);
+
+INSERT INTO `a6_restaurant` (`restaurant_name`,`regis_date`,`address`,`city`,`state`,`zipcode`,`work_phone`,`open_hour`,`closed_hour`,`min_order`,`delivery_fee`,`latitude`,`longitude`,`logo`, `isOpen`) 
+VALUES ("Spanky's Restaurant & Bar",'2014/12/01','101 E Franklin St','Chapel Hill','NC','27514','(919) 967-2678','11:00:00','21:30:00	',0.00,0, 35.913304, -79.055681,'',1);
+
+INSERT INTO `a6_restaurant` (`restaurant_name`,`regis_date`,`address`,`city`,`state`,`zipcode`,`work_phone`,`open_hour`,`closed_hour`,`min_order`,`delivery_fee`,`latitude`,`longitude`,`logo`, `isOpen`) 
+VALUES ("Sugarland",'2014/12/01','140 E Franklin St','Chapel Hill','NC','27514','(919) 929-2100','10:00:00','22:00:00	',0.00,0, 35.913536, -79.054250,'',1);
+
+INSERT INTO `a6_restaurant` (`restaurant_name`,`regis_date`,`address`,`city`,`state`,`zipcode`,`work_phone`,`open_hour`,`closed_hour`,`min_order`,`delivery_fee`,`latitude`,`longitude`,`logo`, `isOpen`) 
+VALUES ("Ye Olde Waffle Shoppe",'2014/12/01','173 E Franklin St','Chapel Hill','NC','27514','(919) 929-9192','07:00:00','02:00:00	',0.00, 0.00, 35.914303, -79.053371,'',1);
+
+INSERT INTO `a6_restaurant` (`restaurant_name`,`regis_date`,`address`,`city`,`state`,`zipcode`,`work_phone`,`open_hour`,`closed_hour`,`min_order`,`delivery_fee`,`latitude`,`longitude`,`logo`, `isOpen`) 
+VALUES ("Linda's Bar & Grill",'2014/12/01','203 E Franklin St','Chapel Hill','NC','27514','(919) 933-6663','11:00:00','12:00:00	',0.00, 0.00, 35.914574, -79.052673,'',1);
+
+INSERT INTO `a6_restaurant` (`restaurant_name`,`regis_date`,`address`,`city`,`state`,`zipcode`,`work_phone`,`open_hour`,`closed_hour`,`min_order`,`delivery_fee`,`latitude`,`longitude`,`logo`, `isOpen`) 
+VALUES ("Sutton's drug store",'2014/12/01','159 E Franklin St','Chapel Hill','NC','27514','(919) 942-5161','07:00:00','18:00:00	',0.00, 0.00, 35.914055, -79.053826,'',1);

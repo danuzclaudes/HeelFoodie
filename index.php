@@ -20,25 +20,28 @@
 <!-- Google Map User CSS-->
 <link rel="stylesheet" type="text/css" href="./css/gmap.css">
 <!-- Data - will be replaced by JSON -->
-<script src="./js/Restaurants.js" type="text/javascript"></script>
+<script src="./js/Restaurant.js" type="text/javascript"></script>
 <script src="./js/Menu.js" type="text/javascript"></script>
-<script src="./js/setup.js" type="text/javascript"></script>
 
 <!-- Scripts for sending out request for restaurants -->
 
 <script>
 // Restaurants.all = [];
-var jqxhr = $.get("app.php/restaurant", function(data){
-    console.log('data[0]=',data[0]);
-    // data[0]= Object { rid="1", latitude="35.913239", longitude="-79.055840"}
-    console.log(data[0].rid);
-    Restaurants.all.push(new Restaurants(data[0].rid,"AAA",35.915237, -79.055539, "118 E Franklin St, Chapel Hill, NC 27514", "(919) 929-0168", true));
-});
-console.log('jqxhr=',jqxhr);
+$.ajax("app.php/restaurant",
+    {
+        type: "GET",
+        dataType: "json",
+        success: function(json, status, jqXHR){
+            for(var i = 0; i < json.length; i++) {
+                var restaurant_obj = new Restaurant(json[i]);
+                Restaurant.all.push(restaurant_obj);
+            }
+        }
+    }
+);
 
 
-
-// Restaurants.all.push(
+// Restaurant.all.push(
 //  {
 //  "rid": "2014001",
 //  "rname": "Asian Cafe",
@@ -55,9 +58,9 @@ console.log('jqxhr=',jqxhr);
 <!-- Scripts for Google Map -->
 <script>
 function initialize() {
-  var unc = new google.maps.LatLng(35.913237, -79.055839);
+  var unc = new google.maps.LatLng(35.914137, -79.054082);
   var mapOptions = {
-    zoom: 15,
+    zoom: 17,
     center: unc, // center: {lat: 35.90, lng: -79.05}
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -82,9 +85,9 @@ function initialize() {
   var infowindow = new google.maps.InfoWindow();
   
   // set up marker for all the restaurants ---> multiple markers required
-  for(var i = 0; i < Restaurants.all.length; i++){
+  for(var i = 0; i < Restaurant.all.length; i++){
     // In reality, the location should point to where user pinned or searched...
-    var location = new google.maps.LatLng(Restaurants.all[i].getLat(),Restaurants.all[i].getLng())
+    var location = new google.maps.LatLng(Restaurant.all[i].getLat(),Restaurant.all[i].getLng())
     // Create marker objects
     var marker = new google.maps.Marker({
         position: location,
@@ -110,11 +113,11 @@ function registerMarkerEvent(marker, i, map, infowindow){
 }
 // Function Closure
 function getRestaurantInfo(index){
-    var restaurant_id = Restaurants.all[index].rid;
-    var restaurant_name = Restaurants.all[index].rname;
-    var restaurant_address = Restaurants.all[index].raddress;
-    var restaurant_phone = Restaurants.all[index].rphone;
-    var restaurant_isOpen = Restaurants.all[index].isOpen?"Open":"Close";
+    var restaurant_id = Restaurant.all[index].rid;
+    var restaurant_name = Restaurant.all[index].rname;
+    var restaurant_address = Restaurant.all[index].raddress;
+    var restaurant_phone = Restaurant.all[index].rphone;
+    var restaurant_isOpen = Restaurant.all[index].isOpen?"Open":"Close";
     // set up content
     var contentString = '<div id="info-window">'+
         // '<span class="iw-close close_btn">×</span>'+

@@ -17,7 +17,7 @@ if ( $_POST ) {
     if ( isset($_COOKIE["ORDER"]) ) {
         header( "Refresh:2; url=./order_track.php", true, 303);
     } else {
-        header( "Refresh:2; url=./address_input.php", true, 303);
+        header( "Refresh:2; url=./index.php", true, 303);
     }
     print("Please don't access this page directly.");
     exit("Autodirecting to homepage...");
@@ -88,7 +88,7 @@ if ( $_POST ) {
             <div id="Addr_display">    
                 <!-- <table class="table table-striped">Your address:  -->
                 <?php 
-                    if ( $_POST == null && isset($_COOKIE["CART"]) ){
+                    if ( $_POST == null && !isset($_COOKIE["ADDRESS"]) ){
                         echo '<table class="table table-hover no-address"><tr>';
                         echo '<td>No address information yet. Please input your delivery address.</td>';
                         echo '</tr></table>';
