@@ -2,7 +2,7 @@
 var Cart = function(cart_json) {
     this.menu_id = cart_json.menu_id;
     this.food_name = cart_json.food_name;
-    this.qty = parseInt(cart_json.qty);
+    this.qty = cart_json.qty;
     this.price = cart_json.price;
 };
 
@@ -46,76 +46,3 @@ Cart.prototype.makeCompactLi = function() {
 Cart.prototype.updateItemQty = function(qty) {
 	this.qty = qty;
 };
-
-Cart.prototype.delete_from_cookie = function() {
-	var entry_object = JSON.stringify(this);
-			console.log(entry_object);
-			//console.log( order_entry.all );
-		$.ajax({
-			url : "cookie.php/cart/" + this.menu_id + "?delete",
-			type : "GET",
-			//contentType: "Application/json",
-			success : function(data, status, jqXHR) {
-				alert("delete");
-			},
-			error : function(jqXHR, status, error) {
-				alert("delete fail");
-			}
-		});
-};
-
-Cart.prototype.update_from_cookie = function() {
-	var entry_object = JSON.stringify(this);
-			console.log(entry_object);
-			//console.log( order_entry.all );
-		$.ajax({
-			url : "cookie.php/cart/" + this.menu_id,
-			type : "POST",
-			//contentType: "Application/json",
-			data : entry_object,
-			success : function(data, status, jqXHR) {
-				alert("update");
-			},
-			error : function(jqXHR, status, error) {
-				alert("update fail");
-			}
-		});
-};
-
-Cart.prototype.add_to_cookie = function() {
-	var entry_object = JSON.stringify(this);
-			//console.log(entry_object);
-			//console.log( order_entry.all );
-		$.ajax({
-			url : "cookie.php/cart",
-			//url : "entry_order.php",
-			type : "POST",
-			//contentType: "Application/json",
-			data : entry_object,
-			success : function(data, status, jqXHR) {
-				console.log("add_to_cookie:", entry_object);
-				alert("add");
-			},
-			error : function(jqXHR, status, error) {
-				alert("add fail");
-			}
-		});
-};
-
-// Cart.prototype.getRestID = function() {
-	// //var entry_object = JSON.stringify(this);
-	// //console.log(entry_object);
-	// //console.log( order_entry.all );
-	// $.ajax("app.php/menu/" + this.menu_id,
-		// {type: "GET",
-		 // dataType: "json",
-		 // success: function(menu_json, status, jqXHR) {
-			// console.log("menu_json:", menu_json);
-			// var t = new Menu(menu_json);
-			// console.log("rid:", t.restaurant_id);
-			// var rid = t.restaurant_id;
-			// return rid;
-		 // }
-	// });
-	
-//};
