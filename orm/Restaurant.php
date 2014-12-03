@@ -17,10 +17,11 @@ class Restaurant {
 	private $latitude;
 	private $longitude;
 	private $logo;
+	private $isOpen;
 
 	private function __construct($rid, $rname, $registerDate, $address, $city, $state, $zipcode,
 								 $phone, $openHour, $closedHour, $min_order, $delivery_fee,
-								 $latitude, $longitude, $logo) {
+								 $latitude, $longitude, $logo, $isOpen) {
 		$this->rid = $rid;
 		$this->rname = $rname;
 		$this->registerDate = $registerDate;
@@ -36,6 +37,7 @@ class Restaurant {
 		$this->latitude = $latitude;
 		$this->longitude = $longitude;
 		$this->logo = $logo;
+		$this->isOpen = $isOpen;
 	}
 
 	// private function __construct1($rid, $latitude, $longitude) {
@@ -48,7 +50,8 @@ class Restaurant {
 		// echo "invocation success"; // for debugging
 		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
-		$result = $mysqli->query("select restaurant_id, latitude, longitude from a6_Restaurant");
+		$result = $mysqli->query("select restaurant_id, restaurant_name, latitude, longitude, address, city, state, zipcode, work_phone, isOpen ".
+								 " from a6_Restaurant");
 		$return_list = array();
 		if ($result) {
 			if($result->num_rows == 0) {
@@ -63,10 +66,24 @@ class Restaurant {
 					// 							  $next_row['latitude'],
 					// 							  $next_row['longitude'],"");
 					// asscciative arrays
+
+					if ($next_row['isOpen']) {
+						$isOpen = true;
+					} else {
+						$isOpen = false;
+					}
+
 					$restaurant = array(
 									'rid' => $next_row['restaurant_id'],
+									'rname' => $next_row['restaurant_name'],
 									'latitude' => $next_row['latitude'],
-									'longitude' => $next_row['longitude']
+									'longitude' => $next_row['longitude'],
+									'address' => $next_row['address'],
+									'city' => $next_row['city'],
+									'state' => $next_row['state'],
+									'zipcode' => $next_row['zipcode'],
+									'work_phone' => $next_row['work_phone'],
+									'isOpen' => $isOpen
 								  );
 					$return_list[] = $restaurant;
 
@@ -104,6 +121,11 @@ class Restaurant {
 			// } else {
 			// 	$registerDate = null;
 			// }
+			if ($next_row['isOpen']) {
+				$isOpen = true;
+			} else {
+				$isOpen = false;
+			}
 
 			return new Restaurant(intval($row['restaurant_id']),
 								  $row['restaurant_name'],
@@ -120,7 +142,8 @@ class Restaurant {
 								  floatval($row['delivery_fee']), // require decimal
 								  $row['latitude'],
 								  $row['longitude'],
-								  $row['logo']);
+								  $row['logo'],
+								  $isOpen);
 		}
 		echo "find by id result is null";
 		return null;
@@ -138,6 +161,7 @@ class Restaurant {
 	public function getRegisterDate() {
 		return $this->registerDate;
 	}
+<<<<<<< HEAD
 	
 	//Newly added getJSON
 	public function getJSON() {
@@ -170,6 +194,11 @@ class Restaurant {
   }
 	
 	
+=======
+	public function getIsOpen() {
+		return $this->isOpen;
+	}
+>>>>>>> 6bd787365c2e80faec35f4ec84319b827aba14be
 }
 
 ?>
