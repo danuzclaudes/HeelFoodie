@@ -32,10 +32,10 @@ restaurant.prototype.showInfo = function() {
 	var rdiv = $("<div></div>");
     rdiv.addClass('rest-info');
     
-    var rname_div = $("<div></div>");
-    rname_div.addClass('rname');
-    rname_div.html(this.rname);
-    rdiv.append(rname_div);
+    //var rname_div = $("<div></div>");
+    //rname_div.addClass('rname');
+    //rname_div.html(this.rname);
+    //rdiv.append(rname_div);
 
 	var raddress_div = $("<div></div>");
     raddress_div.addClass('address');
