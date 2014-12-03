@@ -105,7 +105,7 @@
     <!-- Place Your HTML Above. -->
    
     <!-- Services -->
-    <section id="services" class="services bg-primary">
+    <section id="services" class="services bg-primary" style="background-color: #56a0d3;">
         <div class="container">
             <div class="row text-center">
                 <div class="logo-footer">
