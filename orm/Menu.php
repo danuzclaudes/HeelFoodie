@@ -8,15 +8,15 @@ class Menu {
 	private $item_image;
 	private $item_thumb_image;
 	private $price;
-	private $is_recommended; 
-	
+	private $is_recommended;
+
 	public static function create($menu_id, $food_id, $restaurant_id, $item_image, $item_thumb_image, $price, $is_recommended) {
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
 	}
 
 	public static function findByID($mid) {
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
 		$result = $mysqli -> query("select * from a6_Menu where menu_id = " . $mid);
 		if ($result) {
@@ -26,33 +26,36 @@ class Menu {
 
 			$menu_info = $result -> fetch_array();
 
-			return new Menu(intval($menu_info['menu_id']), $menu_info['food_id'], $menu_info['restaurant_id'], $menu_info['item_image'], $menu_info['item_thumb_image'], 
-			$menu_info['price'], intval($menu_info['is_recommended']));
+			return new Menu(intval($menu_info['menu_id']), $menu_info['food_id'], $menu_info['restaurant_id'], $menu_info['item_image'], $menu_info['item_thumb_image'], $menu_info['price'], intval($menu_info['is_recommended']));
 		}
 		return null;
 	}
-	
-	public static function findFoodEntryByID($mid) {
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
 
-		$result = $mysqli -> query("select M.menu_id, M.item_thumb_image, F.food_name, M.price, ROUND(AVG(R.rating), 0) AS rating from a6_Menu M INNER JOIN a6_Food F ON M.food_id = F.food_id INNER JOIN a6_Food_Review R ON M.menu_id = R.menu_id where M.menu_id = " . $mid);
+	public static function findFoodEntryByID($mid) {
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+
+		$result = $mysqli -> query("select M.menu_id, M.item_thumb_image, F.food_name, M.price, ROUND(AVG(R.rating), 0) AS rating," .
+		" T.restaurant_name, M.restaurant_id from a6_Menu M INNER JOIN a6_Food F ON M.food_id = F.food_id INNER JOIN a6_Food_Review R ON ".
+		"M.menu_id = R.menu_id INNER JOIN a6_Restaurant T ON T.restaurant_id = M.restaurant_id where M.menu_id = " . $mid);
 		if ($result) {
 			if ($result -> num_rows == 0) {
 				return null;
 			}
 
 			$food_info = $result -> fetch_array();
-			
-			$food = array('menu_id' => $food_info['menu_id'], 'item_thumb_image' => $food_info['item_thumb_image'], 'food_name' => $food_info['food_name'], 'price' => $food_info['price'], 'rating' => $food_info['rating']);
+
+			$food = array('menu_id' => $food_info['menu_id'], 'item_thumb_image' => $food_info['item_thumb_image'], 
+			'food_name' => $food_info['food_name'], 'price' => $food_info['price'], 'rating' => $food_info['rating'], 
+			'restaurant_name' => $food_info['restaurant_name'], 'restaurant_id' => $food_info['restaurant_id']);
 			return $food;
-			//return new Menu(intval($food_info['menu_id']), $menu_info['food_id'], $menu_info['restaurant_id'], $menu_info['item_image'], $menu_info['item_thumb_image'], 
+			//return new Menu(intval($food_info['menu_id']), $menu_info['food_id'], $menu_info['restaurant_id'], $menu_info['item_image'], $menu_info['item_thumb_image'],
 			//$menu_info['price'], intval($menu_info['is_recommended']));
 		}
 		return null;
 	}
 
 	public static function getAllIDsByRestID($rest_id) {
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
 		$result = $mysqli -> query("select menu_id from a6_Menu where restaurant_id = " . $rest_id);
 		$mid_array = array();
@@ -90,19 +93,19 @@ class Menu {
 	public function getImg() {
 		return $this -> item_image;
 	}
-	
+
 	public function getThumbImg() {
 		return $this -> item_thumb_image;
 	}
-	
+
 	public function getPrice() {
 		return $this -> price;
 	}
-	
+
 	public function isRecommended() {
 		return $this -> is_recommended;
 	}
-	
+
 	public function setMenuID($menu_id) {
 		$this -> menu_id = $menu_id;
 		return $this -> update();
@@ -138,20 +141,19 @@ class Menu {
 		return $this -> update();
 	}
 
-
 	private function update() {
-		$mysqli = new mysqli("localhost", "root", "4023", "wangyiqidb");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
 		// if ($this -> due_date == null) {
-			// $dstr = "null";
+		// $dstr = "null";
 		// } else {
-			// $dstr = "'" . $this -> due_date -> format('Y-m-d') . "'";
+		// $dstr = "'" . $this -> due_date -> format('Y-m-d') . "'";
 		// }
-// 
+		//
 		// if ($this -> complete) {
-			// $cstr = "1";
+		// $cstr = "1";
 		// } else {
-			// $cstr = "0";
+		// $cstr = "0";
 		// }
 
 		$result = $mysqli -> query("update Menu set " . "food_id=" . "'" . $mysqli -> $this -> food_id . "', " . "restaurant_id=" . "'" . $mysqli -> $this -> restaurant_id . "', " . "project=" . "'" . $mysqli -> real_escape_string($this -> project) . "', " . "due_date=" . $dstr . ", " . "priority=" . $this -> priority . ", " . "complete=" . $cstr . " where id=" . $this -> id);
@@ -159,13 +161,13 @@ class Menu {
 	}
 
 	public function delete() {
-		$mysqli = new mysqli("localhost", "root", "4023", "wangyiqidb");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 		$mysqli -> query("delete from a6_Menu where menu_id = " . $this -> menu_id);
 	}
 
 	public function getJSON() {
 		$json_obj = array('menu_id' => $this -> menu_id, 'item_thumb_image' => $this -> item_thumb_image, 'price' => $this -> price, 'food_name' => $this -> food_name, 'rating' => $this -> rating);
-		
+
 		return json_encode($json_obj);
 	}
 
