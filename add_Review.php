@@ -2,8 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HeelFoodie - RTP Food Order Service</title>
+<title>Template</title>
 <!-- Bootstrap Core CSS -->
+<!-- Note the path of href-->
 <link href="./css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -12,86 +13,104 @@
 <!-- Template CSS -->
 <link rel="stylesheet" type="text/css" href="./css/template.css">
 <!-- jQuery -->
+<!-- Note the path of src.-->
 <script src="./js/jquery-1.11.1.js"></script>
+<!--
+	Place Your Scripts or CSS links below:
+-->
 
-<!-- Google Map API -->
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-<!-- Google Map User CSS-->
-<link rel="stylesheet" type="text/css" href="./css/gmap.css">
-<!-- Data - will be replaced by JSON -->
-<script src="./js/Restaurants.js"></script>
-<script>
-Restaurants.all = [];
-Restaurants.all.push(new Restaurants(2014001,"Asian Cafe",35.913237, -79.055839));
-Restaurants.all.push(new Restaurants(2014002,"Top of Hill",35.914019, -79.056741));
-Restaurants.all.push(new Restaurants(2014003,"Sweet Frog",35.913133, -79.055464));
-</script>
-<!-- Scripts for Google Map -->
-<script>
-function initialize() {
-  var unc = new google.maps.LatLng(35.913237, -79.055839);
-  var mapOptions = {
-    zoom: 15,
-    center: unc, // center: {lat: 35.90, lng: -79.05}
-    disableDefaultUI: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    // display pan control
-    panControl: true,
-    // display zoom control as default
-    zoomControl: true,
-    zoomControlOptions: {
-      style: google.maps.ZoomControlStyle.DEFAULT
-    },
-    // display mapType control as dropdown
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
-    }
-  };
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/star_rating.css" media="all" rel="stylesheet" type="text/css">
+<script src="./js/Review.js" type="text/javascript"></script>
+<script src="./js/star_rating.js" type="text/javascript"></script>
+<script src="./js/add_review.js" type="text/javascript"></script>
+<link href="./css/food_review.css" rel="stylesheet">
 
-  // set up marker
-  var markers = new Array();
-  for(var i = 0; i < Restaurants.all.length; i++){
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(Restaurants.all[i].lat,Restaurants.all[i].lng),
-      // animation:google.maps.Animation.BOUNCE,
-      index: Restaurants.all[i].rid
-    });
-    marker.setMap(map);
-    markers.push(marker);
-  }
-  console.log("markers=",markers); // for debugging
-  
-}
 
-google.maps.event.addDomListener(window,'load',initialize);
-
-</script>
 </head>
 <body>
 <div class="main-container">
-	<header id="main-header" class="navbar navbar-custom navbar-fixed-top">
-	<h1>HeelFoodie</h1>
-    	<div class="header-account">
-          <a class="link" href="http://ele.me/login">LOGIN</a>
-          / <a class="link" href="http://ele.me/register">REGISTER</a>
+    <!-- Header -->
+    <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
+        <div class="logo">
+            <a class="navbar-brand" href="#"><img src="./img/logo_footer.png" alt=""></a>
         </div>
-	<div class="change-bg">
-	  <span>close background</span>
-	</div>	
-	</header>
-	<div id="background"></div>
-	<!-- Map -->
-    <section id="main-map" class="map-container">
-        <div id="map-background"></div>
-        <div id="map-canvas"></div>
-    </section>
+	    <h1>HeelFoodie</h1>
+    	<div class="header-account">
+          <a class="link" href="#">LOGIN</a>
+          / <a class="link" href="#">REGISTER</a>
+        </div>
+    </header>
+    <!-- Place Your HTML Here: -->
+
+    
+    <div id="content_display">
+        <div id="food_inf">
+            <h3 >Food description</h3>
+            <div >
+                <table class="table" style = "padding-left: 15px">
+                    <tr>
+                        <th>Food Picture</th>
+                        <th>Food Name</th>
+                        <th>Restaurant Name</th>
+                        <th>Price</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="review_all_display">
+            </div>
+           
+                
+            <div>
+                <button type="button" id="add_review"class="btn btn-default">Add review</button>
+            </div>
+        </div>
+        
+        <div id="review_inf">
+            <h3 >Food Review</h3>
+            <form role="form" id="new_review" method="post">
+                <div class="form-group">
+                    <label >Rating</label>
+                    <input id="rating" name="rate" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5
+            data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}" data-size="xs">
+                </div>
+                <div class="form-group">
+                    <label >Title</label>
+                    <input class="form-control" name="title" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                    <label >Content</label>
+                    <!-- <input  class="form-control"  placeholder="Make your comment here..."> -->
+                    <textarea class="form-control" name="comment" rows="5" placeholder="Make your comment here..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label >Add photos</label>
+                    <input type="file" name="reviewimage" id="exampleInputFile">
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" name="is_ano"> Anonymous
+                    </label>
+                </div>
+                <div id="error"></div>
+                <button type="submit" id="review_submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        
+    </div>
+
+        
+
+	
+    <!-- Place Your HTML Above. -->
+   
     <!-- Services -->
-    <section id="services" class="services bg-primary">
+    <section id="services" class="services bg-primary" style="background-color: #56a0d3;">
         <div class="container">
             <div class="row text-center">
+                <div class="logo-footer">
+                        <a class="logo-footer" href="#"><img src="./img/logo_footer.png" alt=""></a>
+                </div>
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our Services</h2>
                     <hr class="small">
@@ -100,7 +119,7 @@ google.maps.event.addDomListener(window,'load',initialize);
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Nearby Restaurants</strong>
@@ -112,7 +131,7 @@ google.maps.event.addDomListener(window,'load',initialize);
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                                <i class="fa fa-picture-o fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Food with Pictures</strong>
@@ -124,7 +143,7 @@ google.maps.event.addDomListener(window,'load',initialize);
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                                <i class="fa fa-comments-o fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Rate and Review</strong>
@@ -136,7 +155,7 @@ google.maps.event.addDomListener(window,'load',initialize);
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                                <i class="fa fa-ticket fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
                                     <strong>Special and coupon</strong>
@@ -154,7 +173,7 @@ google.maps.event.addDomListener(window,'load',initialize);
         <!-- /.container -->
     </section>
 	<!-- Footer -->
-    <footer class="active">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
@@ -185,30 +204,3 @@ google.maps.event.addDomListener(window,'load',initialize);
         </div>
     </footer>
 </div>
-<!-- Scripts for Controlling Background -->
-<script>
-    $(document).ready(function () {
-    	var divbg = $("div#background");
-        var mapbg = $("div#map-background");
-    	var footer = $("footer");
-    	$("div.change-bg").click(function(){
-    	  if(divbg.hasClass("active")){
-    		divbg.removeClass("active");
-    		$(this).find("span").text("open background");
-    		footer.removeClass("active");
-            divbg.css({display: "none"});
-            mapbg.css({height: "100%"});
-    		console.log("divbg is active, now close background."); // for debugging
-    	  }else{
-    		divbg.addClass("active");
-    		$(this).find("span").text("close background");
-    		footer.addClass("active");
-            divbg.css({display: "initial"});
-            mapbg.css({height: "0"});
-            console.log("divbg is inactive, now open background."); // for debugging
-    	  }	    
-    	});
-    });
-</script>
-</body>
-</html>

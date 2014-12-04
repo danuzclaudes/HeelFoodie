@@ -1,23 +1,37 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Template</title>
+<title>Resaurant</title>
 <!-- Bootstrap Core CSS -->
 <!-- Note the path of href-->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- Google Fonts -->
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 <!-- Template CSS -->
-<link rel="stylesheet" type="text/css" href="../css/template.css">
+<link rel="stylesheet" type="text/css" href="css/template.css">
 <!-- jQuery -->
 <!-- Note the path of src.-->
-<script src="../js/jquery-1.11.1.js"></script>
+<script src="js/jquery-1.11.1.js"></script>
 <!--
 	Place Your Scripts or CSS links below:
 -->
+
+<link rel="stylesheet" type="text/css" href="css/cartReview.css">
+<script src="js/bootstrap.min.js"></script>
+<script src="js/Restaurants.js"></script>
+<script src="js/Menu.js"></script>
+<script src="js/OrderList.js"></script>
+<script src="js/order_entry.js"></script>
+<!--Newly added js -->
+<script src="js/cartViewer.js"></script>
+<script src="js/Cart.js"></script>
+<!--Newly added js -->
+<script src="js/setup.js"></script>
+
 
 </head>
 <body>
@@ -25,7 +39,7 @@
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
         <div class="logo">
-            <a class="navbar-brand" href="../index.php"><img src="../img/logo_footer.png" alt=""></a>
+            <a class="navbar-brand" href="index.php"><img src="img/logo_footer.png" alt=""></a>
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
@@ -34,12 +48,34 @@
         </div>
     </header>
     <!-- Place Your HTML Here: -->
-	Place your HTML Here.
-	<div>
-		<p>NOTE: CHANGE PATH OF BOOTSTRAP AND JQUERY.</p>
-		<p>CURRENT TEMPLATE.HTML IS IN "TEMPLATE" FOLDER
-		YOUR HTML FILES MAY NOT BE THERE...</p>
-	</div>
+	<div id="shopping-cart" class="container">
+		<h2>My Cart</h2>
+				<div id="shoppingcart-list" class="center-block">
+					
+					
+						<ul id="food-list">
+							<li class='food-entry-title'>
+						<div class = "food">
+						Entry
+					</div>
+					<div class = "qty">
+						Quantity
+					</div>
+					<div class = "title-price price">
+						Price
+					</div>
+					</li>
+						</ul>
+						<div id="total-price">
+							<label class="totalPrice"></label>
+						</div>
+						<div id="order-option">
+							<button type="button" id="place-order" class="btn btn-primary pull-right order-button">Place Order</button>
+							<button type="button" id="continue-order" class="btn btn-primary pull-right order-button">Continue Ordering</button>
+						</div>
+					
+				</div>
+			</div>
     <!-- Place Your HTML Above. -->
    
     <!-- Services -->
@@ -47,7 +83,7 @@
         <div class="container">
             <div class="row text-center">
                 <div class="logo-footer">
-                        <a class="logo-footer" href="index.php"><img src="../img/logo_footer.png" alt=""></a>
+                        <a class="logo-footer" href="#"><img src="img/logo_footer.png" alt=""></a>
                 </div>
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our Services</h2>

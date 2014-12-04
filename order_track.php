@@ -1,53 +1,93 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Template</title>
-<!-- Bootstrap Core CSS -->
-<!-- Note the path of href-->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom Fonts -->
-<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<!-- Google Fonts -->
-<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-<!-- Template CSS -->
-<link rel="stylesheet" type="text/css" href="../css/template.css">
-<!-- jQuery -->
-<!-- Note the path of src.-->
-<script src="../js/jquery-1.11.1.js"></script>
-<!--
-	Place Your Scripts or CSS links below:
--->
+<?php 
+// require_once('model.php');
 
-</head>
-<body>
-<div class="main-container">
-    <!-- Header -->
-    <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
-        <div class="logo">
-            <a class="navbar-brand" href="../index.php"><img src="../img/logo_footer.png" alt=""></a>
-        </div>
-	    <h1>HeelFoodie</h1>
-    	<div class="header-account">
-          <a class="link" href="#">LOGIN</a>
-          / <a class="link" href="#">REGISTER</a>
-        </div>
-    </header>
-    <!-- Place Your HTML Here: -->
-	Place your HTML Here.
-	<div>
-		<p>NOTE: CHANGE PATH OF BOOTSTRAP AND JQUERY.</p>
-		<p>CURRENT TEMPLATE.HTML IS IN "TEMPLATE" FOLDER
-		YOUR HTML FILES MAY NOT BE THERE...</p>
-	</div>
-    <!-- Place Your HTML Above. -->
+// // session_start();
+
+// foreach (getOrderList() as $key => $orderList) {
+//     if ($orderList['qty']) {
+//         $cart_info[] = ["mid" => $orderList['mid'], 
+//                         "qty" => $orderList['qty'], 
+//                         "price" => $orderList['price']];
+//     }
    
-    <!-- Services -->
+// }
+
+// if ( !isset($_COOKIE["ORDER"]) && !isset($_COOKIE["USER"]) ) {
+//     // header("HTTP/1.1 426 Order Expired");
+//     print "ORDER EXPIRED";
+// ?>
+<!--  
+<html>
+  <head>
+     <title>Orders Expired</title>
+   </head>
+   <body>
+     <h1>You order is expired!</h3>
+     <h3>If you want to keep all your orders information, please login or register!"</h3>
+     <h3><a href="index.php">return home</a></h3>
+   </body>
+</html>
+ -->
+// <?php
+// } elseif ( isset($_COOKIE["ORDER"]) ) {
+//     $order = $_COOKIE["ORDER"];
+//     $order = stripslashes($order);
+//     $order = json_decode($order, true);
+?>
+<html>
+  <head>
+    <title>Good</title>
+    <!-- Bootstrap Core CSS -->
+    <!-- Note the path of href-->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/template.css">
+    <!-- jQuery -->
+    <!-- Note the path of src.-->
+    <script src="./js/jquery-1.11.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Header -->
+      <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
+          <div class="logo">
+              <a class="navbar-brand" href="index.php"><img src="./img/logo_footer.png" alt=""></a>
+          </div>
+        <h1>HeelFoodie</h1>
+        <div class="header-account">
+            <a class="link" href="#">LOGIN</a>
+            / <a class="link" href="#">REGISTER</a>
+          </div>
+      </header>
+      <div id="non-wrapper">outside of wrapper</div>
+      <div id="wrapper">
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+            <span class="sr-only">25% Complete</span>
+          </div>
+        </div>
+        <pre>ORDER ID is: <?php print_r ($order)?></pre>
+        <h3>...will retrieve database to track this order status...</h3>
+        <div>
+            <h3><a href="Restaurant_manage.html">Click to Restaurant-Side Management Page</a></h3>
+        </div>
+        <div>
+            <h3><a href="My_MainPage.php">Click to "My Account" Page designed for login individual users</a></h3>
+        </div>
+
+
+      </div>
+      <!-- Services -->
     <section id="services" class="services bg-primary">
         <div class="container">
             <div class="row text-center">
                 <div class="logo-footer">
-                        <a class="logo-footer" href="index.php"><img src="../img/logo_footer.png" alt=""></a>
+                        <a class="logo-footer" href="index.php"><img src="./img/logo_footer.png" alt=""></a>
                 </div>
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our Services</h2>
@@ -110,7 +150,7 @@
         </div>
         <!-- /.container -->
     </section>
-	<!-- Footer -->
+  <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -141,6 +181,6 @@
             </div>
         </div>
     </footer>
-</div>
-</body>
-</html>
+    </div>
+  </body>
+</html> 

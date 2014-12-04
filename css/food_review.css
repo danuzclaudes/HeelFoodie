@@ -1,0 +1,74 @@
+ 
+body {
+	background-color:rgba(190, 199, 214, 1);
+}
+ 
+#content_display{
+	width: 50%; 
+	margin: 0 auto; 
+	float:center;
+	margin-bottom: 50px;
+}
+.review_display{
+	height:150px;
+	margin-bottom:10px; 
+}
+
+.user_profile {
+	float:left;
+	margin-right:30px;
+}
+
+.user_profile, .review_text{
+	display: inline-block;
+	float:left;
+}
+.date_display,.rating, #delete_review, #new_date_display {
+	display: inline-block;
+	float: left;
+	height:30px;
+	border-bottom-style: solid;
+	border-color: gray;
+}
+.review_text{
+	width:80%;
+}
+
+.date_display{
+	font:italic 12px/30px Georgia, serif;
+	width:80%;  
+}
+.date_display p{
+	margin-left: 10px;
+}
+
+#new_date_display{
+	font:italic 12px/30px Georgia, serif;
+	width:57%;  
+}
+
+
+.title{
+	font-size: 20px;
+	clear:both;
+}
+.comment{
+	font-family: Times, serif;
+	font-style: italic;
+	height: 120px;
+}
+#error{
+	color: red;
+	font-size: 16px;
+	font-style: italic;
+}
+.rate{
+	z-index: 2;
+}
+
+.rate1{
+	z-index: 1;
+	position: relative;
+	top:-23px;
+}
+

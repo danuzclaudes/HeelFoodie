@@ -1,0 +1,94 @@
+h2 {
+	text-align: center;
+}
+
+#shoppingcart-list {
+	margin-top: 1.5em;
+	width: 700px;
+}
+
+
+ul {
+	list-style: none outside none;
+	width: 100%;
+	margin: 0;
+	margin-top: 0;
+	padding:0; 
+}
+
+.food-entry, .food-entry-title {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1px;
+    transform: translate3d(0px, 0px, 0px);
+    width: 100%;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.food-entry-title {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+
+
+.food, .qty, .price, .remove-food{
+	display:inline-block;
+	padding-top: 10px;
+}
+
+
+.food {
+	width: 20%;
+	padding-left: 10px;
+	
+}
+
+.qty {
+	width: 35%;
+	text-align: center;
+}
+
+.price {
+	width: 25%;
+	border-radius: 0 3px 3px 0;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.title-price {
+	padding-left: 10px;
+}
+
+.remove-food {
+	width: 10%;
+	height: 20px;
+	padding-top: 0px;
+}
+
+#total-price {
+	font-size: 1.4em;
+	margin-top: 1em;
+	text-align: right;
+	margin-right: 1em;
+}
+
+#continue-order, #place-order {
+	background-color: #56A0D3;
+    border: 0 none;
+    border-radius: 3px;
+    color: #fff;
+    float: right;
+    font-size: 1em;
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 6px 25px;
+    margin-bottom: 20px;
+ }
+
+
+
+
+
+ 

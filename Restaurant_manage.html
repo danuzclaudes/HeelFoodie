@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Resaurant</title>
+		<!-- Bootstrap Core CSS -->
+		<!-- Note the path of href-->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- Custom Fonts -->
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<!-- Google Fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+		<!-- Template CSS -->
+		<link rel="stylesheet" type="text/css" href="css/template.css">
+		<!-- jQuery -->
+		<!-- Note the path of src.-->
+		<script src="js/jquery-1.11.1.js"></script>
+		<!--
+		Place Your Scripts or CSS links below:
+		-->
+
+		<link rel="stylesheet" type="text/css" href="css/restaurant.css">
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/Menu.js"></script>
+		<script src="js/Order.js"></script>
+		<script src="js/OrderList.js"></script>
+		<script src="js/MenuOrder.js"></script>
+		<script src="js/Restaurants.js"></script>
+		<script src="js/setup.js"></script>
+
+	
+		<!-- CUSTOM STYLES-->
+		<link href="css/custom.css" rel="stylesheet" />
+		<!-- GOOGLE FONTS-->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+	</head>
+	<body>
+		<div class="main-container">
+			<!-- Header -->
+			<header id="main-header" class="navbar navbar-custom navbar-fixed-top">
+				<div class="logo">
+					<a class="navbar-brand" href="index.php"><img src="img/logo_footer.png" alt=""></a>
+				</div>
+				<h1>HeelFoodie</h1>
+				<div class="header-account">
+					<a class="link" href="#">LOGIN</a>
+					/ <a class="link" href="#">REGISTER</a>
+				</div>
+			</header>
+		</div>
+			<!-- Place Your HTML Here: -->
+			<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="Restaurant_manage.html">Asian Cafe</a>
+				</div>
+				<div style="color: white;
+				padding: 15px 50px 5px 50px;
+				float: right;
+				font-size: 16px;">
+					Last access : 30 May 2014
+				</div>
+			</nav>
+			<!-- /. NAV TOP  -->
+			<nav class="navbar-default navbar-side" role="navigation">
+				<div class="sidebar-collapse">
+					<ul class="nav" id="main-menu">
+						<li class="text-center">
+							<img src="img/find_user.png" class="user-image img-responsive"/>
+						</li>
+
+						<li>
+							<a class="active-menu"  href="Restaurant_manage.html"><i class="fa fa-cutlery fa-2x"></i> Restaurant Information</a>
+						</li>
+						<li>
+							<a  href="Restaurant_menu.html"><i class="fa fa-glass fa-2x"></i> Menu List</a>
+						</li>
+						<li>
+							<a  href="Restaurant_order_list.html"><i class="fa fa-shopping-cart fa-2x"></i> Order List</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!-- /. NAV SIDE  -->
+			<div id="page-wrapper" >
+				<div id="page-inner">
+					<div class="row">
+						<div class="col-md-12">
+							<h2>Welcome Asian Cafe</h2>
+						</div>
+					</div>
+					<!-- /. ROW  -->
+					<hr />
+					<div class="row row-centered">
+						<div class="col-md-4 col-sm-4 col-xs-4 col-centered">
+							<div class="panel panel-back noti-box">
+								<span class="icon-box bg-color-blue set-icon"> <i class="fa fa-envelope-o"></i> </span>
+								<div class="text-box" >
+									<p class="main-text">
+										10 New
+									</p>
+									<p class="text-muted">
+										Orders
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4 col-xs-4 col-centered">
+							<div class="panel panel-back noti-box">
+								<span class="icon-box bg-color-blue set-icon"> <i class="fa fa-bars"></i> </span>
+								<div class="text-box" >
+									<p class="main-text">
+										3 Orders
+									</p>
+									<p class="text-muted">
+										Pending
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4 col-xs-4 col-centered">
+							<div class="panel panel-back noti-box">
+								<span class="icon-box bg-color-blue set-icon"> <i class="fa fa-envelope-o"></i> </span>
+								<div class="text-box" >
+									<p class="main-text">
+										3 Orderes
+									</p>
+									<p class="text-muted">
+										Completed
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					</hr>
+					<div class="row" id="Restaurant-info">
+							<div>
+								<button type="button" class="btn btn-default edit-button">
+									Edit
+								</button>
+								<h3>Restaurant Information</h3>								
+							</div>
+							<p>Name: Asian Cafe</p>
+							<p>Phoen: 919-777-4466</p>
+							<P>Address line1</p>
+							<P>Address line2</p>
+							<p>Chapel Hill, NC, 27517</p>
+							<p>Open Hour: 10am - 10pm</p>
+					</div>
+				</div>		
+			</div>
+		<!-- /. PAGE WRAPPER  -->
+		<!-- Place Your HTML Above. -->
+
+		<!-- Services -->
+		<section id="services" class="services bg-primary">
+			<div class="container">
+				<div class="row text-center">
+					<div class="logo-footer">
+						<a class="logo-footer" href="#"><img src="img/logo_footer.png" alt=""></a>
+					</div>
+					<div class="col-lg-10 col-lg-offset-1">
+						<h2>Our Services</h2>
+						<hr class="small">
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="service-item">
+									<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-compass fa-stack-1x text-primary"></i> </span>
+									<h4><strong>Nearby Restaurants</strong></h4>
+									<p>
+										You can find restaurants near to you.
+									</p>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="service-item">
+									<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-picture-o fa-stack-1x text-primary"></i> </span>
+									<h4><strong>Food with Pictures</strong></h4>
+									<p>
+										We provide detailed pictures of food from restaurants.
+									</p>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="service-item">
+									<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-comments-o fa-stack-1x text-primary"></i> </span>
+									<h4><strong>Rate and Review</strong></h4>
+									<p>
+										Real rating and comments from UNC students and faculty.
+									</p>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="service-item">
+									<span class="fa-stack fa-4x"> <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-ticket fa-stack-1x text-primary"></i> </span>
+									<h4><strong>Special and coupon</strong></h4>
+									<p>
+										And great opportunity for coupons.
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- /.row (nested) -->
+					</div>
+					<!-- /.col-lg-10 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 col-lg-offset-1 text-center">
+						<h4><strong>HeelFoodie - RTP Food Order Service</strong></h4>
+						<p>
+							University of North Carolina
+						</p>
+						<ul class="list-unstyled">
+							<li>
+								<i class="fa fa-phone fa-fw"></i> (123) 456-7890
+							</li>
+							<li>
+								<i class="fa fa-envelope-o fa-fw"></i><a href="mailto:name@example.com">name@example.com</a>
+							</li>
+						</ul>
+						<br>
+						<ul class="list-inline">
+							<li>
+								<a href="#"><i class="fa fa-facebook-square fa-fw fa-3x"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-twitter-square fa-fw fa-3x"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-github-square fa-fw fa-3x"></i></a>
+							</li>
+						</ul>
+						<hr class="small">
+						<p class="text-muted">
+							Copyright © HeelFoodie 2014
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+		</div>
+		</body>
+		</html>
