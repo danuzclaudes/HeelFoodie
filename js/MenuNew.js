@@ -5,17 +5,15 @@ var Menu = function(menu_json) {
     this.price = menu_json.price;
     this.food_name = menu_json.food_name;
     this.rating = menu_json.rating;
-    this.restaurant_id = menu_json.restaurant_id;
-    this.restaurant_name = menu_json.restaurant_name;
 };
 
-Menu.prototype.makeCompactLi = function(cookie_qty) {
+Menu.prototype.makeCompactLi = function() {
     var menuli = $("<li></li>");
     menuli.addClass('food-entry');
 
 	var thumbImg = $("<div class='food-image'></div>");
 	thumbImg.addClass('food-thumb-image');
-    var image_url = $('<img src="img/foodPic/'+this.item_thumb_image+'", class="img-rounded">');
+    var image_url = $('<img src="./img/foodPic/'+this.item_thumb_image+'", class="img-rounded">');
     menuli.append(thumbImg);
     thumbImg.append(image_url);
     
@@ -30,9 +28,6 @@ Menu.prototype.makeCompactLi = function(cookie_qty) {
     qty_select.addClass('select-qty');
     for (var j = 0; j < 6; j++){
     	var option = $("<option value="+j+">"+j+"</option>");
-    	if (j == cookie_qty) {
-			option.attr("selected", "true");
-		}
     	qty_select.append(option);
     }
 	qty.append(qty_select);

@@ -318,6 +318,4 @@ print '<h4>Please Click <span><a href="'.$base_url.'">Here</a></span> to return 
 // echo '</br>';
 // echo $restaurant->getRegisterDate()->format("n/d/Y");
 
-
-
 ?>
