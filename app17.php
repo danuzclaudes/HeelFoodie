@@ -30,14 +30,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 				print("Customer id: " . $customer_id . " not found.");
 				exit();
 			}
-
-			// Check to see if deleting
-			if (isset($_REQUEST['delete'])) {
-				$customer->delete();
-				header("Content-type: application/json");
-				print(json_encode(true));
-				exit();
-			}
 			
 			// Normal lookup.
 			// Generate JSON encoding as response
@@ -55,6 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 				print("Menu id: " . $menu_id . " not found.");
 				exit();
 			}
+
 			
 			// print $path_components[2];
 			if(count($path_components) == 3){
