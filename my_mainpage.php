@@ -19,7 +19,9 @@
 	Place Your Scripts or CSS links below:
 -->
 <link href="./css/my_mainpage.css" rel="stylesheet">
+<script src="./js/Customer.js"></script>
 <script src="./js/my_mainpage.js"></script>
+
 
 
 </head>
@@ -52,20 +54,22 @@
     <div id="content_display">
         <div id="my_contact_inf">
             <div >
-            <div style = "display: inline-block; width: 90%">
-                <h3 >Default Contact Information</h3>
-            </div>            
-            <div style = "display: inline-block">
-                <button type="button" id="edit" class="btn btn-primary" style = "display: inline-block">Edit</button>
+                <div style = "display: inline-block; width: 90%">
+                    <h3 >Default Contact Information</h3>
+                </div>            
+                <div style = "display: inline-block">
+                    <button type="button" id="edit" class="btn btn-primary" style = "display: inline-block">Edit</button>
+                </div>
+                <hr style="margin-top:10px;">
             </div>
-            <hr style="margin-top:10px;">
-            </div>
-            <div id="Def_Addr_display">    
-                <p id="name_display">Ryan</p>
-                <p id="phone_display">919-777-4466</p>
-                <P id="add_l1_display">Address line1</p>
-                <P id="add_l2_display">Address line2</p>
-                <p id="city_state_zip_display">Chapel Hill, NC, 27517</p>
+            <div id="Def_Con_inf_display">
+                <div id="Def_Addr_display">    
+                    <p id="name_display">Ryan</p>
+                    <p id="phone_display">919-777-4466</p>
+                    <P id="add_l1_display">Address line1</p>
+                    <P id="add_l2_display">Address line2</p>
+                    <p id="city_state_zip_display">Chapel Hill, NC, 27517</p>
+                </div>
             </div>
         </div>
         <div id="contact_edit" style="margin-bottom: 50px;">
@@ -74,25 +78,32 @@
                 <h2>Address</h2>
             </div>
             <form role="form" id="edit_contact_form">
-                <div class="form-group inline_display" style = "width : 10%" >
-                    <input type="text" class="form-control" name= "fullname" placeholder="＊Full Name" >
+                <div id="full name">
+                    <div class="form-group inline_display" style = "width : 32%" >
+                        <input type="text" class="form-control" name= "firstname" placeholder="＊First Name" >
+                    </div>
+                    <div class="form-group inline_display" style = "width : 32%" >
+                        <input type="text" class="form-control" name= "middlename" placeholder="Middle Name" >
+                    </div>
+                    <div class="form-group inline_display" style = "width : 33%" >
+                        <input type="text" class="form-control" name= "lastname" placeholder="＊Last Name" >
+                    </div>
                 </div>
-                
                 <div class="form-group  long_textinput" style = "clear:left">
-                    <input type="text" class="form-control" id="phone1" name="phone1" id="phone1" placeholder="＊Phone" required>
+                    <input type="text" class="form-control" id="phone1" name="cellphone1" id="phone1" placeholder="＊Phone" required>
                 </div>
                 <div class="form-group long_textinput">
-                    <input type="text" class="form-control" id = "Addr_l1" name = "Addr_l1" placeholder="＊Address line 1" required>
+                    <input type="text" class="form-control" id = "Addr_l1" name = "addr_l1" placeholder="＊Address line 1" required>
                 </div>
                 <div class="form-group long_textinput">
-                    <input type="text" class="form-control" name = "Addr_l2" placeholder="Address line 2" >
+                    <input type="text" class="form-control" name = "addr_l2" placeholder="Address line 2" >
                 </div>
                 <div class="form_inline long_textinput">
                     <div class="form-group inline_display" style = "width : 33%">
-                        <input type="text" class="form-control"  id = "Addr_city" name = "Addr_city" placeholder="City">
+                        <input type="text" class="form-control"  id = "Addr_city" name = "city" placeholder="City">
                     </div>
                     <div class="form-group inline_display" style = "width : 32%" >
-                        <select class="form-control" id = "Addr_sta" name = "Addr_sta" style = "float: left">
+                        <select class="form-control" id = "Addr_sta" name = "state" style = "float: left">
                             <option value="Alabama">AL</option>
                             <option value="Alaska">AK</option>
                             <option value="Arizona">AZ</option>
@@ -145,7 +156,7 @@
                         </select>
                     </div>
                     <div class="form-group inline_display" style = "width : 32% ">
-                        <input type="text" class="form-control" id = "Addr_zip" name="Addr_zip" placeholder="Zip Cpde">
+                        <input type="text" class="form-control" id = "Addr_zip" name="zipcode" placeholder="Zip Cpde">
                     </div> 
                 </div>  
                 <div id="error"></div>
