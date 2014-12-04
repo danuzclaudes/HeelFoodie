@@ -1,3 +1,6 @@
+/*
+@ author Qiongcheng Xu
+*/
 $(document).ready(function() {
 	//Display cart items from COOKIE
 	$.ajax("app.php/cart", {

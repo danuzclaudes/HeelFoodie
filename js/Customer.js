@@ -1,3 +1,6 @@
+/*
+@ Yiqi Wang
+*/
 var Customer = function(customer_json){
 	console.log(customer_json);
     this.customer_id = customer_json.customer_id;
