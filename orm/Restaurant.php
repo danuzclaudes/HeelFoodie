@@ -165,5 +165,4 @@ class Restaurant {
 		return $this->isOpen;
 	}
 }
-
 ?>
