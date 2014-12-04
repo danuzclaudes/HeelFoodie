@@ -30,6 +30,7 @@
 <script src="js/cartViewer.js"></script>
 <script src="js/Cart.js"></script>
 <script src="js/MenuNew.js"></script>
+<script src="js/login.js"></script>
 <!--Newly added js -->
 
 
@@ -44,8 +45,7 @@
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
-          <a class="link" href="#">LOGIN</a>
-          / <a class="link" href="#">REGISTER</a>
+          <a class="link" id="modal_trigger" href="#modal" >LOGIN/REGISTER</a>
         </div>
     </header>
     <!-- Place Your HTML Here: -->

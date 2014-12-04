@@ -2,7 +2,7 @@
 $(document).ready(function () {
 	//Append restaurant info
 	rest_id = $('#Restaurant-Main div:first-child').attr("id");
-	$.ajax("./app.php/restaurantInfo/" + rest_id,
+	$.ajax("app.php/restaurantInfo/" + rest_id,
 	       {type: "GET",
 		       dataType: "json",
 		       success: function(rest_json, status, jqXHR) {

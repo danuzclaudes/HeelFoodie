@@ -32,36 +32,38 @@ $(document).ready(function() {
 				//console.log("menu_id in function find_qty:", mid);
 				if (button_id.attr("id") == "place-order") {
 					if (cart_info == null) {
-						alert("You didn't choose any food!");
+						alert("You didn't choose any food! Back to Homepage...");
+						window.location = "index.php";
 					} else {
 						window.location="address_input.php";
 					} 
 				}else {
-					var t = new Cart(cart_info[0]);
-					$.ajax("app.php/menu/" + t.menu_id,
-						{type: "GET",
-						 dataType: "json",
-						 success: function(menu_json, status, jqXHR) {
-							console.log("menu_json:", menu_json);
-							var t = new Menu(menu_json);
-							console.log("rid:", t.restaurant_id);
-							var rid = t.restaurant_id;
-							window.location = "Restaurant_main.php?rid=" + rid;
-						 }
-					});
-					
+					if (cart_info != null) {
+						var t = new Cart(cart_info[0]);
+						$.ajax("app.php/menu/" + t.menu_id,
+							{type: "GET",
+							 dataType: "json",
+							 success: function(menu_json, status, jqXHR) {
+								console.log("menu_json:", menu_json);
+								var t = new Menu(menu_json);
+								console.log("rid:", t.restaurant_id);
+								var rid = t.restaurant_id;
+								window.location = "Restaurant_main.php?rid=" + rid;
+							 },
+							 error: function(jqXHR, status, error){
+								window.location = "index.php";
+							}
+						});
+					} else {
+						window.location = "index.php";
+					} 
 				}
-			},
-			error: function(jqXHR, status, error){
-				alert("error");
 			}
 		});
 	});
 		
 		
-		
-	
-	
+
 	//Click button "remove" to remove the cart item and update total price
 	$("#food-list").on('mousedown', '.remove-food', function(event) {
 		var food_to_remove = $(this).parent();
@@ -94,6 +96,7 @@ $(document).ready(function() {
 		food_to_remove.remove();
 		updateTotalPrice();
 	});
+
 
 	//Change cart item quantity and update total price
 	$("#food-list").on('change', 'select', function(event) {
@@ -147,12 +150,9 @@ $(document).ready(function() {
 
 		});
 		
-		updateTotalPrice();
-		
-	
-	
-		
+		updateTotalPrice();	
 	});
+	
 
 	function updateTotalPrice() {
 		var total = 0;

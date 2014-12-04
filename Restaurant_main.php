@@ -31,6 +31,7 @@
 <script src="js/MenuNew.js"></script>
 <script src="js/menuViewer.js"></script>
 <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<script src="js/login.js"></script>
 <!--Newly added js -->
 
 
@@ -49,9 +50,7 @@
     </header>
     <!-- Place Your HTML Here: -->
 	<div id="Restaurant-Main" class="container">
-		
 	
-		
 		<div <?php echo "id= ".$_GET['rid']."" ?> class="restaurant-id"> </div>
 		<div id="restaurantName" class="center-block">
 			<!-- Get restaurant id from url
@@ -257,20 +256,20 @@
 
 			<!-- Username & Password Login form -->
 			<div class="user_login">
-				<form>
+				<form id = "loginForm" action="" method="post">
 					<label>Email / Username</label>
-					<input type="text" />
+					<input type="text" name="username" value="<?php echo $submitted_username; ?>"/>
 					<br />
 
 					<label>Password</label>
-					<input type="password" />
+					<input type="password" name="password" value="" />
 					<br />
 
 					
 
 					<div class="action_btns">
 						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-						<div class="one_half last"><a href="#" class="btn btn_red">Login</a></div>
+						<div class="one_half last"><input type="submit" class="btn btn_red" value="Login" /></div>
 					</div>
 				</form>
 
@@ -279,24 +278,22 @@
 
 			<!-- Register Form -->
 			<div class="user_register">
-				<form>
+				<form id="resgisterForm">
 					<label>Full Name</label>
-					<input type="text" />
+					<input type="text" name="username"/>
 					<br />
 
 					<label>Email Address</label>
-					<input type="email" />
+					<input type="email" name="email"/>
 					<br />
 
 					<label>Password</label>
-					<input type="password" />
+					<input type="password" name="password"/>
 					<br />
-
-					
 
 					<div class="action_btns">
 						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-						<div class="one_half last"><a href="#" class="btn btn_red">Register</a></div>
+						<div class="one_half last"><button class="btn btn_red" type="submit">Register</button> </div>
 					</div>
 				</form>
 			</div>

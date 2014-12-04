@@ -56,6 +56,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 		      	print(json_encode($cart_info));
 		      	exit();
 			}
+		} elseif ($path_components[1] == 'login') {
+			if ( isset($_COOKIE["USER"]) ) {
+				$username = $_COOKIE["USER"];
+				print($username);
+				exit();
+			}
 		}
 	}
 
