@@ -1,4 +1,4 @@
-
+// @qiongcheng
 $(document).ready(function () {
 	//Append menu list
 	rest_id = $('#Restaurant-Main div:first-child').attr("id");
