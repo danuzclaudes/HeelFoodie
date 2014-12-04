@@ -86,15 +86,15 @@ CONSTRAINT fk_Menu_Order1 FOREIGN KEY (menu_id) REFERENCES a6_Menu(menu_id)
 CREATE Table a6_Food_Review
 (
 food_review_id INT,
-menu_order_id INT,
+menu_id INT,
 customer_id int(7),
 rating INT,
 comment TEXT,
 email CHAR(200),
 Reviewimage CHAR(200),
 CONSTRAINT pk_food_review PRIMARY KEY (food_review_id),
-CONSTRAINT fk_Food_Review FOREIGN KEY (menu_order_id)
-REFERENCES a6_Menu_Order(menu_order_id),
+CONSTRAINT fk_Food_Review FOREIGN KEY (menu_id)
+REFERENCES a6_Menu_Order(menu_id),
 CONSTRAINT fk_Food_Review1 FOREIGN KEY (customer_id) REFERENCES a6_Customer(customer_id)
 ) 
 
@@ -153,12 +153,13 @@ INSERT INTO `a6_Food` (`food_id`, `food_name`) VALUES
 (6, 'Pork Fried Rice');
 
 INSERT INTO `a6_Food_Review` (`food_review_id`, `menu_id`, `customer_id`, `rating`, `comment`, `email`, `Reviewimage`) VALUES
-(1, 1, 1, 5, NULL, NULL, NULL),
-(2, 2, 1, 4, NULL, NULL, NULL),
-(3, 3, 1, 4, NULL, NULL, NULL),
-(4, 4, 1, 2, NULL, NULL, NULL),
-(5, 5, 1, 2, NULL, NULL, NULL),
-(6, 0, 0, NULL, NULL, NULL, NULL);
+(1, 1, 1, 5, "Only went here once about a year and a half ago, but they had great pancakes! My only problem with it at the time was that they allowed smoking, so I left smelling like a cigarette. With the change in law, I'm sure the atmosphere has improved!", NULL, NULL),
+(2, 2, 1, 4, "i rarely give five star reviews but for what this restaurant is, it's pretty perfect.  i've only eaten breakfast here (twice in the last three weeks) and the eggs are cooked perfectly, the sourdough toast is made in the kitchen and is delicious, and the bacon was perfectly crispy.  the hashbrowns are the best i've had in a long time - perfectly crispy on the outside and fluffy inside.  the pancakes are huge and light and amazing.  the cinnamon rolls taste just as good as they look.
+prices are right on, baked goods are pretty great.  service is fast and friendly - really fast.  i haven't had to wait more than 5 minutes to get my meal.  i might be in the honeymoon phase, but perfectly cooked poached eggs or over easy eggs are hard to come by!  it shouldn't be an anomaly to discover well cooked food, but i suppose it is.  sure it's a 'greasy spoon' but how many greasy spoons bake their own bread?  can't recommend this place enough for great breakfasts.", NULL, NULL),
+(3, 3, 1, 4, "A delicious breakfast.  Amazing fresh bakery and pastry items.  HOWEVER, the parkinglot/gas station area is filthy.  Strewn with debris, dead cars, broken glass.  If you judge a book by this cover you would NEVER venture inside.  I hope the Mgr.  sees this and cleans up.", NULL, NULL),
+(4, 4, 1, 2, "Homestyle cooking at its best, dnt go to culvers, McDonald's or whatever trash is right off the hwy, head a bit further down u will find this gem, one of the reasons I love this place so much? They dnt play annoying music, scratch that, they don't play ANY music. People working here are super nice as to be expected. If I owned this joint, I would invest in a new bigger sign, as I drove right by this place and almost missed it twice.", NULL, NULL),
+(5, 5, 1, 2, "Love their breakfast menu & they have friendly waitstaff. We go there nearly every Friday for the last 4 yrs.  I love that they don't play any music.  It is quiet, conversational, and comfortable.", NULL, NULL),
+(6, 6, 0, 5, "Nice clean place with a very friendly staff.  Great homemade chicken dumpling soup and a very tasty club sandwich.  Decor is outdated, but not sloppy. Good local place to bring the family.", NULL, NULL);
 
 INSERT INTO `heelfoodie`.`a6_menu_order` (`menu_id`, `order_id`, `quantity`, `status`) 
 VALUES ('3', '20141127003241000000', '5', 'one');
