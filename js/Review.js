@@ -1,4 +1,3 @@
-// @ Yiqi Wang
 var Review = function(review_json){
 
 	this.food_review_id = review_json.food_review_id;

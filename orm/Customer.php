@@ -74,20 +74,20 @@ class Customer
     return null;
   }
 
-  public static function findByUsername($username) {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+  // public static function findByUsername($username) {
+  //   $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
-    $result = $mysqli->query("select * from a6_Customer where username = " . $username);
-    if ($result) {
-      if ($result->num_rows == 0) {
-          return null;
-      }
+  //   $result = $mysqli->query("select * from a6_Customer where username = " . $username);
+  //   if ($result) {
+  //     if ($result->num_rows == 0) {
+  //         return null;
+  //     }
 
-      $customer_info = $result->fetch_array();
-      return intval($customer_info['customer_id'])
-    }
-    return null;
-  }
+  //     $customer_info = $result->fetch_array();
+  //     return intval($customer_info['customer_id'])
+  //   }
+  //   return null;
+  // }
 
   // public static function getAllIDs() {
   //   $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
