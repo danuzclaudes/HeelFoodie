@@ -2,6 +2,8 @@
  * @author Yiqi Wang
  */
  $(document).ready(function(){
+
+ 	
  	$.ajax("./app17.php/customer/1",
 		{	type: "GET",
 			dataType: "json",
@@ -100,16 +102,47 @@ var check_input_text = function(form_content){
         }
 }
 
-var load_contact_inf = function (id) {
+var get_username = function(){
+	$.ajax("./cookie.php/login",
+	{	type: "GET",
+		dataType: "json",
+		success: function(username, status, jqXHR) {
+			if (username != null) {
+				console.log("username is not null");
+				get_customer_id(username);
+			}
+		}
+	});
+}
 
-    $.ajax("./app17.php/customer/"+id,
+var get_customer_id = function (username) {
+    $.ajax("./app17.php/customer",
 		{	type: "GET",
+			data: {'username': username},
 			dataType: "json",
-			success: function(customer_json, status, jqXHR) {
-				alert("hi");
-				// var ci = new Customer(customer_json);
-				// $("#Def_Con_inf_display").empty();
-				// $('#Def_Con_inf_display').append(ci.makeContact_InfDiv());
+			success: function(customer_id, status, jqXHR) {
+				// alert("hi");
+				var customer_id = json_decode(customer_id);
+				console.log(customer_id);
+				load_contact_inf(customer_id);
 			}
 		});
 }
+
+
+
+
+var load_contact_inf = function (id) {
+    $.ajax("./app17.php/customer/1",
+		{	type: "GET",
+			dataType: "json",
+			success: function(customer_json, status, jqXHR) {
+				// alert("hi");
+				var ci = new Customer(customer_json);
+				$("#Def_Con_inf_display").empty();
+				$('#Def_Con_inf_display').append(ci.makeContact_InfDiv());
+			}
+		});
+}
+
+

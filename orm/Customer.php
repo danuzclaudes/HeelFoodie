@@ -73,19 +73,34 @@ class Customer
     return null;
   }
 
-  public static function getAllIDs() {
+  public static function findByUsername($username) {
     $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
-    $result = $mysqli->query("select customer_id from a6_Customer");
-    $customer_id_array = array();
-
+    $result = $mysqli->query("select * from a6_Customer where username = " . $username);
     if ($result) {
-      while ($next_row = $result->fetch_array()) {
-	      $customer_id_array[] = intval($next_row['customer_id']);
+      if ($result->num_rows == 0) {
+          return null;
       }
+
+      $customer_info = $result->fetch_array();
+      return intval($customer_info['customer_id'])
     }
-    return $customer_id_array;
+    return null;
   }
+
+  // public static function getAllIDs() {
+  //   $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+
+  //   $result = $mysqli->query("select customer_id from a6_Customer");
+  //   $customer_id_array = array();
+
+  //   if ($result) {
+  //     while ($next_row = $result->fetch_array()) {
+	 //      $customer_id_array[] = intval($next_row['customer_id']);
+  //     }
+  //   }
+  //   return $customer_id_array;
+  // }
 
   private function __construct($customer_id, $username, $password, $regi_date, $firstname, $lastname ,$middlename, 
                                 $email, $cellphone1, $cellphone2, $addr_l1,$addr_l2, $city, $state,$zipcode) {

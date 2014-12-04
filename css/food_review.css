@@ -1,6 +1,8 @@
+ 
 body {
 	background-color:rgba(190, 199, 214, 1);
 }
+ 
 #content_display{
 	width: 50%; 
 	margin: 0 auto; 
@@ -21,9 +23,12 @@ body {
 	display: inline-block;
 	float:left;
 }
-.date_display,.rating {
+.date_display,.rating, #delete_review, #new_date_display {
 	display: inline-block;
 	float: left;
+	height:30px;
+	border-bottom-style: solid;
+	border-color: gray;
 }
 .review_text{
 	width:80%;
@@ -36,11 +41,12 @@ body {
 .date_display p{
 	margin-left: 10px;
 }
-.date_display,.rating {
-	height:30px;
-	border-bottom-style: solid;
-	border-color: gray;
+
+#new_date_display{
+	font:italic 12px/30px Georgia, serif;
+	width:57%;  
 }
+
 
 .title{
 	font-size: 20px;
@@ -51,19 +57,18 @@ body {
 	font-style: italic;
 	height: 120px;
 }
-#rate{
-	z-index: 2;
-}
-
-#rate1{
-	z-index: 1;
-	position: relative;
-	top:-23px;
-}
 #error{
 	color: red;
 	font-size: 16px;
 	font-style: italic;
 }
+.rate{
+	z-index: 2;
+}
 
+.rate1{
+	z-index: 1;
+	position: relative;
+	top:-23px;
+}
 

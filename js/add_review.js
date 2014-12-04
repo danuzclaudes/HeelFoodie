@@ -31,11 +31,14 @@
 	});
 	click_review_submit_button();
 	
+	
 
+	
 });
 var click_review_submit_button = function () {
 	$("button#review_submit").click(function(event){
 		// alert("Submit!");
+		event.preventDefault();
 		var form_content = $("#new_review" ).serializeArray();
 		// var rate = parseFloat(form_content[0].value);
 		// var score = rate*100/5;
@@ -54,15 +57,22 @@ var click_review_submit_button = function () {
 			datatype: "JSON",
             success: function(review_json, status, jqXHR){
             		alert("Submit success!");
+            		console.log(review_json);
             		var r = new Review(review_json);
-					review_all_display.append(r.makeReview_infDiv());
+            		console.log(r.food_review_id);
+					review_all_display.append(r.addReview_infDiv());
+					var new_review_id = r.food_review_id;
+					delete_button(new_review_id);
+					// $("#delete_button").button();
 					$("div#review_inf").hide();
 					$('.success').fadeIn(200).show();
 					$('.error').fadeOut(200).hide();
+					
 					}
 		});
 
-		event.preventDefault();
+		
+		
 
 	});
 }
@@ -93,26 +103,49 @@ var load_review_item = function (menu_id,review_id) {
 		{	type: "GET",
 			dataType: "json",
 			success: function(review_json, status, jqXHR) {
-				console.log(review_json);
+				// console.log(review_json);
 				var r = new Review(review_json);
-				
 				review_all_display.append(r.makeReview_infDiv());
 			    }
 		});
 }
 
 var check_input = function (form_content){
+	console.log(form_content);
 	var title = form_content[1].value;
 	var comment = form_content[2].value;
+	console.log(comment);
 	if (title.length ==0){
-        	$("#error").html("Title is required!");
+        $("#error").html("Title is required!");
         	// console.log("title");
-        	return false;
-        }else if (comment.length ==0){
-        	$("#error").html("Comment is required!");
-        	return false;
+        return false;
+        } 
+    if (comment.length ==0){
+        $("#error").html("Comment is required!");
+        return false;
         	// console.log("comment");
         }
+}
+
+var delete_button = function(review_id){
+	console.log("in delete function",review_id);
+	$("body").on('click', "button#delete_button", function(event) {
+		event.preventDefault();
+        // alert("delete_button!");
+        
+        $.ajax("./app17.php/review/1/" + review_id.toString() +"?delete",
+			{	type: "GET",
+				// dataType: "json",
+				success: function(review_json, status, jqXHR) {
+					// console.log(review_json);
+					alert("delete success!");
+					var last_review = $("#new_add_review");
+        			last_review.remove();
+				    }
+			});
+        
+    });
+    
 }
 
 
