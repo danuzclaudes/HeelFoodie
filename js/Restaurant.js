@@ -1,3 +1,4 @@
+// @chongrui
 var Restaurant = function (json) {
 	this.rid = json.rid;
 	this.rname = json.rname;
