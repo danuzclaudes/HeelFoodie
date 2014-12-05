@@ -1,5 +1,5 @@
 <?php
-require_once('model.php');
+// require_once('model.php');
 
 //session_start();
 
@@ -27,13 +27,6 @@ require_once('model.php');
 <link href="./css/address_input.css" rel="stylesheet">
 <script src="./js/address_input.js"></script>
 
-<!--
-	Place Your Scripts or CSS links below:
-
-<script>
-    console.log(<?php echo json_encode($_SESSION, JSON_HEX_TAG); ?>);
-</script>
--->
 
 </head>
 <body>

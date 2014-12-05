@@ -1,4 +1,3 @@
-<!-- @Yiqi Wang -->
 <?php
 date_default_timezone_set('America/New_York');
 
@@ -22,7 +21,7 @@ class Customer
 
   public static function create_customer($customer_id, $username, $password, $regi_date, $firstname, $lastname, $middlename, 
                                 $email, $cellphone1, $cellphone2, $addr_l1, $addr_l2, $city, $state, $zipcode) {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
     if ($regi_date == null) {
       $dstr = "null";
@@ -56,7 +55,7 @@ class Customer
   }
 
   public static function findByID($customer_id) {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
     $result = $mysqli->query("select * from a6_Customer where customer_id = " . $customer_id);
     if ($result) {
@@ -74,34 +73,19 @@ class Customer
     return null;
   }
 
-  public static function findByUsername($username) {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+  public static function getAllIDs() {
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
-    $result = $mysqli->query("select * from a6_Customer where username = " . $username);
+    $result = $mysqli->query("select customer_id from a6_Customer");
+    $customer_id_array = array();
+
     if ($result) {
-      if ($result->num_rows == 0) {
-          return null;
+      while ($next_row = $result->fetch_array()) {
+	      $customer_id_array[] = intval($next_row['customer_id']);
       }
-
-      $customer_info = $result->fetch_array();
-      return intval($customer_info['customer_id'])
     }
-    return null;
+    return $customer_id_array;
   }
-
-  // public static function getAllIDs() {
-  //   $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
-
-  //   $result = $mysqli->query("select customer_id from a6_Customer");
-  //   $customer_id_array = array();
-
-  //   if ($result) {
-  //     while ($next_row = $result->fetch_array()) {
-	 //      $customer_id_array[] = intval($next_row['customer_id']);
-  //     }
-  //   }
-  //   return $customer_id_array;
-  // }
 
   private function __construct($customer_id, $username, $password, $regi_date, $firstname, $lastname ,$middlename, 
                                 $email, $cellphone1, $cellphone2, $addr_l1,$addr_l2, $city, $state,$zipcode) {
@@ -175,7 +159,7 @@ class Customer
   
 
   private function update() {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
     // if ($this->regi_date == null) {
     //   $rstr = "null";
     // } else {
@@ -219,7 +203,7 @@ class Customer
   }
 
   public function delete() {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
     $mysqli->query("delete from a6_Customer where customer_id = " . $this->customer_id);
   }
 

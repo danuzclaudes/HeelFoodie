@@ -22,15 +22,18 @@
 
 <link rel="stylesheet" type="text/css" href="css/cartReview.css">
 <script src="js/bootstrap.min.js"></script>
-<script src="js/Restaurants.js"></script>
+<script src="js/restaurant_class.js"></script>
 <script src="js/Menu.js"></script>
 <script src="js/OrderList.js"></script>
 <script src="js/order_entry.js"></script>
 <!--Newly added js -->
 <script src="js/cartViewer.js"></script>
 <script src="js/Cart.js"></script>
+<script src="js/menuViewer.js"></script>
+<script src="js/Menu.js"></script>
+<script src="js/login.js"></script>
 <!--Newly added js -->
-<script src="js/setup.js"></script>
+
 
 
 </head>
@@ -43,8 +46,7 @@
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
-          <a class="link" href="#">LOGIN</a>
-          / <a class="link" href="#">REGISTER</a>
+          <a class="link" id="modal_trigger" href="#modal" >LOGIN/REGISTER</a>
         </div>
     </header>
     <!-- Place Your HTML Here: -->
