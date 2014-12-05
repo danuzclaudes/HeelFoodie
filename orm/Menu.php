@@ -1,4 +1,3 @@
-<!-- @Qiongcheng -->
 <?php
 
 //ORM: Menu
@@ -12,12 +11,12 @@ class Menu {
 	private $is_recommended;
 
 	public static function create($menu_id, $food_id, $restaurant_id, $item_image, $item_thumb_image, $price, $is_recommended) {
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 	}
 
 	public static function findByID($mid) {
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 		$result = $mysqli -> query("select * from a6_Menu where menu_id = " . $mid);
 		if ($result) {
@@ -33,7 +32,7 @@ class Menu {
 	}
 
 	public static function findFoodEntryByID($mid) {
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 		$result = $mysqli -> query("select M.menu_id, M.item_thumb_image, F.food_name, M.price, ROUND(AVG(R.rating), 0) AS rating," .
 		" T.restaurant_name, M.restaurant_id from a6_Menu M INNER JOIN a6_Food F ON M.food_id = F.food_id INNER JOIN a6_Food_Review R ON ".
@@ -56,7 +55,7 @@ class Menu {
 	}
 
 	public static function getAllIDsByRestID($rest_id) {
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 		$result = $mysqli -> query("select menu_id from a6_Menu where restaurant_id = " . $rest_id);
 		$mid_array = array();
@@ -143,7 +142,7 @@ class Menu {
 	}
 
 	private function update() {
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 		// if ($this -> due_date == null) {
 		// $dstr = "null";
@@ -162,7 +161,7 @@ class Menu {
 	}
 
 	public function delete() {
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 		$mysqli -> query("delete from a6_Menu where menu_id = " . $this -> menu_id);
 	}
 

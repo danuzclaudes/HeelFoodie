@@ -1,10 +1,10 @@
 <?php
 date_default_timezone_set("America/New_York");
 
-require_once("orm/MenuLocalV2.php");
-require_once("orm/Customer.php");
-require_once("orm/Restaurant_l.php");
-require_once("orm/Review.php");
+require_once("./orm/Menu.php");
+require_once("./orm/Customer.php");
+// require_once("./orm/Restaurant.php");
+require_once("./orm/Review.php");
 // echo $_SERVER['PATH_INFO'];
 // if(!isset($_SERVER['PATH_INFO'])){
 // 	echo "hello";
@@ -21,40 +21,21 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 	if (count($path_components) >= 2 && $path_components[1]!='') {
 		// matches /app.php/resource form
 		if ($path_components[1] == 'customer') {
-			if(count($path_components) > 2){
-				$customer_id = intval($path_components[2]);
-				$customer = Customer::findByID($customer_id);
+			$customer_id = intval($path_components[2]);
+			$customer = Customer::findByID($customer_id);
 
-				if ($customer == null) {
-	       		// Customer not found.
-					header("HTTP/1.0 404 Not Found");
-					print("Customer id: " . $customer_id . " not found.");
-					exit();
-				}
-			
-				// Normal lookup.
-				// Generate JSON encoding as response
-				header("Content-type: application/json");
-				print($customer->getJSON());
+			if ($customer == null) {
+       		// Customer not found.
+				header("HTTP/1.0 404 Not Found");
+				print("Customer id: " . $customer_id . " not found.");
 				exit();
-			} elseif{
-
-				$new_username = ""
-				if (isset($_REQUEST['username'])) {
-			      $new_username = trim($_REQUEST['username']);
-			      if ($new_username == "") {
-			        	header("HTTP/1.0 400 Bad Request");
-			        	print("Bad username");
-			        	exit();
-			      }
-			    }
-			    $customer_id = Customer::findByUsername($username);
-			    header("Content-type: application/json");
-				print(json_encode($customer_id));
-				exit();
-
 			}
-
+			
+			// Normal lookup.
+			// Generate JSON encoding as response
+			header("Content-type: application/json");
+			print($customer->getJSON());
+			exit();
 		}elseif ($path_components[1] == 'review') {
 				
 			$menu_id = intval($path_components[2]);
