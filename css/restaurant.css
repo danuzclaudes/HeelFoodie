@@ -1,13 +1,17 @@
-
-#restaurant_info {
-	float: left;
+#restaurantName {
+	width: 700px;
 }
 
 #resImg {
 	margin-top: 1.5em;
-	margin-bottom: 1.5em;
-	width: 700px;
 	
+	width: 572px;	
+	vertical-align: middle;
+
+}
+
+#resImg, #restaurant-info {
+	display:inline-block;
 }
 
 #carousel-example-generic {
@@ -15,12 +19,29 @@
 	margin: 0 auto;
 }
 
+
+
+#restaurant-info {
+	margin-top: 1.5em;
+	vertical-align: middle;
+	margin-left: 3px;
+	background-color:#eee;
+	padding-left: 10px;
+	padding-right: 10px;
+   /*border: 1px solid #888;*/
+   border-radius:3px;
+}
+
+/*#resImg, #restaurant-info {
+	display:inline-block;
+}*/
+
 #menu {
 	margin-top: 1.5em;
 	width: 700px;
 }
 
-ul {
+#menu-entry {
 	list-style: none outside none;
 	width: 100%;
 	margin: 0;
@@ -46,6 +67,10 @@ li img {
 
 .food-image, .food, .qty, .price, .rate-bar{
 	display:inline-block;
+}
+
+.img-rounded {
+	cursor: pointer; 
 }
 
 .food-image {
@@ -119,4 +144,8 @@ li img {
     margin-bottom: 20px;
     
 }
+
+
+
+
 
