@@ -99,7 +99,7 @@ class Restaurant {
 	}
 
 	public static function findRestaurantByID($id) {
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
 		$result = $mysqli->query("select * from a6_Restaurant where restaurant_id = ".$id);
 		if($result) {
@@ -122,11 +122,6 @@ class Restaurant {
 			// } else {
 			// 	$registerDate = null;
 			// }
-			if ($next_row['isOpen']) {
-				$isOpen = true;
-			} else {
-				$isOpen = false;
-			}
 
 			return new Restaurant(intval($row['restaurant_id']),
 								  $row['restaurant_name'],
@@ -144,7 +139,7 @@ class Restaurant {
 								  $row['latitude'],
 								  $row['longitude'],
 								  $row['logo'],
-								  $isOpen);
+								  $row['isOpen']);
 		}
 		echo "find by id result is null";
 		return null;
@@ -165,5 +160,38 @@ class Restaurant {
 	public function getIsOpen() {
 		return $this->isOpen;
 	}
+	
+	
+	
+	
+	//Newly added getJSON
+	public function getJSON() {
+    
+	if ($this->registerDate == null) {
+      $dstr = null;
+    } else {
+      $dstr = $this->registerDate->format('Y-m-d');
+    }
+	
+    $json_obj = array(
+			  
+	'rid' => $this->rid,
+	'rname' =>	$this->rname,
+	'registerDate' => $dstr,
+	'address' =>	$this->address,
+	'city' =>	$this->city,
+	'state' =>	$this->state,
+	'zipcode' =>	$this->zipcode,
+	'phone' =>	$this->phone,
+	'openHour' =>	$this->openHour,
+	'closedHour' =>	$this->closedHour,
+	'min_order' =>	$this->min_order,
+	'delivery_fee' =>	$this->delivery_fee,
+	'latitude' =>	$this->latitude,
+	'longtitude' =>	$this->longitude,
+	'logo' =>	$this->logo);
+			  
+    return json_encode($json_obj);
+  }
 }
 ?>
