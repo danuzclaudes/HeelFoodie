@@ -35,8 +35,8 @@ class Menu {
 		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 		$result = $mysqli -> query("select M.menu_id, M.item_thumb_image, F.food_name, M.price, ROUND(AVG(R.rating), 0) AS rating," .
-		" T.restaurant_name, M.restaurant_id from a6_Menu M INNER JOIN a6_Food F ON M.food_id = F.food_id INNER JOIN a6_Food_Review R ON ".
-		"M.menu_id = R.menu_id INNER JOIN a6_Restaurant T ON T.restaurant_id = M.restaurant_id where M.menu_id = " . $mid);
+		" T.restaurant_name, M.restaurant_id from a6_Menu M INNER JOIN a6_Food F ON M.food_id = F.food_id LEFT JOIN a6_Food_Review R ON ".
+		"M.menu_id = R.menu_id LEFT JOIN a6_Restaurant T ON T.restaurant_id = M.restaurant_id where M.menu_id = " . $mid);
 		if ($result) {
 			if ($result -> num_rows == 0) {
 				return null;
