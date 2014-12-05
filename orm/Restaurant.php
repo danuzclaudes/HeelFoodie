@@ -1,4 +1,3 @@
-<!-- @chongrui -->
 <?php
 date_default_timezone_set('America/New_York');
 
@@ -49,7 +48,7 @@ class Restaurant {
 
 	public static function getAllRestaurants() {
 		// echo "invocation success"; // for debugging
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
 		$result = $mysqli->query("select restaurant_id, restaurant_name, latitude, longitude, address, city, state, zipcode, work_phone, isOpen ".
 								 " from a6_Restaurant");
@@ -146,7 +145,7 @@ class Restaurant {
 	}
 
 	public function deleteRestaurant() {
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 		$mysqli->query('delete from a6_Restaurant where id='.$this->id);
 	}
 

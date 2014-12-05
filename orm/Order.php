@@ -1,4 +1,3 @@
-<!-- @chongrui -->
 <?php
 date_default_timezone_set('America/New_York');
 
@@ -18,7 +17,7 @@ class Order {
   }
 
   public static function createOrder ($oid, $cid, $ophone, $oaddress, $odate) {
-    $mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
     
     // validation
     if ($odate == null) {
@@ -53,7 +52,7 @@ class Order {
   }
 
   public static function getOrderByID($oid) {
-    $mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
 
     $result = $mysqli->query("select * from a6_Order where order_id = ".$oid);
     if($result){
