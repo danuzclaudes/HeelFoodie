@@ -1,5 +1,3 @@
-// @ Qiongcheng
-
 // Menu Object
 var Menu = function(menu_json) {
     this.menu_id = menu_json.menu_id;
@@ -7,9 +5,11 @@ var Menu = function(menu_json) {
     this.price = menu_json.price;
     this.food_name = menu_json.food_name;
     this.rating = menu_json.rating;
+    this.restaurant_id = menu_json.restaurant_id;
+    this.restaurant_name = menu_json.restaurant_name;
 };
 
-Menu.prototype.makeCompactLi = function() {
+Menu.prototype.makeCompactLi = function(cookie_qty) {
     var menuli = $("<li></li>");
     menuli.addClass('food-entry');
 
@@ -30,6 +30,9 @@ Menu.prototype.makeCompactLi = function() {
     qty_select.addClass('select-qty');
     for (var j = 0; j < 6; j++){
     	var option = $("<option value="+j+">"+j+"</option>");
+    	if (j == cookie_qty) {
+			option.attr("selected", "true");
+		}
     	qty_select.append(option);
     }
 	qty.append(qty_select);

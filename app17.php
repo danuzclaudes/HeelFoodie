@@ -1,10 +1,10 @@
 <?php
 date_default_timezone_set("America/New_York");
 
-require_once("orm/MenuLocalV2.php");
-require_once("orm/Customer.php");
-require_once("orm/Restaurant_l.php");
-require_once("orm/Review.php");
+require_once("./orm/Menu.php");
+require_once("./orm/Customer.php");
+// require_once("./orm/Restaurant.php");
+require_once("./orm/Review.php");
 // echo $_SERVER['PATH_INFO'];
 // if(!isset($_SERVER['PATH_INFO'])){
 // 	echo "hello";
