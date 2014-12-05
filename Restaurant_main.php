@@ -20,20 +20,26 @@
 -->
 
 <link rel="stylesheet" type="text/css" href="css/restaurant.css">
+<link type="text/css" rel="stylesheet" href="css/style.css" />
 <script src="js/bootstrap.min.js"></script>
-<script src="js/Menu.js"></script>
+
 <script src="js/OrderList.js"></script>
-<script src="js/Restaurants.js"></script>
+<script src="js/restaurant_class.js"></script>
 <script src="js/order_entry.js"></script>
 <!--Newly added js -->
 <script src="js/Cart.js"></script>
-<script src="js/MenuNew.js"></script>
+<script src="js/Menu.js"></script>
 <script src="js/menuViewer.js"></script>
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<script src="js/login.js"></script>
+<script src="js/Review.js"></script>
+<script src="js/show_review.js"></script>
 <!--Newly added js -->
-<script src="js/setup.js"></script>
+
 
 </head>
 <body>
+	
 <div class="main-container">
     <!-- Header -->
     <header id="main-header" class="navbar navbar-custom navbar-fixed-top">
@@ -42,28 +48,23 @@
         </div>
 	    <h1>HeelFoodie</h1>
     	<div class="header-account">
-          <a class="link" href="#">LOGIN</a>
-          / <a class="link" href="#">REGISTER</a>
+          <a class="link" id="modal_trigger" href="#modal" >LOGIN/REGISTER</a>
         </div>
     </header>
     <!-- Place Your HTML Here: -->
 	<div id="Restaurant-Main" class="container">
-		<!-- Get restaurant id from url
+	
+		<div <?php echo "id= ".$_GET['rid']."" ?> class="restaurant-id"> </div>
+		<div id="restaurantName" class="center-block">
+			<!-- Get restaurant id from url
 		<div id="1" class="restaurant_info">
 		-->
-		<div <?php echo "id= ".$_GET['rid']."" ?> class="restaurant_info">
-		
-			Asian Cafe
-			Address:
-			Phone:
-			Open hour: 
+			
+			
+			<img id="resImg", src="img/AsiaCafe.png">	
+			<div id="restaurant-info" ></div>	
 		</div>
-	<!-- Carousel -->
-		<div id="response"></div>
-				<div id="restaurantName">
-					<img id="resImg", class="img-responsive center-block", src="img/AsiaCafe.png">
-				</div>
-				
+		<!-- Carousel -->
 				<div id="carousel-example-generic" class="carousel slide" class="center-block" data-ride="carousel" data-interval="3000">
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
@@ -223,5 +224,134 @@
         </div>
     </footer>
 </div>
+
+<div id="modal" class="popupContainer" style="display:none;">
+		<header class="popupHeader">
+			<span class="header_title">Login</span>
+			<span class="modal_close"><i class="fa fa-times"></i></span>
+		</header>
+		
+		<section class="popupBody">
+			<!-- Social Login -->
+			<div class="social_login">
+				<div class="">
+					<a href="#" class="social_box fb" >
+						<span class="icon" style="box-sizing: content-box;"><i class="fa fa-facebook"></i></span>
+						<span class="icon_title">Connect with Facebook</span>
+						
+					</a>
+
+					<a href="#" class="social_box google">
+						<span class="icon" style="box-sizing: content-box;"><i class="fa fa-google-plus"></i></span>
+						<span class="icon_title">Connect with Google</span>
+					</a>
+				</div>
+
+				<div class="centeredText">
+					<span>Or use your Email address</span>
+				</div>
+
+				<div class="action_btns">
+					<div class="one_half"><a href="#" id="login_form" class="btn">Login</a></div>
+					<div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
+				</div>
+			</div>
+
+			<!-- Username & Password Login form -->
+			<div class="user_login">
+				<form id = "loginForm" action="" method="post">
+					<label>Email / Username</label>
+					<input type="text" name="username" value="<?php echo $submitted_username; ?>"/>
+					<br />
+
+					<label>Password</label>
+					<input type="password" name="password" value="" />
+					<br />
+
+					
+
+					<div class="action_btns">
+						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
+						<div class="one_half last"><input type="submit" class="btn btn_red" value="Login" /></div>
+					</div>
+				</form>
+
+				<a href="#" class="forgot_password">Forgot password?</a>
+			</div>
+
+			<!-- Register Form -->
+			<div class="user_register" action="" method="post">
+				<form id="resgisterForm">
+					<label>Full Name</label>
+					<input type="text" name="usernamer"/>
+					<br />
+
+					<label>Email Address</label>
+					<input type="email" name="emailr"/>
+					<br />
+
+					<label>Password</label>
+					<input type="password" name="passwordr"/>
+					<br />
+
+					<div class="action_btns">
+						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
+						<div class="one_half last"><input type="submit" class="btn btn_red" value="Register" /> </div>
+					</div>
+				</form>
+			</div>
+		</section>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+
+	$(function(){
+		// Calling Login Form
+		$("#login_form").click(function(){
+			$(".social_login").hide();
+			$(".user_login").show();
+			return false;
+		});
+
+		// Calling Register Form
+		$("#register_form").click(function(){
+			$(".social_login").hide();
+			$(".user_register").show();
+			$(".header_title").text('Register');
+			return false;
+		});
+
+		// Going back to Social Forms
+		$(".back_btn").click(function(){
+			$(".user_login").hide();
+			$(".user_register").hide();
+			$(".social_login").show();
+			$(".header_title").text('Login');
+			return false;
+		});
+
+	})
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Review</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+
 </body>
 </html>
