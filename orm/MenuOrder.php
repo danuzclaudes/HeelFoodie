@@ -19,7 +19,7 @@ class MenuOrder {
 			$oid = date("YmdHisu", time());
 		}
 
-		$result = $mysqli->query('insert into a6_menu_order values ('.
+		$result = $mysqli->query('insert into a6_Menu_Order values ('.
 								  "'".$mysqli->real_escape_string($mid)."'".','.
 								  "'".$mysqli->real_escape_string($oid)."'".','.
 								  "'".$mysqli->real_escape_string($qty)."'".','.
@@ -56,8 +56,8 @@ class MenuOrder {
 
     $result = $mysqli->query('select mo.menu_id, mo.quantity, mo.status, m.price, f.food_name, '.
 							 'm.item_thumb_image, r.avg_rating '.
-							 'FROM a6_menu_order as mo, a6_menu as m, a6_food as f, '.
-							 ' (SELECT r.menu_id, ROUND(avg(r.rating), 0) as avg_rating FROM wangyiqidb.a6_food_review as r group by r.menu_id) as r '.
+							 'FROM a6_Menu_Order as mo, a6_Menu as m, a6_Food as f, '.
+							 ' (SELECT r.menu_id, ROUND(avg(r.rating), 0) as avg_rating FROM wangyiqidb.a6_Food_Review as r group by r.menu_id) as r '.
 							 'WHERE mo.menu_id = m.menu_id and m.food_id = f.food_id and m.menu_id = r.menu_id '.			   
 							 'and mo.order_id = '."'".$order."'");
     
