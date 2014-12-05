@@ -42,12 +42,14 @@ class Order {
     //                          "'".$mysqli->real_escape_string($cid)."',".
     //                          "'".$mysqli->real_escape_string($ophone)."',".
     //                          "'".$mysqli->real_escape_string($oaddress)."',".
-    //                          $odate.");";
+    //                          '$odate'.");";
     if($result) {
+      // echo "result = ".$result;
       $id = $mysqli->insert_id;
       $new_order = new Order($oid, $cid, $ophone, $oaddress, $odate);
       return $new_order;
     }
+    // echo "result is null";
     return null;
   }
 
