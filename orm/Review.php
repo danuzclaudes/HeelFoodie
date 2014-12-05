@@ -15,7 +15,7 @@ class Review
 
   public static function create_review($menu_id, $customer_id, 
     $rating, $comment, $title, $reviewimage, $comment_date) {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
     if ($reviewimage == null) {
       $ristr = "null";
@@ -39,7 +39,7 @@ class Review
   }
 
   public static function findByID($food_review_id) {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
     $result = $mysqli->query("select * from a6_Food_Review where food_review_id = " . $food_review_id);
     if ($result) {
@@ -55,7 +55,7 @@ class Review
   }
 
   public static function get_all_review_by_menu_ids($menu_id) {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
     $result = $mysqli->query("select food_review_id from a6_Food_Review where menu_id= " . $menu_id);
     $food_review_id_array = array();
@@ -80,7 +80,7 @@ class Review
   }
 
   private function update() {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
     $result = $mysqli->query("update a6_Food_Review set " .
 			     "menu_id=" .
@@ -103,7 +103,7 @@ class Review
   }
 
   public function delete() {
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
     $mysqli->query("delete from a6_Food_Review where food_review_id = " . $this->food_review_id);
   }
 
