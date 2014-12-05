@@ -204,7 +204,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 			} elseif ($path_components[1] == 'review'&& count($path_components) == 3){
 				
 				$menu_id = intval($path_components[2]);
-			    $customer_id = '0000000';
+			    $customer_id = '1';
 			    
 			    $title = trim($_REQUEST['title']);
 			    if ($title == "") {
@@ -233,7 +233,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 			    // Report if failed
 			    if ($new_review == null) {
 			      header("HTTP/1.0 500 Server Error");
-			      print("Server couldn't create new todo.");
+			      print("Server couldn't create new review.");
 			      exit();
 			    }
     
