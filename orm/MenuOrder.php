@@ -13,7 +13,7 @@ class MenuOrder {
 	}
 
 	public static function createMenuOrder($mid, $oid, $qty, $status){
-		$mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 		// validation 
 		if ($oid == null) {
 			$oid = date("YmdHisu", time());
@@ -46,25 +46,25 @@ class MenuOrder {
 	}
 
 	public static function getMenuFoodInfoByOrderID($order){
-    $mysqli = new mysqli("localhost", "root", "333666", "heelfoodie");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 	// SELECT mo.menu_id, mo.quantity, mo.status, m.price, f.food_name, m.item_thumb_image, r.avg_rating
 	// FROM a6_menu_order as mo, a6_menu as m, a6_food as f,
-	// 	 (SELECT r.menu_id, ROUND(avg(r.rating), 0) as avg_rating FROM heelfoodie.a6_food_review as r group by r.menu_id) as r
+	// 	 (SELECT r.menu_id, ROUND(avg(r.rating), 0) as avg_rating FROM wangyiqidb.a6_food_review as r group by r.menu_id) as r
 	// WHERE mo.menu_id = m.menu_id and m.food_id = f.food_id and m.menu_id = r.menu_id 
 	// 	  and mo.order_id = '20141128201836000000'
 
     $result = $mysqli->query('select mo.menu_id, mo.quantity, mo.status, m.price, f.food_name, '.
 							 'm.item_thumb_image, r.avg_rating '.
 							 'FROM a6_menu_order as mo, a6_menu as m, a6_food as f, '.
-							 ' (SELECT r.menu_id, ROUND(avg(r.rating), 0) as avg_rating FROM heelfoodie.a6_food_review as r group by r.menu_id) as r '.
+							 ' (SELECT r.menu_id, ROUND(avg(r.rating), 0) as avg_rating FROM wangyiqidb.a6_food_review as r group by r.menu_id) as r '.
 							 'WHERE mo.menu_id = m.menu_id and m.food_id = f.food_id and m.menu_id = r.menu_id '.			   
 							 'and mo.order_id = '."'".$order."'");
     
     // echo '</br>sql='.'select mo.menu_id, mo.quantity, mo.status, m.price, f.food_name, '.
 				// 			 'm.item_thumb_image, r.avg_rating '.
 				// 			 'FROM a6_menu_order as mo, a6_menu as m, a6_food as f, '.
-				// 			 ' (SELECT r.menu_id, ROUND(avg(r.rating), 0) as avg_rating FROM heelfoodie.a6_food_review as r group by r.menu_id) as r '.
+				// 			 ' (SELECT r.menu_id, ROUND(avg(r.rating), 0) as avg_rating FROM wangyiqidb.a6_food_review as r group by r.menu_id) as r '.
 				// 			 'WHERE mo.menu_id = m.menu_id and m.food_id = f.food_id and m.menu_id = r.menu_id '.			   
 				// 			 'and mo.order_id = '."'".$order."'".'</br>';
 
