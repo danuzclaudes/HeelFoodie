@@ -22,15 +22,21 @@ class Review
     }
 
     $dstr = "'" . gmdate('Y-m-d H:i:s') . "'";
-
-    $result = $mysqli->query("insert into a6_Food_Review values (null,".
+    $sql_query = "insert into a6_Food_Review values (null,".
            "'" . $mysqli->real_escape_string($menu_id) . "', " .
            "'" . $mysqli->real_escape_string($customer_id) . "', " .
            "'" . $mysqli->real_escape_string($rating) . "', " .
            "'" . $mysqli->real_escape_string($comment) . "', " .
-           "'" . $mysqli->real_escape_string($title) . "'," . $ristr . ", " . $dstr . ")" 
-           );
-    
+           "'" . $mysqli->real_escape_string($title) . "'," . $ristr . ", " . $dstr . ")" ;
+    $result = $mysqli->query($sql_query);
+
+    // $result = $mysqli->query("insert into a6_Food_Review values (null,".
+    //        "'" . $mysqli->real_escape_string($menu_id) . "', " .
+    //        "'" . $mysqli->real_escape_string($customer_id) . "', " .
+    //        "'" . $mysqli->real_escape_string($rating) . "', " .
+    //        "'" . $mysqli->real_escape_string($comment) . "', " .
+    //        "'" . $mysqli->real_escape_string($title) . "'," . $ristr . ", " . $dstr . ")" 
+    //        );
     if ($result) {
       $food_review_id = $mysqli->insert_id;
       return new Review($food_review_id, $menu_id, $customer_id, $rating, $comment, $title, $reviewimage, $comment_date);

@@ -24,8 +24,6 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/restaurant_class.js"></script>
 <script src="js/Menu.js"></script>
-<script src="js/OrderList.js"></script>
-<script src="js/order_entry.js"></script>
 <!--Newly added js -->
 <script src="js/cartViewer.js"></script>
 <script src="js/Cart.js"></script>
