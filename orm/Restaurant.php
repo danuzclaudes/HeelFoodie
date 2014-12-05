@@ -48,7 +48,7 @@ class Restaurant {
 
 	public static function getAllRestaurants() {
 		// echo "invocation success"; // for debugging
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 		$result = $mysqli->query("select restaurant_id, restaurant_name, latitude, longitude, address, city, state, zipcode, work_phone, isOpen ".
 								 " from a6_Restaurant");
@@ -98,7 +98,7 @@ class Restaurant {
 	}
 
 	public static function findRestaurantByID($id) {
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 		$result = $mysqli->query("select * from a6_Restaurant where restaurant_id = ".$id);
 		if($result) {
@@ -145,7 +145,7 @@ class Restaurant {
 	}
 
 	public function deleteRestaurant() {
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 		$mysqli->query('delete from a6_Restaurant where id='.$this->id);
 	}
 

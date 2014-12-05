@@ -13,7 +13,7 @@ class MenuOrder {
 	}
 
 	public static function createMenuOrder($mid, $oid, $qty, $status){
-		$mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 		// validation 
 		if ($oid == null) {
 			$oid = date("YmdHisu", time());
@@ -46,7 +46,7 @@ class MenuOrder {
 	}
 
 	public static function getMenuFoodInfoByOrderID($order){
-    $mysqli = new mysqli("localhost", "root", "333666", "wangyiqidb");
+    $mysqli = new mysqli("classroom.cs.unc.edu", "wangyiqi", "333666", "wangyiqidb");
 
 	// SELECT mo.menu_id, mo.quantity, mo.status, m.price, f.food_name, m.item_thumb_image, r.avg_rating
 	// FROM a6_menu_order as mo, a6_menu as m, a6_food as f,
